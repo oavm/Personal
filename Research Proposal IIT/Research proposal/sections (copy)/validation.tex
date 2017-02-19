@@ -1,0 +1,77 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+	
+\vspace{20pt}
+
+In order to perform a validation of the derived model and the estimated parameters, a measurement for the quality of its relation with the actual setup can be done using the Variance Accounted For (VAF)\cite{Filtering} which gives a measurement of how well the measured data fits the model. \\
+For the set of obtained parameters using the nonlinear least-squares, the nonlinear model and the linearized model were tested using 6 different data sets for different inputs. The plots of the results with input and output data are shown in figure \ref{fig:VAF1}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{FirstFitVAF.png}
+\caption{\label{fig:VAF1}Comparison between nonlinear, linear and measured data.}
+\end{figure}
+
+The corresponding values for the VAF are shown in table \ref{tab:VAF_1}
+\begin{table}[h]
+\centering
+\caption{VAF values for the different data sets.}
+\label{tab:VAF_1}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+                &                                                  & $\begin{matrix}Data  & 1 \\\pi & 0 \end{matrix}$                                       & $\begin{matrix}Data & 2 \\\pi & 0 \\ \end{matrix}$                                      & $\begin{matrix}Data & 3 \\\pi & 0 \\ \end{matrix}$                                      & $\begin{matrix}Data & 4 \\\pi & 0 \\ \end{matrix}$                                     & $\begin{matrix}Data & 5\\\pi & 0 \\ \end{matrix}$                                       & $\begin{matrix}Data &6\\0 & \pi \\ \end{matrix}$                                      \\ \hline
+Nonlinear Model & $\begin{matrix}\theta_1 \\\theta_2 \end{matrix}$ & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix} 10.97\\\\ 51.27\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}90.13\\\\ 66.9279\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}86.72\\\\ 62.2466\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}93.33\\\\ 8.0216\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}98.01\\\\ 94.2972\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}96.96\\\\ 94.89\end{bmatrix}$\end{tabular} \\ \hline
+Linear Model    & $\begin{matrix}\theta_1 \\\theta_2 \end{matrix}$ & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}10.86\\\\ 41.81\end{bmatrix}$\end{tabular}  & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}90.10\\\\ 57.70\end{bmatrix}$\end{tabular}   & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}86.74\\\\ 51.02\end{bmatrix}$\end{tabular}   & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix} 93.39\\\\ 0\end{bmatrix}$\end{tabular}     & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix} 97.74\\\\ 91.33\end{bmatrix}$\end{tabular}  & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}97.06\\\\ 89.62\end{bmatrix}$\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+As it can be seen, the values for the fit of the model with respect to the measured data are mostly below 70\%. Because of this, a new parameter estimation will be performed. An educated guess is made by looking at the response that the damping in link 1 might be too high, and therefor the $K_u$ is too high as well. The initial guesses for $K_u$ and $d_1$ for the next parameter estimation will be $d_1$=3.5 and $K_u$=-20, taking half for both values. Finally the bounds of some of the parameters during the optimization were changed. The final estimated parameters are shown in table \ref{tab:FinalPar}
+
+\begin{table}[H]
+\caption{Final parameter estimation.}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Symbol &Parameter &Value \\ \hline
+$l_1$ &Length of first link &0.1 [m] \\ 
+$l_2$ &Length of second link &0.1 [m]\\ 
+$m_1$ &Mass of first link &0.6448 [kg]\\ 
+$m_2$ &Mass of second link &0.0966[kg]\\ 
+$c_1$ &Center of mass of first link &0.537 [m]\\ 
+$c_2$ &Center of mass of second link &0.0536 [m]\\ 
+$I_1$ &Inertia of first link &0.0366 [kgm$^2$]\\ 
+$I_2$ &Inertia of second link &0.0001 [kgm$^2$]\\
+$d_1$ &Damping of first link &3.5117 [$\frac{Ns}{m}$]\\
+$d_2$ &Damping of second link &0.0001 [$\frac{Ns}{m}$]\\
+$K_u$ &Lumped motor constant &-18.7850 [$\frac{N}{m}$]\\
+$g$ & gravitation constant & 9.81 [$\frac{m}{s^2}$]\\ \hline
+\end{tabular}
+\label{tab:FinalPar}
+\end{table} 
+
+The plots for the fits corresponding to the same data sets are shown in figure \ref{fig:FinalFitVAF}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{FinalFitVAF.png}
+\caption{\label{fig:FinalFitVAF}Comparison between nonlinear, linear and measured data for final estimation.}
+\end{figure}
+
+And the corresponding values for the VAF are shown in table
+
+\begin{table}[h]
+\centering
+\caption{VAF values for the different data sets.}
+\label{tab:VAFl}
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+\hline
+                &                                                  & $\begin{matrix}Data  & 1 \\\pi & 0 \end{matrix}$                                       & $\begin{matrix}Data & 2 \\\pi & 0 \\ \end{matrix}$                                      & $\begin{matrix}Data & 3 \\\pi & 0 \\ \end{matrix}$                                      & $\begin{matrix}Data & 4 \\\pi & 0 \\ \end{matrix}$                                     & $\begin{matrix}Data & 5\\\pi & 0 \\ \end{matrix}$                                       & $\begin{matrix}Data &6\\0 & \pi \\ \end{matrix}$                                      \\ \hline
+Nonlinear Model & $\begin{matrix}\theta_1 \\\theta_2 \end{matrix}$ & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix} 34.13\\\\ 54.56\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}92.69\\\\ 68.37\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}75.22\\\\ 62.1107\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}79.49\\\\ 85.70\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}98.16\\\\ 94.68\end{bmatrix}$\end{tabular} & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}82.67\\\\ 84.91\end{bmatrix}$\end{tabular} \\ \hline
+Linear Model    & $\begin{matrix}\theta_1 \\\theta_2 \end{matrix}$ & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}10.86\\\\ 41.81\end{bmatrix}$\end{tabular}  & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}90.10\\\\ 57.70\end{bmatrix}$\end{tabular}   & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}86.74\\\\ 51.02\end{bmatrix}$\end{tabular}   & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix} 78.72\\\\ 0\end{bmatrix}$\end{tabular}     & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix} 96.24\\\\ 90.2128\end{bmatrix}$\end{tabular}  & \begin{tabular}[c]{@{}l@{}}$\begin{bmatrix}76.24\\\\ 73.65\end{bmatrix}$\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+
+This final result gives a much better value of the VAF for the nonlinear model. Despite the fact that the linear model fit seems to be less accurate, this low value may be due to the fact that in some of the signals the output is far from the linearization point
+
+\end{document}

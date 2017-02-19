@@ -1,0 +1,126 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+	
+	As it has already been mentioned, the goal of this proposal is to use max-plus algebra to execute the locomotion planning task. As an initial step, the basics of this framework applied to locomotion are explained.
+	
+	Consider the following algebra:
+	
+	\begin{equation}
+		(\Re_{max}, \oplus, \otimes, \varepsilon, e)
+	\end{equation}
+	
+	where:
+	
+	\begin{align}
+		\Re_{max} &:= \Re \cup \{-\infty\}, \nonumber\\
+		x \oplus y &:= max(x,y), \nonumber\\
+		x \otimes y &:= x + y, \nonumber\\
+		\varepsilon &:= -\infty, \nonumber\\
+		e &:= 0. \nonumber
+	\end{align}
+	
+	In place, this algebra is defined by the set of real numbers including the negative infinity; the two binary operations: the maximum of two numbers and the addition; the absorbing element $\varepsilon$ given by $-\infty$ and the identity element given by $0$. Subsequently, max-plus algebra can be extended to matrices defined by the following structure:
+	
+	\begin{equation}
+		(\Re_{max}^{n\times m}, \oplus, \otimes,\mathcal{E}, E)
+	\end{equation}
+	
+	with:
+	
+	\begin{align}
+		[A \oplus B]_{ij} &= a_{ij} \oplus b_{ij} := \max(a_{ij},b_{ij}), \nonumber \\
+		[A \otimes C]_{ij} &= \underset{k=1}{\overset{m}{\mathlarger{\mathlarger\oplus}}}a_{ik} \otimes c_{kj} := \max\limits_{k=1,...,m}(a_{ik} + c_{kj}), \nonumber 
+	\end{align}
+	where $A,B \in \Re_{max}^{n\times m}$, $C \in \Re_{max}^{m\times p}$, and the $i,j$ element of $A$ is denoted by $a_{ij} = [A]_{ij}$, and identity and zero matrices defined by:
+	
+	\begin{align}
+		[\mathcal{E}]_{ij} &= \varepsilon, \nonumber \\
+		[E]_{ij} &= \begin{cases}
+			e, & \text{if } i =j \\
+			\varepsilon,& \text{otherwise.}
+		\end{cases} \nonumber
+	\end{align}
+	
+	
+	Powers of matrices can also be defined as:
+	
+	\begin{equation}
+		D^{\otimes k} := D \otimes D \otimes... \otimes D.
+	\end{equation}
+	
+	The max-plus algebra structure corresponds to a commutative idempotent semiring. Gaits can be represented and controlled via switching max-plus linear systems of the form:
+	
+	\begin{equation}
+		x (k+1) = A \otimes x(k)
+	\end{equation}
+	
+	In the case of locomotion the parameters and states involved in the process are given in Table \ref{table:Parameters}.
+	
+	\begin{table}[ht]
+		\centering
+		\caption{Parameters for locomotion using max-plus algebra systems\cite{Lopes2009}.}
+		\label{table:Parameters}
+		\begin{tabular}{ll}
+			Symbol        & Parameter                                                                                      \\
+			$i$           & Index to indicate each of the legs.                                                            \\
+			$t_i (k)$     & Touchdown time of leg $i$.                                                                     \\
+			$l_i (k)$     & Lift-off time of leg $i$.                                                                      \\
+			$\tau$        & Current time instant.                                                                          \\
+			$\tau_f$      & Time that a leg spends in flight (swing).                                                             \\
+			$\tau_g$      & Time that leg spends on the ground (stance).                                                        \\
+			$\tau_\Delta$ & Double stance time (this can be adjusted depending on the gait that it is desired to achieve).
+		\end{tabular}
+	\end{table}
+	
+	Using this parameters one could write the equations of a leg cycle as:
+	
+	\begin{align}
+		t_i (k+1) &= l_i (k+1) + \tau_f \\
+		l_i (k+1) &= t_i (k) + \tau_g \label{eq:liftoff}
+	\end{align}
+	
+	Furthermore, in order to achieve synchronization, one could enforce a leg ($i$) to lift-off only until some time after ($\tau_\Delta$) other leg ($j$) has touched the ground. Then Equation \eqref{eq:liftoff} can be rewritten as:
+	
+	\begin{equation}
+		l_i (k+1) = \max (t_i (k) + \tau_g , t_j (k-1) + \tau_\Delta)\label{eq:liftoffsync}
+	\end{equation}
+	
+	Then using the max-plus algebra notation:
+	
+	\begin{equation}
+		l_i (k+1) =\begin{bmatrix}
+		\tau_g & \tau_\Delta
+		\end{bmatrix} \otimes \begin{bmatrix}
+		t_i (k) \\
+		t_j (k)
+		\end{bmatrix}
+	\end{equation}
+	
+	There exist several examples of gaits modeled using petri nets or timed event graphs. One could easily go from this kind of representation to a max-plus algebra system in a systematic manner \cite{Schutter2009} by defining a state vector that contains the touchdown and lift-off times of all the legs at the current time instant. Explaining this method would go beyond the purpose of this proposal. 
+	
+	This max-plus algebra representation, could be used to generate, for each time instant $k$, the time reference at which each of the legs should leave and touch the ground, depending on the gait parameters. In order to implement these time references, a continuous position reference generator has to be designed. A tentative method to implement this position reference generator could be as follows:
+	
+	\begin{enumerate}
+		\item As an initial step, one could design a polynomial velocity profile for the leg based on initial (lift-off time $l_i$) and final (touchdown time $t_i$) time.
+		\item A trajectory for each leg could be designed via parametric equations, expressing the position as a function of time. This trajectory could be modeled as an ellipse, in accordance to the current reactive framework. 
+		\item Finally, setting this trajectory as the reference to be tracked, one could implement various type of control strategies. One option is to use workspace PD control, via the transpose geometric Jacobian. Another algorithm that could be used, could be workspace computed torque control, either using the transpose geometric Jacobian (if the number of actuators of each leg is equal to the dimension of the workspace) or by using the pseudo-inverse of the geometric Jacobian.
+	\end{enumerate}
+	
+	This would be an initial proposal for locomotion controller design. One could simulate and design this strategy via several tools. Initially, to design this controller one could use MATLAB in combination with Simulink in order to simulate the responses and effects of the modeled system. Furthermore after simulating the results in MATLAB, one could go one step further and implement a graphic simulation via V-REP. One powerful element that could simplify the task to take the leap to a 3D environment, is making use of the Robot Operating System (ROS). One could write the control algorithms in MATLAB as ROS nodes, in order to publish the data into an specific topic. On the V-REP side, there are several libraries to connect this software to ROS, and building a subscriber node, which could be used to read the data from the previously mentioned topic. Furthermore, one could use virtual sensors and actuators to simulate the real life conditions of the robot.
+	
+	Other programming softwares could be use to implement the control strategy before. Python is one attractive alternative, due to its similarity with MATLAB, and the flexibility that provides as an open-source developing language. There is a vast number of libraries and it can be used to work in connection with ROS. 
+	
+	After extensive testing of the locomotion algorithm, one could make use of the modular structure of ROS, to implement the same algorithms in the HyQ robotic platform. If work has not been performed in building the necessary nodes for the sensors and actuators of the robot, these could be build again by using the ROS framework. This process also involves getting familiar with the platform, understanding the previous work in depth, and adapting the possible new strategies to be implemented.
+	\iffalse
+	\begin{enumerate}
+		\item Design max-plus algebra system for the four-legged robot HyQ, design the scheduling for different types of gaits (adapt the framework).
+		\item Design the reference generator for each of the legs based on trajectory design for each leg using their dynamic model (screw theory)
+		\item Implementation of supervisory control based on sensor data to select the proper gait depending on the situation where the robot is
+		\item Analyze robustness of the designed algorithm based on the theory and properties of the max-plus algebra system
+		\item Perform simulations in software (V-REP) and ROS
+		\item After simulations start testing in the robot
+	\end{enumerate}
+	\fi 
+
+\end{document}

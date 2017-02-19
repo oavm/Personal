@@ -1,0 +1,192 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+	
+\vspace{20pt}
+In this section the mathematical model of the system is computed, due to the fact that this is one of the main tools required for control design. In future steps, having a proper model can be crucial for controller synthesis and tuning. Since the mechanical properties of the system are mostly known, a first principles model will  be obtained based on Lagrangian mechanics to derive the equations of motion for the system. The computation of the model was done using the MATLAB\textsuperscript{\textregistered} Symbolic Math Toolbox\textsuperscript{\textregistered}.
+
+\subsection{Kinematics}\label{kinematics}
+
+Firstly, the geometrical relation between the variables of the system is obtained based on the simplified schematic drawing of the system depicted in figure \ref{fig:Schematic}:
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=0.6\textwidth]{SchematicModel.png}
+\caption{\label{fig:Schematic} Schematic of the Rotational Pendulum.}
+	\end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=0.8\textwidth]{Velocity.png}
+\caption{\label{fig:Velocity} Components of linear velocity on link 2.}
+	\end{subfigure}
+\end{figure}
+
+In figure \ref{fig:Schematic} it can be seen that the angle of the first link with respect to the vertical axis is represented by the variable \nomenclature{$\theta_1$}{Angle of the first link with respect to the vertical axis.}$\theta_1$, and the angle between the second link and the first link is represented by  \nomenclature{$\theta_2$}{Angle of the second link with respect to the first link.}$\theta_2$, this angles, as mentioned in section \ref{Encoders}, have positive rotation in the clockwise direction. The schematic drawing also shows that the torque $\tau$ \nomenclature{$\tau$}{Torque applied to first link.}is being applied to the first link of the system. The lengths of the links are represented by the variables \nomenclature{$l_1$}{Length of the first link.}$l_1$ and \nomenclature{$l_2$}{Length of the second link.}$l_1$. The linear velocities of the links \nomenclature{$v_1$}{Linear velocity of the first link.}$v_1$ and \nomenclature{$v_2$}{Linear velocity of the second link.}$v_2$ are represented as the product of the angular velocities \nomenclature{$\dot{\theta}_1$}{Angular velocity of the first link.}$\dot{\theta}_1$ and \nomenclature{$\dot{\theta}_2$}{Angular velocity of the second link.}$\dot{\theta}_2$ and the distance to their center of mass \nomenclature{$c_1$}{Distance to center of mass of the first link.}$c_1$ and \nomenclature{$c_2$}{Distance to center of mass of the second link.}$c_2$. Nevertheless, the total linear velocity of link two is the sum of the velocity caused by the first link and its own angular velocity. An schematic drawing of the sum of the velocities is shown in figure \ref{fig:Velocity}.
+
+From the schematic drawing, the total velocity of the second link can be expressed by:
+
+\begin{equation} 
+	v_2^2=(l_1\dot{\theta_1}cos(\theta_2)+c_2\dot{\theta_2})^2+(l_1\dot{\theta_1}sin(\theta_2))^2
+\end{equation}
+
+\begin{equation}  v_2^2=l_1^2\dot{\theta_1}^2cos^2(\theta_2)+2l_1c_2\dot{\theta_1}\dot{\theta_2}cos(\theta_2)+c_2^2\dot{\theta_2}^2+l_1^2\dot{\theta_1}^2sin^2(\theta_2)
+\end{equation}
+
+since:
+
+\begin{equation*}  
+sin^2(\theta)+cos^2(\theta)=1
+\end{equation*}
+
+Then the final expression for $v_2^2$ is given by:
+
+\begin{equation} 
+v_2^2=l_1^2\dot{\theta_1}^2+c_2^2\dot{\theta_2}^2+2l_1c_2\dot{\theta_1}\dot{\theta_2}cos(\theta_2)
+\end{equation}
+
+This velocity will be kept as a squared term, due to the fact that the expression for the kinetic energy is given by the squared values of the velocities. In order to simplify the computation of the potential and kinetic energy of the system, the components of the positions of the centers of mass $c_1$ and $c_2$ with respect to the horizontal and vertical axis are computed as:
+
+
+\begin{eqnarray}
+x_1 &=& c_1 sin(\theta_1) \nonumber\\
+x_2 &=& l_1 sin(\theta_1) + c_1 sin(\theta_2 + \theta_1) \nonumber\\
+y_1 &=& c_1 cos(\theta_1) \nonumber\\
+y_2 &=& l_1 cos(\theta_1) + c_2 cos(\theta_2 + \theta_1) 
+\end{eqnarray}
+
+as well as their time derivatives, shown in the set of equations \ref{eqn:TimeDerivativesXY}.
+
+\begin{eqnarray}\label{eqn:TimeDerivativesXY}
+\dot{x_1} &=& c_1 cos(\theta_1) \dot{\theta_1}; \nonumber\\
+\dot{x_2} &=& l_1 cos(\theta_1) \dot{\theta_1} + c_2 cos(\theta_2 + \theta_1) \dot{\theta_2} + c_2 cos(\theta_2 + \theta_1)\dot{\theta_1} \nonumber\\
+\dot{y_1} &=& -c_1 sin(\theta_1) \dot{\theta_1} \nonumber\\
+\dot{y_2} &=& -l_1 sin(\theta_1) \dot{\theta_1} - c_2 sin(\theta_2 + \theta_1)*\dot{\theta_2} - c_2 sin(\theta_2 + \theta_1)\dot{\theta_1} 
+\end{eqnarray}
+
+\subsection{Dynamics}\label{math}
+
+
+A proper framework to generate the equations of motion, for a mechanical system such as the rotational pendulum is Lagrangian Mechanics. The Euler-Lagrange equations are shown in \ref{eqn:EulerLagrange}.
+
+\begin{equation}\label{eqn:EulerLagrange} 
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}}\right) - \frac{\partial L}{\partial q} = F
+\end{equation}
+
+Where $q$ \nomenclature{$q$}{Vector of generalized coordinates.} stands for the vector of generalized coordinates of the system, which in this case are $\theta_1$ and $\theta_2$; $F$ \nomenclature{$F$}{External inputs to the system in Lagrangian Mechanics framework.}stands for external inputs into the system, which in this case is the torque $\tau$; and $L$ \nomenclature{$L$}{Lagrangian from Euler-Lagrange equations.} which is the Lagrangian obtained by the difference of the kinetic energy $T$ \nomenclature{$T$}{Kinetic energy.}and the potential energy $V$ \nomenclature{$V$}{Potential energy.}as shown in equation \ref{eqn:Lagrangian}.
+
+\begin{equation}\label{eqn:Lagrangian} 
+L=T-V
+\end{equation}
+
+The total kinetic energy is represented by the following equation:
+
+\begin{equation}
+T= \frac{1}{2}  m_1 v_1^2 +
+    \frac{1}{2} m_2 v_2^2 +
+    \frac{1}{2} I_1 \dot{\theta_1}^2 +
+    \frac{1}{2} I_2 \dot{\theta_2}^2
+\end{equation}
+
+where $I_1$ and $I_2$ correspond to the inertias of link 1 and link 2 respectively. If the expressions for the components on the $x$ and $y$ axes are substituted the resulting equation is:
+
+\begin{equation}
+T= \frac{1}{2}  m_1 (\dot{x_1}^2 + \dot{y_1}^2) +
+    \frac{1}{2} m_2 (\dot{x_2}^2 + \dot{y_2}^2) +
+    \frac{1}{2} I_1 \dot{\theta_1}^2 +
+    \frac{1}{2} I_2 \dot{\theta_2}^2
+\end{equation}
+
+
+moreover, the same expression in terms of $\theta_1$ and $\theta_2$ results in:
+
+\begin{equation}
+	T= \frac{1}{2}m_1 c_1 \dot{\theta_1}^2 +
+    	\frac{1}{2}m_2 l_1^2\dot{\theta_1}^2+c_2^2\dot{\theta_2}^2 + 
+        2l_1c_2\dot{\theta_1}\dot{\theta_2}cos(\theta_2) + 
+        \frac{1}{2}I_1\dot{\theta_1} + 
+        \frac{1}{2}I_2\dot{\theta_2}
+\end{equation}
+
+
+As it can be seen, the total kinetic energy is the sum of the energy supplied to the system due to both angular and linear velocities.
+
+In the case of the potential energy, the drawing in figure \ref{fig:PotentialEnergy} is used as guidance.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{PotentialEnergy.png}
+\caption{\label{fig:PotentialEnergy} Schematic drawing for the potential energy.}
+\end{figure}
+
+
+From the drawing, $g$ \nomenclature{$g$}{Gravitational acceleration.} represents the gravitational acceleration and its value will be taken as $g=9.81 [\frac{m}{s_2}]$. The potential energy can be derived in terms of the $y$ components as:
+
+\begin{equation}
+V = m_1 g y_1 + m_2 g y_2
+\end{equation}
+
+as done with the kinetic energy, the potential energy is expressed in terms of $\theta_1$ and $\theta_2$ as:
+
+\begin{equation}
+V = m_1 g c_1 cos(\theta_1) + m_2 g l_1 cos(\theta_1) + m_2 g c_2cos(\theta_2 + \theta_1);
+\end{equation}
+
+In order to have a more accurate model of the system, the dissipated energy will be included into equation \ref{eqn:EulerLagrange} using a damping coefficient for the joints of both links $d_1$ \nomenclature{$d_1$}{Damping coefficient of link 1.} and $d_2$ \nomenclature{$d_2$}{Damping coefficient of link 2.}. The dissipated energy $D$ \nomenclature{$D$}{Dissipated energy.}then can be expressed as:
+
+\begin{equation}
+D =\frac{1}{2} d_1 \dot{\theta_1}^2 + \frac{1}{2}d_2\dot{\theta_2}^2;
+\end{equation}
+
+Furthermore, since the potential energy does not depend on velocities, the derivative with respect to $\dot{q}$ does not need to be computed for this term. Finally with all these considerations, the final expression of equation \ref{eqn:EulerLagrange} is:
+
+\begin{equation}\label{eqn:EulerLagrange2} 
+\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}}\right) - \frac{\partial T}{\partial q} - \frac{\partial V}{\partial q} +  \frac{\partial D}{\partial \dot{q}}= F
+\end{equation}
+
+Then the previously computed expressions for the energy are plugged into equation \ref{eqn:EulerLagrange2} and expressing the angles $\theta_1$ and $\theta_2$ as generalized coordinates $q_1$ and $q_2$ the resulting motion equation is:
+
+\begin{equation}
+M(q)\ddot{q} + C(q,\ddot{q}) \dot{q} + G(q)=
+\begin{bmatrix}
+\tau \\
+0
+\end{bmatrix}
+\end{equation}
+
+where $M(q)$ \nomenclature{$M$}{Generalized mass matrix.} is the generalized mass matrix, $C(q,\dot{q})$ \nomenclature{$C$}{Coriolis matrix.} is the Coriolis matrix and $G(q)$ \nomenclature{$G$}{Matrix of gravitational terms.} is the matrix of gravitational terms. The matrices for this system are defined as:
+
+\begin{equation*}
+M(q)=
+\begin{bmatrix}
+m_1 c_1^2 + m_2 c_2^2 + 2 m_2 cos(q_2) c_2 l_1 + m_2 l_1^2 + I_1 + I_2 & m_2 c_2^2 + l1*m2*cos(q_2) c_2 + I_2 \\
+m_2 c_2^2 + l_1 c_2 m_2 cos(q_2)  + I_2 & m_2 c_2^2 + I_2
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+C(q,\dot{q})=
+\begin{bmatrix}
+d_1 & -c_2 l_1 m_2 sin(q_2)(2 \dot{q_1} + \dot{q_2} ) \\
+c_2 l_1 m_2 sin(q_2) \dot{q_1} & d_2
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+G(q)=
+\begin{bmatrix}
+-g m_2 (c_2 sin(q_2 + q_1) + l_1 sin(q_1)) - c_1 g m_1 sin(q_1) \\
+-c_2 g m_2 sin(q_2 + q_1)
+\end{bmatrix}
+\end{equation*}
+
+Finally, if the accelerations of the system $\ddot{\theta_1}$ and $\ddot{\theta_2}$ are isolated, the equations can be expressed as:
+
+\begin{equation}\label{eq:eqom}
+\ddot{q} = M^{-1}(q)\left(\begin{bmatrix}
+\tau \\ 0
+\end{bmatrix}  - C(q,\dot{q})- G(q)\right)
+\end{equation}
+
+
+
+\end{document}
