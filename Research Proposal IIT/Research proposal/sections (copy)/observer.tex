@@ -1,0 +1,52 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+	
+\vspace{20pt}
+In similar fashion as for controlability, the observability of the system can be tested by checking the observability matrix as given in \cite{Controlsystemdesign} for rank. Using the MATLAB\textsuperscript{\textregistered} commands \mcode{obsv} and \mcode{rank} all four equilibria are tested to be observable, thus an observer can be implemented. \\ 
+An implementation of a deterministic observer was tried, but yielded unsatisfactory results; the estimates of the angular velocities were very unreliable. Since the noise in the measurement signal is white it contains high-frequent components which will cause for large spikes if the derivative of this signal is taken. In order to get better estimates of the states, a Kalman filter is designed.  
+
+\subsection{Kalman Filter}
+The Kalman Filter is implemented in Simulink\textsuperscript{\textregistered} as can be seen in Figure \ref{fig:KalmanFilter}. The Kalman Filter Block contains the user defined function below, which is an implementation of the conventional Kalman filter as given in\cite{Filtering}. 
+\begin{lstlisting}
+function [x, P, K] = fcn(u, y_real, Q, R, x_old, P_old, A, B, C)
+
+% Measurement update
+K = (P_old * C') / (C*P_old*C'+R);
+x = x_old + K * (y_real - C*x_old);
+P = (eye(size(A))-K*C)*P_old;
+
+% Time update
+x = A * x + B * u;
+P = A * P * A' + Q;
+end
+\end{lstlisting}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{KalmanFilter2.png}
+\caption{\label{fig:KalmanFilter} Schematic of the Kalman Filter}
+\end{figure}
+The Kalman filter is sensitive to changes in the Q and R matrices, which therefor have to be chosen carefully. Since the R matrix represents the covariance of the measurement noise, an initial guess for R is chosen as an diagonal matrix with entries in the same order of magnitude as covariance data from \ref{Encoders}. The assumption was made that the variance of the process is smaller than that of the measurement noise and that cross-covariance is zero. This yields again diagonal matrix of size 4 with entries smaller than that in R. Through mostly trial and error, the best results were found for the following Q and R
+\begin{align*}
+R = 
+\begin{bmatrix}
+1\times10^{-2} &	0 \\ 
+0 &	3\times10^{-2}
+\end{bmatrix}
+& \ \ \ 
+Q = 
+\begin{bmatrix}
+1\times10^{-6} &0&0&0 \\ 
+0&1\times10^{-5}&0&0\\
+0&0&1\times10^{-6}&0\\
+0&0&0&1\times10^{-5}
+\end{bmatrix}
+\end{align*}
+
+Figure \ref{fig:KalmanFilterP} shows the performance of the Kalman filter. The Kalman filter is seen to perform sufficiently; it predicts the states, has no bias and it filters out the noise. However the performance could still be improved, the Kalman estimated $\theta_2$ has a smaller amplitude then the real system, also there is some phase lead on the real angles. Since the performance of the Kalman filter has a big influence on the performance of the overall closed loop system, further investigation in a more systematic tuning of the Kalman matrices Q and R is desirable.   
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{KalmanEstimates.png}
+\caption{\label{fig:KalmanFilterP} Real versus Kalman estimates of $\theta_1$ and $\theta_2$} 
+\end{figure}
+\end{document}

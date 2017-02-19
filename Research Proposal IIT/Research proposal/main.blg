@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: ieeetr.bst
+Database file #1: MyBib2.bib
+Warning--I didn't find a database entry for "Lopes2009"
+Warning--there's a number but no series in Geyer2006
+You've used 18 entries,
+            1876 wiz_defined-function locations,
+            607 strings with 7465 characters,
+and the built_in function-call counts, 6335 in all, are:
+= -- 654
+> -- 210
+< -- 0
++ -- 77
+- -- 59
+* -- 442
+:= -- 830
+add.period$ -- 18
+call.type$ -- 18
+change.case$ -- 18
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 339
+empty$ -- 595
+format.name$ -- 59
+if$ -- 1564
+int.to.chr$ -- 0
+int.to.str$ -- 18
+missing$ -- 18
+newline$ -- 57
+num.names$ -- 18
+pop$ -- 70
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 265
+stack$ -- 0
+substring$ -- 549
+swap$ -- 162
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 70
+width$ -- 20
+write$ -- 184
+(There were 2 warnings)
