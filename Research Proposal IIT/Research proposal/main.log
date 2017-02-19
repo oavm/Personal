@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.27)  19 FEB 2017 13:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.9.27)  19 FEB 2017 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1271,7 +1271,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  17289 strings out of 493029
  295088 string characters out of 6136234
- 360766 words of memory out of 5000000
+ 360768 words of memory out of 5000000
  20390 multiletter control sequences out of 15000+600000
  20731 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1289,7 +1289,7 @@ ype1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/
 share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/ty
 pe1/public/cm-super/sfti1000.pfb>
-Output written on main.pdf (9 pages, 200604 bytes).
+Output written on main.pdf (9 pages, 200820 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream
