@@ -1,0 +1,102 @@
+\begin{thebibliography}{10}
+
+\bibitem{Lopes2010}
+G.~Lopes, T.~van~den Boom, B.~{De Schutter}, and R.~Babu{\v{s}}ka, ``{Modeling
+  and control of legged locomotion via switching max-plus systems},'' in {\em
+  Proceedings of the 10th International Workshop on Discrete Event Systems
+  (WODES 2010)}, p.~6 pp., 2010.
+
+\bibitem{Barai}
+R.~K. Barai and K.~Nonami, ``{Petri Net Based Supervisory Control for
+  Locomotion System of Six-Legged Walking Robot COMET-IV},'' in {\em
+  Proceedings of the Japan Joint Automatic Control Conference}, pp.~282--282,
+  2004.
+
+\bibitem{Barasuola}
+V.~Barasuol, J.~Buchli, C.~Semini, M.~Frigerio, E.~R.~D. Pieri, and D.~G.
+  Caldwell, ``{A Reactive Controller Framework for Quadrupedal Locomotion on
+  Challenging Terrain},'' in {\em Conference on Robotics and Automation (ICRA),
+  2013 IEEE International}, pp.~2554--2561, 2013.
+
+\bibitem{Holmes2006}
+P.~Holmes, R.~J. Full, D.~E. Koditschek, and J.~Guckenheimer, ``{The Dynamics
+  of Legged Locomotion : Models, Analyses, and Challenges},'' {\em SIAM
+  review}, vol.~48, no.~2, pp.~207--304, 2006.
+
+\bibitem{Wisse2004}
+M.~Wisse, A.~L. Schwab, and F.~C. T. V.~D. Helm, ``{Passive dynamic walking
+  model with upper body},'' {\em Robotica}, vol.~22, pp.~681--688, 2004.
+
+\bibitem{Tsagarakis2013}
+N.~G. Tsagarakis, S.~Morfey, H.~Dallali, and D.~G. Caldwell, ``{An Asymmetric
+  Compliant Antagonistic Joint Design for High Performance Mobility},'' in {\em
+  2013 IEEE/RSJ International Conference on Intelligent Robots and Systems
+  (IROS)}, pp.~5512--5517, 2013.
+
+\bibitem{Borovac2004}
+V.~Miomir and B.~Borovac, ``{Zero-moment point — thirty five years of its
+  life ´},'' {\em International Journal of Humanoid Robotics}, vol.~1, no.~1,
+  pp.~157--173, 2004.
+
+\bibitem{Aghili2005}
+F.~Aghili, ``{A Unified Approach for Inverse and Direct Dynamics of Constrained
+  Multibody Systems Based on Linear Projection Operator : Applications to
+  Control and Simulation},'' {\em IEEE Transactions on robotics}, vol.~21,
+  no.~5, pp.~834--849, 2005.
+
+\bibitem{Geyer2006}
+H.~Geyer, A.~Seyfarth, and R.~Blickhan, ``{Compliant leg behaviour explains
+  basic dynamics of walking and running},'' in {\em Proceedings of the Royal
+  Society B: Biological Sciences.}, no.~August, pp.~2861--2867, 2006.
+
+\bibitem{Ketelaar}
+J.~G. Ketelaar, L.~C. Visser, S.~Stramigioli, and R.~Carloni, ``{Controller
+  Design for a Bipedal Walking Robot using Variable Stiffness Actuators},'' in
+  {\em 2013 IEEE International Conference on Robotics and Automation (ICRA)},
+  pp.~5650--5655, 2013.
+
+\bibitem{Crespi1985}
+A.~Crespi, D.~Lachat, A.~Pasquier, and A.~J. Ijspeert, ``{Controlling swimming
+  and crawling in a fish robot using a central pattern generator},'' {\em
+  Autonomous robots}, vol.~25, no.~1-2, pp.~3--13, 2008.
+
+\bibitem{Ijspeert2008}
+A.~J. Ijspeert, ``{Central pattern generators for locomotion control in animals
+  and robots : A review},'' {\em Neural Networks}, vol.~21, no.~4,
+  pp.~642--653, 2008.
+
+\bibitem{Ijspeert}
+A.~J. Ijspeert, A.~Crespi, D.~Ryczko, and J.-m. Cabelguen, ``{From Swimming to
+  Walking with a Spinal Cord Model},'' {\em Science}, vol.~315, no.~5817,
+  pp.~1416--1420, 2007.
+
+\bibitem{Barasuol}
+S.~Bazeille, V.~Barasuol, M.~Focchi, I.~Havoutis, M.~Frigerio, J.~Buchli,
+  C.~Semini, and D.~G. Caldwell, ``{Vision Enhanced Reactive Locomotion Control
+  for Trotting on Rough Terrain},'' in {\em Conference on Technologies for
+  Practical Robot Applications (TePRA), 2013 IEEE International}, pp.~1--6,
+  2013.
+
+\bibitem{Schutter2009}
+G.~Lopes, R.~Babu{\v{s}}ka, B.~{De Schutter}, and T.~van~den Boom, ``{Switching
+  max-plus models for legged locomotion},'' in {\em Proceedings of the 2009
+  IEEE Interna- tional Conference on Robotics and Biomimetics (ROBIO 2009)},
+  vol.~19, pp.~221--226, 2009.
+
+\bibitem{Schutter2008}
+B.~{De Schutter} and T.~van~den Boom, ``{Max-plus algebra and max-plus linear
+  discrete event systems : An introduction},'' in {\em Proceedings of the 9th
+  International Workshop on Discrete Event Systems (WODES'08)}, vol.~19,
+  pp.~36--42, 2008.
+
+\bibitem{Goverde2007}
+R.~M. Goverde, ``{Railway timetable stability analysis using max-plus system
+  theory},'' {\em Transportation Research Part B: Methodological}, vol.~41,
+  no.~2, pp.~179--201, 2007.
+
+\bibitem{Turek2011}
+M.~Turek and R.~Turek, ``{Solving Selected Traffic Problems in the Max-Plus
+  Algebra},'' {\em Journal of Information, Control and Management Systems},
+  vol.~9, no.~1, pp.~67--75, 2011.
+
+\end{thebibliography}
