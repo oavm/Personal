@@ -1,0 +1,136 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+	
+\vspace{20pt} 
+The Rotational Pendulum is open loop unstable in three of its four equilibrium points; linear system identication is not possible at those points in open loop. An approach is taken where first the parameters of the nonlinear model as derived in \ref{sec:Mathematical} will be estimated by the use of a nonlinear parameter estimation at the stable equilibrium, subsequently linearizations can be made at the unstable equilibrium points. Initial guesses for all of the parameters in \ref{eq:eqom} are needed in order to start the parameter estimation. Table \ref{tab:parameters} gives initial guesses for most of the parameters except for three: $d_1$, $d_2$ and the lumped motor gain $K_u$, so initial guesses for those parameters have to be found first. The parameter estimation also needs the input-output data from the real system to have certain properties in order to work. This section will start the system identification steps that are necessary to gather this data, it will then continue with the nonlinear parameter estimation. 
+
+\subsection{System Identification}
+The system identification will follow the guidelines as set in Chapter 10 of M. Verhaegen and M. Verdult \cite{Filtering}. 
+\subsubsection{Choice of Sampling Frequency and Experiment Duration}
+In order to properly identify the system it has to be excited in the frequency band of interest defined as $\left[0,\omega_I\right]$ \nomenclature{$\omega_I$}{Frequency band of interest [rad/s]}. A rule of thumb set by \cite{Filtering} is to take $\omega_I=5\omega_B$, where $\omega_B$ is the bandwidth of the system. Subsequently if one then takes the sampling frequency as by Shannon's sampling theorem \cite{Kamen}, the sampling frequency is given as $\omega_S = 10\omega_I$. \nomenclature{$\omega_S$}{Sampling frequency [rad/s]}\nomenclature{$\omega_B$}{Bandwidth of the system [rad/s]} \\ Since 
+\begin{equation}
+\omega_B=\frac{1}{TC}
+\end{equation}
+with $TC$\nomenclature{TC}{Timeconstant of system [s]} the timeconstant of the system, the bandwidth can be determined by a impulse-response of the system. Figure \ref{fig:impulse2} shows $\theta_2(t)$.
+From this impulse response the timeconstant can be determined as 
+\begin{equation}
+TC= \frac{\kappa t_{cycle}}{4}
+\end{equation}
+Where $\kappa$ is the number of cycles before steady state is reached and $t_{cycle}$ the time of the first cycle. After inspection: $\kappa\approx 12$ and $t_{cycle}\approx 0.55s$. This leads to $TC=1.65s$ and thus $\omega_B\approx0.61\frac{rad}{s}$. Finally the sampling frequency for the input-output data is found to be $6.1\frac{rad}{s}$. The experiment duration must be larger then $10\times TC \approx 16.5s$, again following a rule of thumb from \cite{Filtering}.
+
+\subsubsection{Choice of Input Signal}
+The input-output data must contain all the important system dynamics. The input signal must therefor excite the system in a way that it extracts all the important information. A way to measure the ability of an input signal to do this is by the notion of persistency of excitation\cite{persistancy}. 
+A choice was made to use multi-sines as an input, since it is straightforward to get the input signal in the right frequency band and with sufficient persistency of excitation. The values of the frequencies chosen for the sine signals are shown in table \ref{tabel:sines}
+
+
+\begin{table}[h]
+\centering
+\caption{Sine signals for system identification.}
+\label{tabel:sines}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+          & Sine 1            & Sine 2          & Sine 3                 & Sine 4      \\ \hline
+Amplitude & 0.3               & 0.1             & 0.2                    & 0.2         \\ \hline
+Phase     & 2                 & 0               & 0                      & 0           \\ \hline
+Frequency & $\frac{100}{2\pi}$ & $20\sqrt{4}\pi$ & $e^2(\frac{50}{2\pi})$ & $\sqrt{20}$ \\ \hline
+\end{tabular}
+\end{table}
+
+Additionally, the plot of the input signal is shown in figure \ref{fig:FirstFitInput}.
+
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.7\textwidth]{FirstFitInput.png}
+\caption{\label{fig:FirstFitInput} Input signal used for system identification.}
+\end{figure}
+
+\subsection{Parameter Estimation}
+First the damping coefficients $d_1$ and $d_2$ can be computed from step and free responses of the system as shown in Figure \ref{fig:impulse1} and \ref{fig:impulse2}. The step response of $\theta_1$ is actually the motor stopping, the input was a pulse of 0.1 s. The signal for $\theta_1$ was filtered in order to better show the overshoot. Since $\theta_2$ is not directly actuated, a step response could not be realized. Therefor suspending it manually and then letting it gave a free response. \ref{fig:impulse2}.  
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{Theta1Damping.png}
+\caption{\label{fig:impulse1} Step response of $\theta_1$}
+\end{figure}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.8\textwidth]{Theta2Damping.png}
+\caption{\label{fig:impulse2} Free response of $\theta_2$}
+\end{figure}
+Since only an initial guess of the damping coefficients is necessary, the assumption is made that for both $\theta_1$ and $\theta_2$ the following relation for underdamped systems holds for a settling time $T_s$ to within $2\%$
+\begin{align*}
+ T_s =  -\frac{\ln(0.02)}{\zeta \omega_n}\approx\frac{3.9}{\zeta \omega_n} \text{with} \  \zeta = \frac{d}{d_c} \ \text{and}  \ \ d_c=2m\omega_n \ \text{leads to} \ d = \frac{3.9\times 2 m}{T_s}
+\end{align*}
+And since the values for $T_s$ can be read from the responses as $T_{s_1}=0.2s$, $T_{s_2}=8.3s$ and $m_1$ and $m_2$ are given, we get: 
+\begin{align*}
+d_1 &= \frac{3.9\times 2(0.18+0.06)}{0.2}\approx 9.3 \ \  \text{and} \  \ 
+d_2 = \frac{3.9\times 2(0.06)}{8.3}\approx 0.056
+\end{align*}
+The only parameter left without an initial guess is $K_u$. To get an estimate of $K_u$ it is varied in the nonlinear model until the output of the model has the same order of magnitude as the real system for the same input. This gave an initial guess for $K_u$ as -20$\frac{N}{m}$
+Table \ref{tab:initialguesses} shows the summary of all the initial guesses for the parameter estimation.
+\begin{table}[H]
+\caption{Initial guesses of the system parameters}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Symbol &Parameter &Guess \\ \hline
+$l_1$ &Length of first link &0.1 [m] \\ 
+$l_2$ &Length of second link &0.1 [m]\\ 
+$m_1$ &Mass of first link &0.18 [kg]\\ 
+$m_2$ &Mass of second link &0.06 [kg]\\ 
+$c_1$ &Center of mass of first link &0.06 [m]\\ 
+$c_2$ &Center of mass of second link &0.045 [m]\\ 
+$I_1$ &Inertia of first link &0.037 [kgm$^2$]\\ 
+$I_2$ &Inertia of second link &0.00011 [kgm$^2$]\\
+$d_1$ &Damping of first link &9.3 [$\frac{Ns}{m}$]\\
+$d_2$ &Damping of second link &0.056 [$\frac{Ns}{m}$]\\
+$K_u$ &Lumped motor constant &-20 [$\frac{N}{m}$]\\
+$g$ & gravitation constant & 9.81 [$\frac{m}{s^2}$]\\ \hline
+\end{tabular}
+\label{tab:initialguesses}
+\end{table} 
+\subsubsection{Nonlinear Parameter Estimation with SIMULINK\textsuperscript{\textregistered} and MATLAB\textsuperscript{\textregistered}} 
+The nonlinear parameter estimation was done by using the nonlinear mathematical model derived in \ref{sec:Mathematical} as a grey box model. All parameters that have to estimated will be represented by the vector $x$. The same inputs are fed into  the grey box model and the real system to generated $\hat{y}(k,x)$ and $y(k)$ respectively, and MATLAB\textsuperscript{\textregistered}'s \mcode{lsqnonlin} is used to optimize $x$ for the following cost function: $e=y(k)-\hat{y}(k,x)$. The \mcode{lsqnonlin} function is set by default to use the large-scale algorithm to solve the nonlinear least-squares problem for each iteration. This algorithm is a subspace trust region method and is based on the interior-reflective Newton method described in \cite{interior}. The SIMULINK\textsuperscript{\textregistered} schematic used to generated the output $\hat{y}(k,x)$ can be seen in Figure \ref{fig:parametersimulink}. 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.6\textwidth]{SimulinkNonlinearident.png}
+\caption{\label{fig:parametersimulink} SIMULINK\textsuperscript{\textregistered} Schematic of the parameter estimation}
+\end{figure}
+\subsubsection{Results of the Nonlinear Parameter Estimation}
+
+After performing the parameter estimation, the plots for the result of the optimization are shown in figure \ref{fig:FirstFit}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{FirstFit.png}
+\caption{\label{fig:FirstFit} Fit of the first parameter estimation.}
+\end{figure}
+
+As it can be seen directly from the plot, the estimated parameters give a good fit to the identification data, which was expected. This can also be confirmed by the values of the VAF, which are $VAF_{\theta_1}=94.2176$ and $VAF_{\theta_2}=89.1879$. The optimized estimates of the parameters are shown in table \ref{tab:estimatedparam}.
+
+\begin{table}[H]
+\caption{Estimated Parameters.}
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Symbol &Parameter &Value \\ \hline
+$l_1$ &Length of first link &0.1 [m] \\ 
+$l_2$ &Length of second link &0.1 [m]\\ 
+$m_1$ &Mass of first link &0.3838 [kg]\\ 
+$m_2$ &Mass of second link &0.1419 [kg]\\ 
+$c_1$ &Center of mass of first link &-0.0626 [m]\\ 
+$c_2$ &Center of mass of second link &0.0590 [m]\\ 
+$I_1$ &Inertia of first link &0.0976 [kgm$^2$]\\ 
+$I_2$ &Inertia of second link &0.0002 [kgm$^2$]\\
+$d_1$ &Damping of first link &7.8345 [$\frac{Ns}{m}$]\\
+$d_2$ &Damping of second link &0.0003[$\frac{Ns}{m}$]\\
+$K_u$ &Lumped motor constant &-41.9288 [$\frac{N}{m}$]\\
+$g$ & gravitation constant & 9.81 [$\frac{m}{s^2}$]\\ \hline
+\end{tabular}
+\label{tab:estimatedparam}
+\end{table} 
+
+
+
+\end{document}
