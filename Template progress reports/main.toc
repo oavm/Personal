@@ -1,0 +1,42 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction and Project Objectives}{2}
+\contentsline {subsection}{\numberline {1.1}Introduction}{2}
+\contentsline {subsection}{\numberline {1.2}Project Objectives}{2}
+\contentsline {section}{\numberline {2}Initial Analysis}{3}
+\contentsline {subsection}{\numberline {2.1}Hardware}{3}
+\contentsline {subsubsection}{\numberline {2.1.1}Electric Motor}{3}
+\contentsline {subsubsection}{\numberline {2.1.2}Electric Motor Deadzone}{4}
+\contentsline {subsubsection}{\numberline {2.1.3}Rotary Encoders}{4}
+\contentsline {subsection}{\numberline {2.2}Software}{5}
+\contentsline {subsubsection}{\numberline {2.2.1}Overview of the Simulink\textsuperscript {\textregistered } Model}{5}
+\contentsline {section}{\numberline {3}Mathematical Model of the System}{6}
+\contentsline {subsection}{\numberline {3.1}Kinematics}{6}
+\contentsline {subsection}{\numberline {3.2}Dynamics}{7}
+\contentsline {section}{\numberline {4}Linearization of the Model}{9}
+\contentsline {section}{\numberline {5}System Identification and Parameter Estimation}{10}
+\contentsline {subsection}{\numberline {5.1}System Identification}{10}
+\contentsline {subsubsection}{\numberline {5.1.1}Choice of Sampling Frequency and Experiment Duration}{10}
+\contentsline {subsubsection}{\numberline {5.1.2}Choice of Input Signal}{10}
+\contentsline {subsection}{\numberline {5.2}Parameter Estimation}{11}
+\contentsline {subsubsection}{\numberline {5.2.1}Nonlinear Parameter Estimation with SIMULINK\textsuperscript {\textregistered } and MATLAB\textsuperscript {\textregistered }}{12}
+\contentsline {subsubsection}{\numberline {5.2.2}Results of the Nonlinear Parameter Estimation}{12}
+\contentsline {section}{\numberline {6}Discretization}{14}
+\contentsline {section}{\numberline {7}Model Validation at Stable Equilibrium}{15}
+\contentsline {section}{\numberline {8}Controller Design}{17}
+\contentsline {subsection}{\numberline {8.1}Controller Performance Criteria}{17}
+\contentsline {subsection}{\numberline {8.2}Controllability}{17}
+\contentsline {subsection}{\numberline {8.3}Controller Selection}{17}
+\contentsline {subsection}{\numberline {8.4}Controller I: Full State Feedback controller with Pole Placement}{18}
+\contentsline {subsubsection}{\numberline {8.4.1}Simulation of Pole Placement Controller}{19}
+\contentsline {subsection}{\numberline {8.5}Controller II: $H_{\infty }$}{19}
+\contentsline {subsubsection}{\numberline {8.5.1}Design of Performance Weights}{20}
+\contentsline {subsubsection}{\numberline {8.5.2}Synthesizing the Controller}{21}
+\contentsline {subsubsection}{\numberline {8.5.3}Generalized Nyquist}{21}
+\contentsline {subsubsection}{\numberline {8.5.4}Time Domain Simulation}{22}
+\contentsline {section}{\numberline {9}Observer Design}{23}
+\contentsline {subsection}{\numberline {9.1}Kalman Filter}{23}
+\contentsline {section}{\numberline {10}Controller Implementation and Performance Verification}{25}
+\contentsline {subsection}{\numberline {10.1}Performance Verification}{25}
+\contentsline {section}{\numberline {11}Conclusions and Recommendations}{27}
+\contentsline {section}{\numberline {A}Equations}{28}
+\contentsline {section}{References}{29}
