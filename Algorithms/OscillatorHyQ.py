@@ -210,14 +210,13 @@ plt.yticks(leg_axis)
 
       
 
-#==============================================================================
-# # Plotting    
-# fig1 = plt.figure()
-# plt.title('Limit cycle plot')
-# plt.ylabel('z')
-# plt.xlabel('x')
-# line1 = plt.plot([row[0] for row in u],[row[1] for row in u],linewidth=1)
-#==============================================================================
+# Plotting    
+fig1 = plt.figure()
+plt.title('Limit cycle plot',fontsize=30)
+plt.ylabel('z',fontsize=30)
+plt.xlabel('x',fontsize=30)
+plt.tick_params(labelsize=30)
+line1 = plt.plot([row[0] for row in u],[row[1] for row in u],linewidth=1)
 
 fig2 = plt.figure()
 plt.title('Variation of z coordinate with respect to time')

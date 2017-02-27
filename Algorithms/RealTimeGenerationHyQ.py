@@ -235,7 +235,7 @@ rc('font', family='sans-serif')
 # Duty factor plot
 Duty_tick = [0,0.5,1]
 fig6, axarr = plt.subplots(4, sharex=True)
-axarr[0].tick_params(labelsize=20)
+axarr[0].tick_params(labelsize=30)
 axarr[0].plot(t,[row[0] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
 axarr[0].plot(t,np.ones(len(t))*-1,color= '0.85',linewidth=5,label="Leg in stance")
 axarr[0].step(Df_matrix_time[0],Df_matrix[0],label='Real $D_f$')
@@ -243,10 +243,10 @@ axarr[0].plot(time_axis,Df_desired_vector,linestyle = "dashed",label='Desired $D
 axarr[0].set_ylim([0, 1])
 axarr[0].set_xlim([0, total_time])
 axarr[0].set_yticks(Duty_tick)
-axarr[0].set_ylabel(r"$D_f$ LF[-]",fontsize = 20)
-axarr[0].tick_params(labelsize=20)
-axarr[0].set_title("Duty factor plot",fontsize = 20)
-axarr[0].legend(loc='upper right', shadow=False)
+axarr[0].set_ylabel(r"$D_f$ LF[-]",fontsize = 30)
+axarr[0].tick_params(labelsize=30)
+axarr[0].set_title("Duty factor plot",fontsize = 30)
+axarr[0].legend(loc='upper right', shadow=False,fontsize = 25)
 
 
 axarr[1].plot(t,[row[1] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
@@ -256,9 +256,9 @@ axarr[1].plot(time_axis,Df_desired_vector,linestyle = "dashed",label='Desired $D
 axarr[1].set_ylim([0, 1])
 axarr[1].set_xlim([0, total_time])
 axarr[1].set_yticks(Duty_tick)
-axarr[1].set_ylabel(r"$D_f$ RF[-]",fontsize = 20)
-axarr[1].tick_params(labelsize=20)
-axarr[1].legend(loc='upper right', shadow=True)
+axarr[1].set_ylabel(r"$D_f$ RF[-]",fontsize = 30)
+axarr[1].tick_params(labelsize=30)
+axarr[1].legend(loc='upper right', shadow=True,fontsize = 25)
 
 
 axarr[2].plot(t,[row[2] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
@@ -268,9 +268,9 @@ axarr[2].plot(time_axis,Df_desired_vector,linestyle = "dashed",label='Desired $D
 axarr[2].set_ylim([0, 1])
 axarr[2].set_xlim([0, total_time])
 axarr[2].set_yticks(Duty_tick)
-axarr[2].set_ylabel(r"$D_f$ LH[-]",fontsize = 20)
-axarr[2].tick_params(labelsize=20)
-axarr[2].legend(loc='upper right', shadow=True)
+axarr[2].set_ylabel(r"$D_f$ LH[-]",fontsize = 30)
+axarr[2].tick_params(labelsize=30)
+axarr[2].legend(loc='upper right', shadow=True,fontsize = 25)
 
 
 axarr[3].plot(t,[row[3] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
@@ -280,10 +280,10 @@ axarr[3].plot(time_axis,Df_desired_vector,linestyle = "dashed",label='Desired $D
 axarr[3].set_ylim([0, 1])
 axarr[3].set_xlim([0, total_time])
 axarr[3].set_yticks(Duty_tick)
-axarr[3].set_ylabel(r"$D_f$ RH[-]",fontsize = 20)
-axarr[3].tick_params(labelsize=20)
-axarr[3].set_xlabel("Time [s]",fontsize = 20)
-axarr[3].legend(loc='upper right', shadow=True)
+axarr[3].set_ylabel(r"$D_f$ RH[-]",fontsize = 30)
+axarr[3].tick_params(labelsize=30)
+axarr[3].set_xlabel("Time [s]",fontsize = 30)
+axarr[3].legend(loc='upper right', shadow=True,fontsize = 25)
          
 
 # Synchronization plot           
@@ -294,187 +294,114 @@ for i in range(0,len(t)):
             
         else:
             l_matrix[i][j] = 'nan'
-#==============================================================================
-# leg_axis = [1,2,3,4]
-# fig5 = plt.figure()
-# plt.title('Synchronization plot')
-# plt.axes(ylim=(4.4,0.6),xlim = (0,total_time))
-# plt.ylabel('Leg number[-]',fontsize = 20)
-# plt.xlabel('time[s]',fontsize = 20)
-# 
-# line1 = plt.plot(t,[row[0] for row in l_matrix],color = '0.75',linewidth=130,solid_capstyle="butt")
-# line2 = plt.plot(t,[row[1] for row in l_matrix],color = '0.75',linewidth=130,solid_capstyle="butt")
-# line3 = plt.plot(t,[row[2] for row in l_matrix],color = '0.75',linewidth=130,solid_capstyle="butt")
-# line4 = plt.plot(t,[row[3] for row in l_matrix],color = '0.75',linewidth=130,solid_capstyle="butt")
-# plt.axvline(x=t1,linestyle = "dashed")
-# plt.axvline(x=t2,linestyle = "dashed")
-# plt.axvline(x=t3,linestyle = "dashed")
-# plt.axhline(y=3.5,color = 'k')
-# plt.axhline(y=2.5,color = 'k')
-#==============================================================================
-#==============================================================================
-# plt.axhline(y=1.5,color = 'k')
-# 
-# plt.tick_params(labelsize=20)
-#==============================================================================
-#==============================================================================
-# plt.yticks(leg_axis)
-#==============================================================================
+
 #%%
 #Zoom in of plots with different parameters
 fig7, axarr = plt.subplots(nrows=2,ncols=2)
-plt.suptitle("Plots for gaits with different parameters",fontsize = 20)
-axarr[0][0].set_title("$Trot_1$",fontsize = 18)
-axarr[0][0].tick_params(labelsize=20)
+plt.suptitle("Plots for gaits with different parameters",fontsize = 30)
+axarr[0][0].set_title("$Trot_1$",fontsize = 25)
+axarr[0][0].tick_params(labelsize=30)
 axarr[0][0].plot(t,[row[0] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][0].plot(t,[row[1] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][0].plot(t,[row[2] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][0].plot(t,[row[3] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][0].plot(t,np.ones(len(t))*-1,color= '0.85',linewidth=5,label="Leg in stance")
-axarr[0][0].legend(loc='upper right', shadow=True)
+axarr[0][0].legend(loc='upper right', shadow=True,fontsize=25)
 axarr[0][0].set_ylim([4.4,0.6])
 axarr[0][0].set_yticks([1,2,3,4])
 axarr[0][0].set_yticklabels(['LF','RF','LH','RH'])
-axarr[0][0].set_xlabel("Time [s]",fontsize = 20)
-axarr[0][0].set_ylabel("Leg index",fontsize = 20)
+#axarr[0][0].set_xlabel("Time [s]",fontsize = 30)
+axarr[0][0].set_ylabel("Leg index",fontsize = 30)
 axarr[0][0].axhline(y=3.5,color = 'k')
 axarr[0][0].axhline(y=2.5,color = 'k')
 axarr[0][0].axhline(y=1.5,color = 'k')
 axarr[0][0].set_xlim([0, t1])
-#==============================================================================
-# axarr[0][0].text(0.3,0.71,'$\Delta_1 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[0][0].text(0.36,0.26,'$\Delta_2 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-#==============================================================================
 
-
-axarr[0][1].tick_params(labelsize=20)
-axarr[0][1].set_title("$Trot_2$",fontsize = 18)
+axarr[0][1].tick_params(labelsize=30)
+axarr[0][1].set_title("$Trot_2$",fontsize = 25)
 axarr[0][1].plot(t,[row[0] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][1].plot(t,[row[1] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][1].plot(t,[row[2] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][1].plot(t,[row[3] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[0][1].plot(t,np.ones(len(t))*-1,color= '0.85',linewidth=5,label="Leg in stance")
-axarr[0][1].legend(loc='upper right', shadow=True)
+axarr[0][1].legend(loc='upper right', shadow=True,fontsize=25)
 axarr[0][1].set_ylim([4.4,0.6])
 axarr[0][1].set_yticks([1,2,3,4])
 axarr[0][1].set_yticklabels(['LF','RF','LH','RH'])
-axarr[0][1].set_xlabel("Time [s]",fontsize = 20)
-axarr[0][1].set_ylabel("Leg index",fontsize = 20)
+#axarr[0][1].set_xlabel("Time [s]",fontsize = 30)
+axarr[0][1].set_ylabel("Leg index",fontsize = 30)
 axarr[0][1].axhline(y=3.5,color = 'k')
 axarr[0][1].axhline(y=2.5,color = 'k')
 axarr[0][1].axhline(y=1.5,color = 'k')
 axarr[0][1].set_xlim([t1, t2])
-#==============================================================================
-# axarr[0][1].text(1.54,0.71,'$\Delta_1 (-)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[0][1].text(1.61,0.26,'$\Delta_2 (-)$',transform=axarr[0][0].transAxes,fontsize = 15)
-#==============================================================================
 
-axarr[1][0].set_title("$Walk_1$",fontsize = 18)
-axarr[1][0].tick_params(labelsize=20)
+axarr[1][0].set_title("$Walk_1$",fontsize = 25)
+axarr[1][0].tick_params(labelsize=30)
 axarr[1][0].plot(t,[row[0] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][0].plot(t,[row[1] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][0].plot(t,[row[2] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][0].plot(t,[row[3] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][0].plot(t,np.ones(len(t))*-1,color= '0.85',linewidth=5,label="Leg in stance")
-axarr[1][0].legend(loc='upper right', shadow=True)
+axarr[1][0].legend(loc='upper right', shadow=True,fontsize=25)
 axarr[1][0].set_ylim([4.4,0.6])
 axarr[1][0].set_yticks([1,2,3,4])
 axarr[1][0].set_yticklabels(['LF','RF','LH','RH'])
-axarr[1][0].set_xlabel("Time [s]",fontsize = 20)
-axarr[1][0].set_ylabel("Leg index",fontsize = 20)
+axarr[1][0].set_xlabel("Time [s]",fontsize = 30)
+axarr[1][0].set_ylabel("Leg index",fontsize = 30)
 axarr[1][0].axhline(y=3.5,color = 'k')
 axarr[1][0].axhline(y=2.5,color = 'k')
 axarr[1][0].axhline(y=1.5,color = 'k')
 axarr[1][0].set_xlim([t2, t3])
-#==============================================================================
-# axarr[1][0].text(0.61,-0.40,'$\Delta_4 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[1][0].text(0.49,-0.50,'$\Delta_1 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[1][0].text(0.55,-0.76,'$\Delta_2 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[1][0].text(0.58,-1.02,'$\Delta_3 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-#==============================================================================
 
-axarr[1][1].set_title("$Walk_2$",fontsize = 18)
+axarr[1][1].set_title("$Walk_2$",fontsize = 25)
 axarr[1][1].tick_params(labelsize=20)
 axarr[1][1].plot(t,[row[0] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][1].plot(t,[row[1] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][1].plot(t,[row[2] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][1].plot(t,[row[3] for row in l_matrix],color = '0.85',linewidth=97,solid_capstyle="butt")
 axarr[1][1].plot(t,np.ones(len(t))*-1,color= '0.85',linewidth=5,label="Leg in stance")
-axarr[1][1].legend(loc='upper right', shadow=True)
+axarr[1][1].legend(loc='upper right', shadow=True,fontsize=25)
 axarr[1][1].set_ylim([4.4,0.6])
 axarr[1][1].set_yticks([1,2,3,4])
 axarr[1][1].set_yticklabels(['LF','RF','LH','RH'])
-axarr[1][1].set_xlabel("Time [s]",fontsize = 20)
-axarr[1][1].set_ylabel("Leg index",fontsize = 20)
+axarr[1][1].set_xlabel("Time [s]",fontsize = 30)
+axarr[1][1].set_ylabel("Leg index",fontsize = 30)
 axarr[1][1].axhline(y=3.5,color = 'k')
 axarr[1][1].axhline(y=2.5,color = 'k')
 axarr[1][1].axhline(y=1.5,color = 'k')
 axarr[1][1].set_xlim([t3, 80])
-#==============================================================================
-# axarr[1][1].text(1.85,-0.40,'$\Delta_4 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[1][1].text(1.73,-0.50,'$\Delta_1 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[1][1].text(1.79,-0.76,'$\Delta_2 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-# axarr[1][1].text(1.82,-1.02,'$\Delta_3 (+)$',transform=axarr[0][0].transAxes,fontsize = 15)
-#==============================================================================
+
 #%%
 
-#==============================================================================
-# # Plot of distance of z traveled by the leg
-# fig2 = plt.figure()
-# plt.tick_params(labelsize=20)
-# #line1 = plt.plot(t,[row[0] for row in u],linewidth=1)
-# line2 = plt.plot(t,[row[1] for row in u1],linewidth=1)
-# plt.axhline(y=0,linestyle = "dashed")
-# plt.ylabel('z[-]',fontsize = 20)
-# plt.xlabel('time[s]',fontsize = 20)
-# plt.axes(xlim = (10,30))
-# for i in range(0, len(EventsList)):
-#     plt.axvline(x = EventsList[i][4], linestyle = "dashed")
-#     plt.axvline(x = EventsList[i][0], linestyle = "dashed")
-#==============================================================================
     
 fig2, axarr = plt.subplots(2, sharex=True)
-axarr[0].set_title('Variation of z coordinate with respect to time of LF',fontsize=20)
-axarr[0].tick_params(labelsize=20)
+axarr[0].set_title('Variation of z coordinate with respect to time of LF',fontsize=30)
+axarr[0].tick_params(labelsize=25)
 axarr[0].plot(t,[row[1] for row in u1],linewidth=1)
 axarr[0].set_xlim([10, 30])
 axarr[0].axhline(y=0,color='0')
-axarr[0].set_ylabel('$z[-]$',fontsize = 20)
+axarr[0].set_ylabel('$z[-]$',fontsize = 30)
 for i in range(0, len(EventsList)):
     axarr[0].axvline(x = EventsList[i][4], linestyle = "dashed",linewidth = 2)
     axarr[0].axvline(x = EventsList[i][0], linestyle = "dotted")
 axarr[0].axvline(x = EventsList[20][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
 axarr[0].axvline(x = EventsList[20][0], linestyle = "dotted", label = "Touchdown times")
-axarr[0].legend(loc='upper right', shadow=False)
+axarr[0].legend(loc='upper right', shadow=False,fontsize=20)
 
-axarr[1].set_title('Angular frequency with respect to time of LF',fontsize=20)
-axarr[1].tick_params(labelsize=20)
+axarr[1].set_title('Angular frequency with respect to time of LF',fontsize=30)
+axarr[1].tick_params(labelsize=25)
 axarr[1].plot(t,[row[0] for row in w])
 axarr[1].set_xlim([10, 30])
 axarr[1].set_ylim([1.5, 3.5])
 axarr[1].axhline(y=0,color='0')
-axarr[1].set_ylabel('$\omega [ rad/s ]$',fontsize = 20)
-axarr[1].set_xlabel('Time [s]',fontsize = 20)
+axarr[1].set_ylabel('$\omega [ rad/s ]$',fontsize = 30)
+axarr[1].set_xlabel('Time [s]',fontsize = 30)
 for i in range(0, len(EventsList)):
     axarr[1].axvline(x = EventsList[i][4], linestyle = "dashed",linewidth = 2)
     axarr[1].axvline(x = EventsList[i][0], linestyle = "dotted")
 axarr[1].axvline(x = EventsList[20][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
 axarr[1].axvline(x = EventsList[20][0], linestyle = "dotted", label = "Touchdown times")
-axarr[1].legend(loc='upper right', shadow=False)
-    
-    
-#==============================================================================
-# # Plot of angular frequency
-# fig3 = plt.figure()
-# plt.title('Angular frequency with respect to time leg 1')
-# plt.tick_params(labelsize=20)
-# plt.ylabel('w [rad/s]',fontsize = 20)
-# plt.xlabel('time[s]',fontsize = 20)
-# line1 = plt.plot(t,[row[0] for row in w])
-# for i in range(0, len(EventsList)):
-#     plt.axvline(x = EventsList[i][4], linestyle = "dashed")
-#     plt.axvline(x = EventsList[i][0], linestyle = "dashed")
-#==============================================================================
+axarr[1].legend(loc='upper right', shadow=False,fontsize=20)
     
     
 # First set up the figure, the axis, and the plot element we want to animate
