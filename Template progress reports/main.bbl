@@ -3,7 +3,7 @@
 \bibitem{Park2015}
 H.-W. Park and S.~Kim, ``{Quadrupedal galloping control for a wide range of
   speed via vertical impulse scaling},'' {\em Bioinspiration {\&} Biomimetics},
-  vol.~10, no.~2, p.~025003, 2015.
+  vol.~10, no.~2, p.~25003, 2015.
 
 \bibitem{Asif2011}
 U.~Asif and J.~Iqbal, ``{Motion Planning Using an Impact-Based Hybrid Control
@@ -11,12 +11,21 @@ U.~Asif and J.~Iqbal, ``{Motion Planning Using an Impact-Based Hybrid Control
   of Advanced Robotic Systems}, vol.~8, no.~4, pp.~212--224, 2011.
 
 \bibitem{Schutter2008}
-B.~D. Schutter and T.~V.~D. Boom, ``{Max-plus algebra and max-plus linear
-  discrete event systems : An introduction},'' vol.~19, 2008.
+B.~D. Schutter and T.~van~den Boom, ``Max-plus algebra and max-plus linear
+  discrete event systems: An introduction,'' in {\em 2008 9th International
+  Workshop on Discrete Event Systems}, pp.~36--42, May 2008.
 
 \bibitem{Lopes2009}
-B.~D. Schutter and A.~J. J. V.~D. Boom, ``{Switching max-plus models for legged
-  locomotion},'' vol.~19, 2009.
+G.~A.~D. Lopes, R.~Babuška, B.~D. Schutter, and A.~J.~J. van~den Boom,
+  ``Switching max-plus models for legged locomotion,'' in {\em 2009 IEEE
+  International Conference on Robotics and Biomimetics (ROBIO)}, pp.~221--226,
+  Dec 2009.
+
+\bibitem{Lopes2014}
+G.~A.~D. Lopes, B.~Kersbergen, T.~J.~J. van~den Boom, B.~D. Schutter, and
+  R.~Babuška, ``Modeling and control of legged locomotion via switching
+  max-plus models,'' {\em IEEE Transactions on Robotics}, vol.~30,
+  pp.~652--665, June 2014.
 
 \bibitem{Barasuol2013}
 V.~Barasuol, J.~Buchli, C.~Semini, M.~Frigerio, E.~R. {De Pieri}, and D.~G.
