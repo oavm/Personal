@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.2.23)  1 MAR 2017 15:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.3.2)  8 MAR 2017 19:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1017,56 +1017,382 @@ Now handling font encoding PD1 ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/arydshln/arydshln.sty
-Package: arydshln 2004/08/31 v1.71 
-\dashlinedash=\dimen221
-\dashlinegap=\dimen222
-\adl@box=\box57
-\adl@height=\dimen223
-\adl@heightsave=\dimen224
-\adl@depth=\dimen225
-\adl@depthsave=\dimen226
-\adl@finaldepth=\dimen227
-\adl@columns=\count169
-\adl@ncol=\count170
-\adl@currentcolumn=\count171
-\adl@currentcolumnsave=\count172
-\adl@totalheight=\count173
-\adl@totalheightsave=\count174
-\adl@dash=\count175
-\adl@gap=\count176
-\adl@cla=\count177
-\adl@clb=\count178
-\adl@everyvbox=\toks43
-\adl@LTpagetotal=\dimen228
+(/usr/share/texmf/tex/latex/beamer/base/multimedia/multimedia.sty
+Package: multimedia 2012/05/02 ver 0.02
+\mm@movie=\count169
 )
-(./beamerthemetud.sty (./beamerfontthemetud.sty) (./beamercolorthemetud.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/media9/media9.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3bootstrap.sty
+Package: l3bootstrap 2014/01/04 v4640 L3 Experimental bootstrap code
+)
+Package: l3names 2014/01/04 v4640 L3 Namespace for primitives
+)
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count170
+)
+Package: expl3 2014/01/07 v4646 L3 Experimental code bundle wrapper
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3basics.sty
+Package: l3basics 2014/01/04 v4642 L3 Basic definitions
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3expan.sty
+Package: l3expan 2014/01/04 v4642 L3 Argument expansion
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3tl.sty
+Package: l3tl 2013/12/27 v4625 L3 Token lists
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3seq.sty
+Package: l3seq 2013/12/14 v4623 L3 Sequences and stacks
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3int.sty
+Package: l3int 2013/08/02 v4583 L3 Integers
+\c_max_int=\count171
+\l_tmpa_int=\count172
+\l_tmpb_int=\count173
+\g_tmpa_int=\count174
+\g_tmpb_int=\count175
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3quark.sty
+Package: l3quark 2013/12/14 v4623 L3 Quarks
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3prg.sty
+Package: l3prg 2014/01/04 v4642 L3 Control structures
+\g__prg_map_int=\count176
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3clist.sty
+Package: l3clist 2013/07/28 v4581 L3 Comma separated lists
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3token.sty
+Package: l3token 2013/08/25 v4587 L3 Experimental token manipulation
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3prop.sty
+Package: l3prop 2013/12/14 v4623 L3 Property lists
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3msg.sty
+Package: l3msg 2013/07/28 v4581 L3 Messages
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3file.sty
+Package: l3file 2013/10/13 v4596 L3 File and I/O operations
+\l_iow_line_count_int=\count177
+\l__iow_target_count_int=\count178
+\l__iow_current_line_int=\count179
+\l__iow_current_word_int=\count180
+\l__iow_current_indentation_int=\count181
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3skip.sty
+Package: l3skip 2013/07/28 v4581 L3 Dimensions and skips
+Normal \dimen register pool exhausted, switching to extended pool.
+\c_zero_dim=\dimen256
+\c_max_dim=\dimen257
+\l_tmpa_dim=\dimen258
+\l_tmpb_dim=\dimen259
+\g_tmpa_dim=\dimen260
+\g_tmpb_dim=\dimen261
+\c_zero_skip=\skip66
+\c_max_skip=\skip67
+\l_tmpa_skip=\skip68
+\l_tmpb_skip=\skip69
+\g_tmpa_skip=\skip70
+\g_tmpb_skip=\skip71
+\c_zero_muskip=\muskip12
+\c_max_muskip=\muskip13
+\l_tmpa_muskip=\muskip14
+\l_tmpb_muskip=\muskip15
+\g_tmpa_muskip=\muskip16
+\g_tmpb_muskip=\muskip17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3keys.sty
+Package: l3keys 2013/12/08 v4614 L3 Experimental key-value interfaces
+\g__keyval_level_int=\count182
+\l_keys_choice_int=\count183
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3fp.sty
+Package: l3fp 2014/01/04 v4642 L3 Floating points
+\c__fp_leading_shift_int=\count184
+\c__fp_middle_shift_int=\count185
+\c__fp_trailing_shift_int=\count186
+\c__fp_big_leading_shift_int=\count187
+\c__fp_big_middle_shift_int=\count188
+\c__fp_big_trailing_shift_int=\count189
+\c__fp_Bigg_leading_shift_int=\count190
+\c__fp_Bigg_middle_shift_int=\count191
+\c__fp_Bigg_trailing_shift_int=\count192
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3box.sty
+Package: l3box 2013/07/28 v4581 L3 Experimental boxes
+\c_empty_box=\box57
+\l_tmpa_box=\box58
+\l_tmpb_box=\box59
+\g_tmpa_box=\box60
+\g_tmpb_box=\box61
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3coffins.sty
+Package: l3coffins 2013/12/14 v4624 L3 Coffin code layer
+\l__coffin_internal_box=\box62
+\l__coffin_internal_dim=\dimen262
+\l__coffin_offset_x_dim=\dimen263
+\l__coffin_offset_y_dim=\dimen264
+\l__coffin_x_dim=\dimen265
+\l__coffin_y_dim=\dimen266
+\l__coffin_x_prime_dim=\dimen267
+\l__coffin_y_prime_dim=\dimen268
+\c_empty_coffin=\box63
+\l__coffin_aligned_coffin=\box64
+\l__coffin_aligned_internal_coffin=\box65
+\l_tmpa_coffin=\box66
+\l_tmpb_coffin=\box67
+\l__coffin_display_coffin=\box68
+\l__coffin_display_coord_coffin=\box69
+\l__coffin_display_pole_coffin=\box70
+\l__coffin_display_offset_dim=\dimen269
+\l__coffin_display_x_dim=\dimen270
+\l__coffin_display_y_dim=\dimen271
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3color.sty
+Package: l3color 2012/08/29 v4156 L3 Experimental color support
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3luatex.sty
+Package: l3luatex 2013/07/28 v4581 L3 Experimental LuaTeX-specific functions
+\g__cctab_allocate_int=\count193
+\g__cctab_stack_int=\count194
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3candidates.sty
+Package: l3candidates 2014/01/06 v4643 L3 Experimental additions to l3kernel
+\l__box_top_dim=\dimen272
+\l__box_bottom_dim=\dimen273
+\l__box_left_dim=\dimen274
+\l__box_right_dim=\dimen275
+\l__box_top_new_dim=\dimen276
+\l__box_bottom_new_dim=\dimen277
+\l__box_left_new_dim=\dimen278
+\l__box_right_new_dim=\dimen279
+\l__box_internal_box=\box71
+\l__coffin_bounding_shift_dim=\dimen280
+\l__coffin_left_corner_dim=\dimen281
+\l__coffin_right_corner_dim=\dimen282
+\l__coffin_bottom_corner_dim=\dimen283
+\l__coffin_top_corner_dim=\dimen284
+\l__coffin_scaled_total_height_dim=\dimen285
+\l__coffin_scaled_width_dim=\dimen286
+))
+(/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str/l3regex.sty
+Package: l3regex 2013/12/14 v4623 L3 Experimental regular expressions
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str/l3tl-build.sty
+Package: l3tl-build 2011/12/08 v3039 L3 Experimental token list construction
+\l__tl_build_start_index_int=\count195
+\l__tl_build_index_int=\count196
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str/l3tl-analysis.sty
+Package: l3tl-analysis 2011/12/08 v3039 L3 Experimental token lists analysis
+(/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str/l3str.sty
+Package: l3str 2013/07/24 v4576 L3 Experimental strings
+)
+\l__tl_analysis_normal_int=\count197
+\l__tl_analysis_index_int=\count198
+\l__tl_analysis_nesting_int=\count199
+\l__tl_analysis_type_int=\count200
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str/l3flag.sty
+Package: l3flag 2011/12/08 v3039 L3 Experimental flags
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3experimental/l3str/l3str-convert.sty
+Package: l3str-convert 2013/01/08 v4339 L3 Experimental string encoding convers
+ions
+\l__str_internal_int=\count201
+Normal \count register pool exhausted, switching to extended pool.
+\c__str_replacement_char_int=\count277
+)
+\l__regex_internal_a_int=\count278
+\l__regex_internal_b_int=\count279
+\l__regex_internal_c_int=\count280
+\l__regex_balance_int=\count281
+\l__regex_group_level_int=\count282
+\l__regex_mode_int=\count283
+\l__regex_catcodes_int=\count284
+\l__regex_default_catcodes_int=\count285
+\c__regex_catcode_D_int=\count286
+\c__regex_catcode_S_int=\count287
+\c__regex_catcode_L_int=\count288
+\c__regex_catcode_O_int=\count289
+\c__regex_catcode_A_int=\count290
+\c__regex_all_catcodes_int=\count291
+\l__regex_show_lines_int=\count292
+\l__regex_min_state_int=\count293
+\l__regex_max_state_int=\count294
+\l__regex_left_state_int=\count295
+\l__regex_right_state_int=\count296
+\l__regex_capturing_group_int=\count297
+\l__regex_min_pos_int=\count298
+\l__regex_max_pos_int=\count299
+\l__regex_current_pos_int=\count300
+\l__regex_start_pos_int=\count301
+\l__regex_success_pos_int=\count302
+\l__regex_current_char_int=\count303
+\l__regex_current_catcode_int=\count304
+\l__regex_last_char_int=\count305
+\l__regex_case_changed_char_int=\count306
+\l__regex_current_state_int=\count307
+\l__regex_step_int=\count308
+\l__regex_min_active_int=\count309
+\l__regex_max_active_int=\count310
+\l__regex_replacement_csnames_int=\count311
+\l__regex_match_count_int=\count312
+\l__regex_submatch_int=\count313
+\l__regex_zeroth_submatch_int=\count314
+) (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2013/12/31 v4634 LaTeX2e option processing using LaTeX3 keys
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2013/12/31 v4634 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count315
+\l__xparse_m_args_int=\count316
+\l__xparse_mandatory_args_int=\count317
+\l__xparse_processor_int=\count318
+\l__xparse_v_nesting_int=\count319
+)
+(/usr/share/texmf/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf/tex/latex/pgf/basiclayer/pgf.sty
+Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
+
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
+\pgfnodeparttextbox=\box72
+)
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
+)
+(/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen287
+\pgf@nodesepend=\dimen288
+)
+(/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
+))
+(/usr/share/texmf/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texmf/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
+\pgffor@iter=\dimen289
+\pgffor@skip=\dimen290
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
+))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
+
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
+\pgf@plot@mark@count=\count320
+\pgfplotmarksize=\dimen291
+)
+\tikz@lastx=\dimen292
+\tikz@lasty=\dimen293
+\tikz@lastxsaved=\dimen294
+\tikz@lastysaved=\dimen295
+\tikzleveldistance=\dimen296
+\tikzsiblingdistance=\dimen297
+\tikz@figbox=\box73
+\tikz@tempbox=\box74
+\tikztreelevel=\count321
+\tikznumberofchildren=\count322
+\tikznumberofcurrentchild=\count323
+\tikz@fig@count=\count324
+
+(/usr/share/texmf/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
+\pgfmatrixcurrentrow=\count325
+\pgfmatrixcurrentcolumn=\count326
+\pgf@matrix@numberofcolumns=\count327
+)
+\tikz@expandcount=\count328
+
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopat
+hs.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
+)))
+Package: media9 2014/02/06 v0.39 acrobat-9/X compatible media
+\l_mix_poster_box=\box75
+\g_mix_wd_dim=\dimen298
+\g_mix_ht_dim=\dimen299
+\g_mix_dp_dim=\dimen300
+\g_mix_rmcnt_int=\count329
+\l_mix_viewcnt_int=\count330
+\g@mix@page@int=\count331
+\g_mix_resizeflag_int=\count332
+\l_mix_lineno_int=\count333
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \addmediapath with arg. spec. 'm' on line 1157.
+.................................................
+\l_mix_pbtn_box=\box76
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \includemedia with arg. spec. 'O{}mm' on line
+. 1446.
+.................................................
+\g_mix_mbtncnt_int=\count334
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \mediabutton with arg. spec. 'O{}m' on line 2535.
+.................................................
+) (/usr/share/texlive/texmf-dist/tex/latex/arydshln/arydshln.sty
+Package: arydshln 2004/08/31 v1.71 
+\dashlinedash=\dimen301
+\dashlinegap=\dimen302
+\adl@box=\box77
+\adl@height=\dimen303
+\adl@heightsave=\dimen304
+\adl@depth=\dimen305
+\adl@depthsave=\dimen306
+\adl@finaldepth=\dimen307
+\adl@columns=\count335
+\adl@ncol=\count336
+\adl@currentcolumn=\count337
+\adl@currentcolumnsave=\count338
+\adl@totalheight=\count339
+\adl@totalheightsave=\count340
+\adl@dash=\count341
+\adl@gap=\count342
+\adl@cla=\count343
+\adl@clb=\count344
+\adl@everyvbox=\toks45
+\adl@LTpagetotal=\dimen308
+) (./beamerthemetud.sty (./beamerfontthemetud.sty) (./beamercolorthemetud.sty)
 (./beamerinnerthemetud.sty) (./beamerouterthemetud.sty))
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 80.
+(hyperref)                removing `\new@ifnextchar' on input line 85.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 83.
+(hyperref)                removing `\new@ifnextchar' on input line 88.
 
 (./presentation.aux)
 \openout1 = `presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
-LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1104,17 +1430,17 @@ LaTeX Font Info:    ... okay on input line 83.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count179
-\scratchdimen=\dimen229
-\scratchbox=\box58
-\nofMPsegments=\count180
-\nofMParguments=\count181
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count182
-\MPscratchDim=\dimen230
-\MPnumerator=\count183
-\makeMPintoPDFobject=\count184
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count345
+\scratchdimen=\dimen309
+\scratchbox=\box78
+\nofMPsegments=\count346
+\nofMParguments=\count347
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count348
+\MPscratchDim=\dimen310
+\MPnumerator=\count349
+\makeMPintoPDFobject=\count350
+\everyMPtoPDFconversion=\toks47
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1131,8 +1457,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box59
-Package hyperref Info: Link coloring OFF on input line 83.
+\AtBeginShipoutBox=\box79
+Package hyperref Info: Link coloring OFF on input line 88.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1140,58 +1466,58 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count185
+\c@section@level=\count351
 )
-LaTeX Info: Redefining \ref on input line 83.
-LaTeX Info: Redefining \pageref on input line 83.
-LaTeX Info: Redefining \nameref on input line 83.
+LaTeX Info: Redefining \ref on input line 88.
+LaTeX Info: Redefining \pageref on input line 88.
+LaTeX Info: Redefining \nameref on input line 88.
 
 (./presentation.out) (./presentation.out)
 \@outlinefile=\write6
 \openout6 = `presentation.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 83.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 88.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 83.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
 \symnumbers=\mathgroup7
 \sympureletters=\mathgroup8
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 83.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 83.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 83.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 88.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 83.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 83.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 83.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 88.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 83.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 83.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 88.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 88.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 83.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 83.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 83.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 83.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 83.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 88.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 83.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 88.
 
 (/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-basic-dicti
 onary/translator-basic-dictionary-English.dict
@@ -1217,103 +1543,103 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 83.
+LaTeX Info: Redefining \includegraphics on input line 88.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \celsius on input line 83.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 83.
+LaTeX Info: Redefining \celsius on input line 88.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 88.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 83.
-Package gensymb Info: Using \Omega for \ohm on input line 83.
+LaTeX Info: Redefining \ohm on input line 88.
+Package gensymb Info: Using \Omega for \ohm on input line 88.
 
 Package gensymb Warning: Not defining \micro.
 
 (./presentation.nav)
-LaTeX Font Info:    Try loading font information for U+msa on input line 83.
+LaTeX Font Info:    Try loading font information for U+msa on input line 88.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 83.
+LaTeX Font Info:    Try loading font information for U+msb on input line 88.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 83.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 88.
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-<./images/ADVRLogo.png, id=25, 434.62375pt x 80.3pt>
+<./images/ADVRLogo.png, id=26, 434.62375pt x 80.3pt>
 File: ./images/ADVRLogo.png Graphic file (type png)
 
 <use ./images/ADVRLogo.png>
-Package pdftex.def Info: ./images/ADVRLogo.png used on input line 86.
+Package pdftex.def Info: ./images/ADVRLogo.png used on input line 91.
 (pdftex.def)             Requested size: 85.35826pt x 15.77054pt.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
-LaTeX Font Info:    Calculating math sizes for size <4> on input line 86.
+LaTeX Font Info:    Calculating math sizes for size <4> on input line 91.
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <2.79999> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <2.79999> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <2> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <2.79999> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <2.79999> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <2> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <4> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <2.79999> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <2> not available
-(Font)              size <5> substituted on input line 86.
+(Font)              size <5> substituted on input line 91.
 
 
 Overfull \vbox (23.38094pt too high) has occurred while \output is active []
@@ -1323,7 +1649,7 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/ADVRLogo.png>]
 (./presentation.toc)
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 89--89
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 94--94
 []|  []  
  []
 
@@ -1334,7 +1660,7 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 [2
 
 ] (./presentation.toc)
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 95--95
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 100--100
 []|  []  
  []
 
@@ -1344,19 +1670,16 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [3
 
-] <images/ControlStrategy.pdf, id=55, 723.24384pt x 218.52596pt>
-File: images/ControlStrategy.pdf Graphic file (type pdf)
+]
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 108
+.
+LaTeX Font Info:    No file OMScmss.fd. on input line 108.
 
-<use images/ControlStrategy.pdf>
-Package pdftex.def Info: images/ControlStrategy.pdf used on input line 108.
-(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
 
-<images/ControlStrategy1.pdf, id=56, 723.24384pt x 218.52596pt>
-File: images/ControlStrategy1.pdf Graphic file (type pdf)
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 108.
 
-<use images/ControlStrategy1.pdf>
-Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 108.
-(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
 
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 108--108
 []|  []  
@@ -1368,18 +1691,21 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [4
 
- <./images/ControlStrategy.pdf>]
+] <images/ControlStrategy.pdf, id=62, 723.24384pt x 218.52596pt>
 File: images/ControlStrategy.pdf Graphic file (type pdf)
- <use images/ControlStrategy.pdf>
-Package pdftex.def Info: images/ControlStrategy.pdf used on input line 108.
+
+<use images/ControlStrategy.pdf>
+Package pdftex.def Info: images/ControlStrategy.pdf used on input line 121.
 (pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+
+<images/ControlStrategy1.pdf, id=63, 723.24384pt x 218.52596pt>
 File: images/ControlStrategy1.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy1.pdf>
-Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 108.
+Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 121.
 (pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
 
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 108--108
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 121--121
 []|  []  
  []
 
@@ -1389,8 +1715,18 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [5
 
- <./images/ControlStrategy1.pdf>]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 114--114
+ <./images/ControlStrategy.pdf>]
+File: images/ControlStrategy.pdf Graphic file (type pdf)
+ <use images/ControlStrategy.pdf>
+Package pdftex.def Info: images/ControlStrategy.pdf used on input line 121.
+(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+File: images/ControlStrategy1.pdf Graphic file (type pdf)
+
+<use images/ControlStrategy1.pdf>
+Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 121.
+(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 121--121
 []|  []  
  []
 
@@ -1400,31 +1736,8 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [6
 
-]
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 140
-.
-LaTeX Font Info:    No file OMScmss.fd. on input line 140.
-
-
-LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 140.
-
-<images/Supervisory.pdf, id=152, 280.87656pt x 212.58972pt>
-File: images/Supervisory.pdf Graphic file (type pdf)
-
-<use images/Supervisory.pdf>
-Package pdftex.def Info: images/Supervisory.pdf used on input line 140.
-(pdftex.def)             Requested size: 115.23369pt x 87.21748pt.
-
-<images/PrimitiveShape.pdf, id=153, 308.57784pt x 205.31706pt>
-File: images/PrimitiveShape.pdf Graphic file (type pdf)
-
-<use images/PrimitiveShape.pdf>
-Package pdftex.def Info: images/PrimitiveShape.pdf used on input line 140.
-(pdftex.def)             Requested size: 115.23369pt x 76.67415pt.
-
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 140--140
+ <./images/ControlStrategy1.pdf>]
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 127--127
 []|  []  
  []
 
@@ -1434,25 +1747,21 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [7
 
- <./images/Supervisory.pdf> <./images/PrimitiveShape.pdf
+] <images/Supervisory.pdf, id=160, 280.87656pt x 212.58972pt>
+File: images/Supervisory.pdf Graphic file (type pdf)
 
-pdfTeX warning: pdflatex (file ./images/PrimitiveShape.pdf): PDF inclusion: mul
-tiple pdfs with page group included in a single page
->] <images/Supervisoryb.pdf, id=210, 280.87656pt x 212.58972pt>
-File: images/Supervisoryb.pdf Graphic file (type pdf)
-
-<use images/Supervisoryb.pdf>
-Package pdftex.def Info: images/Supervisoryb.pdf used on input line 165.
+<use images/Supervisory.pdf>
+Package pdftex.def Info: images/Supervisory.pdf used on input line 153.
 (pdftex.def)             Requested size: 115.23369pt x 87.21748pt.
 
-<images/TrotTime.pdf, id=211, 80.9043pt x 78.24231pt>
-File: images/TrotTime.pdf Graphic file (type pdf)
+<images/PrimitiveShape.pdf, id=161, 308.57784pt x 205.31706pt>
+File: images/PrimitiveShape.pdf Graphic file (type pdf)
 
-<use images/TrotTime.pdf>
-Package pdftex.def Info: images/TrotTime.pdf used on input line 165.
-(pdftex.def)             Requested size: 107.55098pt x 104.01915pt.
+<use images/PrimitiveShape.pdf>
+Package pdftex.def Info: images/PrimitiveShape.pdf used on input line 153.
+(pdftex.def)             Requested size: 115.23369pt x 76.67415pt.
 
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 165--165
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 153--153
 []|  []  
  []
 
@@ -1462,13 +1771,36 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [8
 
- <./images/Supervisoryb.pdf> <./images/TrotTime.pdf
+ <./images/Supervisory.pdf> <./images/PrimitiveShape.pdf
 
-pdfTeX warning: pdflatex (file ./images/TrotTime.pdf): PDF inclusion: multiple 
-pdfs with page group included in a single page
->]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 171--171
+pdfTeX warning: pdflatex (file ./images/PrimitiveShape.pdf): PDF inclusion: mul
+tiple pdfs with page group included in a single page
+>] <images/Supervisoryb.pdf, id=216, 280.87656pt x 212.58972pt>
+File: images/Supervisoryb.pdf Graphic file (type pdf)
+
+<use images/Supervisoryb.pdf>
+Package pdftex.def Info: images/Supervisoryb.pdf used on input line 181.
+(pdftex.def)             Requested size: 92.18788pt x 69.77528pt.
+
+<images/Numbers.pdf, id=217, 424.37311pt x 613.37732pt>
+File: images/Numbers.pdf Graphic file (type pdf)
+
+<use images/Numbers.pdf>
+Package pdftex.def Info: images/Numbers.pdf used on input line 181.
+(pdftex.def)             Requested size: 33.80206pt x 48.85591pt.
+ <images/TrotTime.pdf, id=218, 80.9043pt x 78.24231pt>
+File: images/TrotTime.pdf Graphic file (type pdf)
+
+<use images/TrotTime.pdf>
+Package pdftex.def Info: images/TrotTime.pdf used on input line 181.
+(pdftex.def)             Requested size: 69.13974pt x 66.86919pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 181--181
 []|  []  
+ []
+
+
+Overfull \vbox (8.11409pt too high) detected at line 181
  []
 
 
@@ -1477,27 +1809,16 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [9
 
-] <images/MaxPlus.pdf, id=262, 367.9647pt x 147.16379pt>
-File: images/MaxPlus.pdf Graphic file (type pdf)
+ <./images/Supervisoryb.pdf> <./images/Numbers.pdf
 
-<use images/MaxPlus.pdf>
-Package pdftex.def Info: images/MaxPlus.pdf used on input line 195.
-(pdftex.def)             Requested size: 138.2795pt x 55.30304pt.
+pdfTeX warning: pdflatex (file ./images/Numbers.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./images/TrotTime.pdf
 
-<images/Phases.pdf, id=263, 262.78767pt x 127.75977pt>
-File: images/Phases.pdf Graphic file (type pdf)
- <use images/Phases.pdf>
-Package pdftex.def Info: images/Phases.pdf used on input line 195.
-(pdftex.def)             Requested size: 138.2795pt x 67.22887pt.
-
-<images/EventsList.png, id=264, 1480.53125pt x 565.11125pt>
-File: images/EventsList.png Graphic file (type png)
-
-<use images/EventsList.png>
-Package pdftex.def Info: images/EventsList.png used on input line 195.
-(pdftex.def)             Requested size: 153.64493pt x 58.64429pt.
-
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 195--195
+pdfTeX warning: pdflatex (file ./images/TrotTime.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+>]
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 187--187
 []|  []  
  []
 
@@ -1507,12 +1828,20 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [10
 
- <./images/MaxPlus.pdf> <./images/Phases.pdf
+] <images/MaxPlus.pdf, id=276, 367.9647pt x 147.16379pt>
+File: images/MaxPlus.pdf Graphic file (type pdf)
 
-pdfTeX warning: pdflatex (file ./images/Phases.pdf): PDF inclusion: multiple pd
-fs with page group included in a single page
-> <./images/EventsList.png>]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 207--207
+<use images/MaxPlus.pdf>
+Package pdftex.def Info: images/MaxPlus.pdf used on input line 226.
+(pdftex.def)             Requested size: 124.4507pt x 49.77228pt.
+
+<images/Phases.pdf, id=277, 262.78767pt x 127.75977pt>
+File: images/Phases.pdf Graphic file (type pdf)
+ <use images/Phases.pdf>
+Package pdftex.def Info: images/Phases.pdf used on input line 226.
+(pdftex.def)             Requested size: 124.4507pt x 60.5052pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 226--226
 []|  []  
  []
 
@@ -1522,8 +1851,12 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [11
 
-]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 213--213
+ <./images/MaxPlus.pdf> <./images/Phases.pdf
+
+pdfTeX warning: pdflatex (file ./images/Phases.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+>]
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 238--238
 []|  []  
  []
 
@@ -1534,32 +1867,7 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 [12
 
 ]
-Overfull \hbox (64.94661pt too wide) detected at line 248
-[] \OT1/cmss/m/n/10.95 = [] [][][][]
- []
-
-
-Overfull \hbox (24.19899pt too wide) detected at line 248
-[] [][] \OML/cmm/m/it/10.95 !\OT1/cmss/m/it/10.95 dt \OT1/cmss/m/n/10.95 = [][]
-\OT1/cmss/m/it/10.95 p \OT1/cmss/m/n/10.95 = \OT1/cmss/m/it/10.95 st\OML/cmm/m/
-it/10.95 ; \OT1/cmss/m/it/10.95 sw\OML/cmm/m/it/10.95 :[][][][]
- []
-
-<./images/AngularFrequency.pdf, id=314, 169.6471pt x 83.51474pt>
-File: ./images/AngularFrequency.pdf Graphic file (type pdf)
-
-<use ./images/AngularFrequency.pdf>
-Package pdftex.def Info: ./images/AngularFrequency.pdf used on input line 248.
-(pdftex.def)             Requested size: 107.55098pt x 52.94714pt.
-
-<./images/PhasesPeriod.pdf, id=315, 262.78767pt x 127.75977pt>
-File: ./images/PhasesPeriod.pdf Graphic file (type pdf)
-
-<use ./images/PhasesPeriod.pdf>
-Package pdftex.def Info: ./images/PhasesPeriod.pdf used on input line 248.
-(pdftex.def)             Requested size: 122.9164pt x 59.75856pt.
-
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 248--248
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 244--244
 []|  []  
  []
 
@@ -1569,18 +1877,33 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [13
 
- <./images/AngularFrequency.pdf> <./images/PhasesPeriod.pdf
+]
+Overfull \hbox (64.94661pt too wide) detected at line 279
+[] \OT1/cmss/m/n/10.95 = [] [][][][]
+ []
 
-pdfTeX warning: pdflatex (file ./images/PhasesPeriod.pdf): PDF inclusion: multi
-ple pdfs with page group included in a single page
->] <./images/HeightTime.png, id=359, 1675.2186pt x 1005.9984pt>
-File: ./images/HeightTime.png Graphic file (type png)
 
-<use ./images/HeightTime.png>
-Package pdftex.def Info: ./images/HeightTime.png used on input line 255.
-(pdftex.def)             Requested size: 307.28987pt x 184.52571pt.
+Overfull \hbox (24.19899pt too wide) detected at line 279
+[] [][] \OML/cmm/m/it/10.95 !\OT1/cmss/m/it/10.95 dt \OT1/cmss/m/n/10.95 = [][]
+\OT1/cmss/m/it/10.95 p \OT1/cmss/m/n/10.95 = \OT1/cmss/m/it/10.95 st\OML/cmm/m/
+it/10.95 ; \OT1/cmss/m/it/10.95 sw\OML/cmm/m/it/10.95 :[][][][]
+ []
 
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 255--255
+<./images/AngularFrequency.pdf, id=329, 169.6471pt x 83.51474pt>
+File: ./images/AngularFrequency.pdf Graphic file (type pdf)
+
+<use ./images/AngularFrequency.pdf>
+Package pdftex.def Info: ./images/AngularFrequency.pdf used on input line 279.
+(pdftex.def)             Requested size: 107.55098pt x 52.94714pt.
+
+<./images/PhasesPeriod.pdf, id=330, 262.78767pt x 127.75977pt>
+File: ./images/PhasesPeriod.pdf Graphic file (type pdf)
+
+<use ./images/PhasesPeriod.pdf>
+Package pdftex.def Info: ./images/PhasesPeriod.pdf used on input line 279.
+(pdftex.def)             Requested size: 122.9164pt x 59.75856pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 279--279
 []|  []  
  []
 
@@ -1590,8 +1913,18 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [14
 
- <./images/HeightTime.png>]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 261--261
+ <./images/AngularFrequency.pdf> <./images/PhasesPeriod.pdf
+
+pdfTeX warning: pdflatex (file ./images/PhasesPeriod.pdf): PDF inclusion: multi
+ple pdfs with page group included in a single page
+>] <./images/HeightTime.png, id=372, 1675.2186pt x 1005.9984pt>
+File: ./images/HeightTime.png Graphic file (type png)
+
+<use ./images/HeightTime.png>
+Package pdftex.def Info: ./images/HeightTime.png used on input line 286.
+(pdftex.def)             Requested size: 307.28987pt x 184.52571pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 286--286
 []|  []  
  []
 
@@ -1601,21 +1934,8 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [15
 
-] <images/Oscillator.pdf, id=371, 162.87308pt x 134.8794pt>
-File: images/Oscillator.pdf Graphic file (type pdf)
-
-<use images/Oscillator.pdf>
-Package pdftex.def Info: images/Oscillator.pdf used on input line 281.
-(pdftex.def)             Requested size: 73.74918pt x 61.07385pt.
-
-<images/LimitCycle.png, id=372, 1175.1102pt x 615.7404pt>
-File: images/LimitCycle.png Graphic file (type png)
-
-<use images/LimitCycle.png>
-Package pdftex.def Info: images/LimitCycle.png used on input line 281.
-(pdftex.def)             Requested size: 184.3758pt x 96.6038pt.
-
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 281--281
+ <./images/HeightTime.png>]
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 292--292
 []|  []  
  []
 
@@ -1625,8 +1945,21 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [16
 
- <./images/Oscillator.pdf> <./images/LimitCycle.png>] (./presentation.toc)
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 286--286
+] <images/Oscillator.pdf, id=384, 162.87308pt x 134.8794pt>
+File: images/Oscillator.pdf Graphic file (type pdf)
+
+<use images/Oscillator.pdf>
+Package pdftex.def Info: images/Oscillator.pdf used on input line 312.
+(pdftex.def)             Requested size: 73.74918pt x 61.07385pt.
+
+<images/LimitCycle.png, id=385, 1175.1102pt x 615.7404pt>
+File: images/LimitCycle.png Graphic file (type png)
+
+<use images/LimitCycle.png>
+Package pdftex.def Info: images/LimitCycle.png used on input line 312.
+(pdftex.def)             Requested size: 184.3758pt x 96.6038pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 312--312
 []|  []  
  []
 
@@ -1636,8 +1969,8 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [17
 
-]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 302--302
+ <./images/Oscillator.pdf> <./images/LimitCycle.png>] (./presentation.toc)
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 317--317
 []|  []  
  []
 
@@ -1647,14 +1980,8 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [18
 
-] <./images/SyncPlot.png, id=407, 1675.2186pt x 1005.9984pt>
-File: ./images/SyncPlot.png Graphic file (type png)
-
-<use ./images/SyncPlot.png>
-Package pdftex.def Info: ./images/SyncPlot.png used on input line 308.
-(pdftex.def)             Requested size: 307.28987pt x 184.52571pt.
-
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 308--308
+]
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 333--333
 []|  []  
  []
 
@@ -1664,20 +1991,14 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [19
 
- <./images/SyncPlot.png>]
-<images/DutyFactor.png, id=415, 1675.2186pt x 1005.9984pt>
-File: images/DutyFactor.png Graphic file (type png)
+] <./images/SyncPlot.png, id=421, 1675.2186pt x 1005.9984pt>
+File: ./images/SyncPlot.png Graphic file (type png)
 
-<use images/DutyFactor.png>
-Package pdftex.def Info: images/DutyFactor.png used on input line 315.
-(pdftex.def)             Requested size: 338.02072pt x 202.97675pt.
+<use ./images/SyncPlot.png>
+Package pdftex.def Info: ./images/SyncPlot.png used on input line 339.
+(pdftex.def)             Requested size: 307.28987pt x 184.52571pt.
 
-Overfull \hbox (30.73085pt too wide) in paragraph at lines 315--315
- [] 
- []
-
-
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 315--315
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 339--339
 []|  []  
  []
 
@@ -1687,8 +2008,20 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [20
 
- <./images/DutyFactor.png>] (./presentation.toc)
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 318--318
+ <./images/SyncPlot.png>]
+<images/DutyFactor.png, id=428, 1675.2186pt x 1005.9984pt>
+File: images/DutyFactor.png Graphic file (type png)
+
+<use images/DutyFactor.png>
+Package pdftex.def Info: images/DutyFactor.png used on input line 346.
+(pdftex.def)             Requested size: 338.02072pt x 202.97675pt.
+
+Overfull \hbox (30.73085pt too wide) in paragraph at lines 346--346
+ [] 
+ []
+
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 346--346
 []|  []  
  []
 
@@ -1698,9 +2031,19 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [21
 
-]
-Overfull \hbox (29.30978pt too wide) in paragraph at lines 329--329
+ <./images/DutyFactor.png>] <Legs.png, id=435, 578.16pt x 433.62pt>
+File: Legs.png Graphic file (type png)
+
+<use Legs.png>
+Package pdftex.def Info: Legs.png used on input line 355.
+(pdftex.def)             Requested size: 307.28987pt x 230.46591pt.
+
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 355--355
 []|  []  
+ []
+
+
+Overfull \vbox (9.1928pt too high) detected at line 355
  []
 
 
@@ -1709,11 +2052,33 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 [22
 
-]
+ <./Legs.png>] (./presentation.toc)
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 357--357
+[]|  []  
+ []
+
+
 Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 
 
 [23
+
+]
+Overfull \hbox (29.30978pt too wide) in paragraph at lines 368--368
+[]|  []  
+ []
+
+
+Overfull \vbox (23.38094pt too high) has occurred while \output is active []
+
+
+[24
+
+]
+Overfull \vbox (23.38094pt too high) has occurred while \output is active []
+
+
+[25
 
 ]
 \tf@nav=\write7
@@ -1725,13 +2090,13 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 \tf@snm=\write9
 \openout9 = `presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 378.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 378.
  (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 378.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 378.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: B736E2ECBCC16001462AA7577FB0B155;145.
+(rerunfilecheck)             Checksum: 7BEB0A16BABAF1DBD66ED1B9549AC9D0;153.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -1740,16 +2105,16 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 378.
  ) 
 Here is how much of TeX's memory you used:
- 19003 strings out of 493304
- 343461 string characters out of 6139871
- 439380 words of memory out of 5000000
- 21916 multiletter control sequences out of 15000+600000
+ 28429 strings out of 493304
+ 548572 string characters out of 6139872
+ 623339 words of memory out of 5000000
+ 31181 multiletter control sequences out of 15000+600000
  16130 words of font info for 62 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 49i,17n,55p,421b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,17n,55p,10378b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
@@ -1761,10 +2126,10 @@ e1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on presentation.pdf (23 pages, 636869 bytes).
+Output written on presentation.pdf (25 pages, 608144 bytes).
 PDF statistics:
- 490 PDF objects out of 1000 (max. 8388607)
- 340 compressed objects within 4 object streams
- 53 named destinations out of 1000 (max. 500000)
- 158 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 513 PDF objects out of 1000 (max. 8388607)
+ 357 compressed objects within 4 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 167 words of extra memory for PDF output out of 10000 (max. 10000000)
 

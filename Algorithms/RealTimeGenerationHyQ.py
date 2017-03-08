@@ -38,7 +38,11 @@ beta = 100
 a = 0.6
 b = 0.4 
 
-St = 3
+#==============================================================================
+# St = 3
+#==============================================================================
+
+St = 2.4
 
 t1 = 20
 t2 = 40
@@ -47,12 +51,22 @@ t3 = 60
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
     if time_axis[i] < t1:
-        Df = 0.6
+#==============================================================================
+#         Df = 0.6
+#         Tf = St*(1 - Df)
+#         Tg = St*Df
+#         Gr = 2
+#         MaxTD1 = St*(1 - Gr*(1 - Df))
+#         Td = [0.2,0.4] # MaxTd = 0.6
+#         gait = [[1,4],[2,3]]
+#         Df_desired_vector[i] = Df
+#==============================================================================
+        Df = 0.5833333
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 2
         MaxTD1 = St*(1 - Gr*(1 - Df))
-        Td = [0.2,0.4] # MaxTd = 0.6
+        Td = [0.2,0.2] # MaxTd = 0.6
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
@@ -406,20 +420,20 @@ axarr[1].legend(loc='upper right', shadow=False,fontsize=20)
     
 # First set up the figure, the axis, and the plot element we want to animate
 Writer = animation.writers['ffmpeg'] # Set to record
-writer = Writer(fps=30, metadata=dict(artist='Me'), bitrate=1800) # Set to record
+writer = Writer(fps=120, metadata=dict(artist='Me'), bitrate=1800) # Set to record
 fig4 = plt.figure()
 ax = plt.axes(xlim=(-1, 2.5), ylim=(-1.5, 1.5))
 plt.ylabel('z')
 plt.xlabel('x')
 
 line, = ax.plot([], [], lw=1, ls = '--')
-line1, = ax.plot([],[], lw =5,color = '0.5',label = 'Right')
+line1, = ax.plot([],[], lw =7,color = '0.5',label = 'Left')
 line2, = ax.plot([], [], lw=1, ls = '--')
-line3, = ax.plot([],[], lw =5,color = 'red',label = 'Left')
+line3, = ax.plot([],[], lw =7,color = 'red',label = 'Right')
 line4, = ax.plot([], [], lw=1, ls = '--')
-line5, = ax.plot([],[], lw =5,color = '0.5')
+line5, = ax.plot([],[], lw =7,color = '0.5')
 line6, = ax.plot([], [], lw=1, ls = '--')
-line7, = ax.plot([],[], lw =5,color = 'red')
+line7, = ax.plot([],[], lw =7,color = 'red')
 
 legend = ax.legend(loc='upper center', shadow=True)
 
@@ -435,6 +449,7 @@ def init():
     time_text.set_text('')
     return line,
 
+fig4.savefig('Legs.png')
 # animation function.  This is called sequentially
 i = 0
 
@@ -444,19 +459,19 @@ def animate(i):
     time_text.set_text(time_template % (i*Ts))
     x0.append(u1[i][0])
     y0.append(u1[i][1])
-    dotx0 = [u1[i-1][0],u1[i][0]]
+    dotx0 = [1.5 + u1[i-1][0],1.5 + u1[i][0]]
     doty0 = [u1[i-1][1], u1[i][1]]
     x1.append(u2[i][0])
     y1.append(u2[i][1])
-    dotx1 = [u2[i-1][0],u2[i][0]]
+    dotx1 = [1.5 + u2[i-1][0],1.5 + u2[i][0]]
     doty1 = [u2[i-1][1], u2[i][1]]
     x2.append(1.5 + u3[i][0])
     y2.append(u3[i][1])
-    dotx2 = [1.5 + u3[i-1][0],1.5 + u3[i][0]]
+    dotx2 = [u3[i-1][0],u3[i][0]]
     doty2 = [u3[i-1][1], u3[i][1]]
     x3.append(1.5 + u4[i][0])
     y3.append(u4[i][1])
-    dotx3 = [1.5 + u4[i-1][0],1.5 + u4[i][0]]
+    dotx3 = [u4[i-1][0],u4[i][0]]
     doty3 = [u4[i-1][1], u4[i][1]]
     line.set_data(x0, y0)
     line1.set_data(dotx0,doty0)

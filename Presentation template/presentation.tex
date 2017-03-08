@@ -23,8 +23,13 @@
 \usepackage{relsize}
 %\usepackage{apalike}
 \usepackage[utf8]{inputenc}
+\usepackage{multimedia}
+\usepackage{media9}
+%\usepackage{hyperref}.
+
 
 \usepackage{arydshln}
+
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
@@ -78,7 +83,7 @@
 \title[PhD meeting presentation]{PhD Meeting: Planning and Control \vspace{15pt}}
 \institute[]{Istituto Italiano di Tecnologia, Genova, Italy \vspace{20pt}}
 \author{Octavio A. Villarreal Maga\~na \vspace{20pt}} %\scriptsize Committee:  \\ Prof.Dr.Ir. Nathan van de Wouw (TUDelft, supervisor) \\ \vspace{1.5pt} \hspace{-11pt}Prof.Dr.Ir. Emmanuel Detournay (UMN, supervisor) \\ \vspace{-2.5pt} \hspace{-74pt}Dr.Ir. Manuel Mazo Jr. (TUDelft)}
-\date{February 28th, 2017}
+\date{March 9th, 2017}
 
 \begin{document}
 {
@@ -93,6 +98,14 @@
 }
 
 \section{Control structure}
+
+\begin{frame}{Motivation}
+	\begin{itemize}\setlength\itemsep{3em}
+		\item Provide versatility to the types of gaits that the robot can perform
+		\item Have a unified and systematic way to generate motions of the legs according to the scenario
+		\item Can be applied to other legged systems
+	\end{itemize}
+\end{frame}
 
 \begin{frame}{General picture}	
 	\begin{itemize}[notitemsep, topsep=0pt]
@@ -109,7 +122,7 @@
 
 \begin{frame}\frametitle{Supervisory controller}
 	\begin{block}{Main goal}
-		\Large Provide \textbf{time} and \textbf{geometrical} gait parameters, based on sensory data, to overcome the scenario that the robot is facing.
+		\Large Provide \textbf{geometrical} and \textbf{time} gait parameters, based on sensory data, to overcome the scenario that the robot is facing.
 	\end{block}
 \end{frame}
 
@@ -146,19 +159,22 @@
 		Time parameters:
 		\begin{itemize}
 			\setlength\itemsep{3em}
+			\item Gait parameterization $G$ (e.g., $G_{trot}=\{1,4\}\prec\{2,3\}$)
 			\item Duty factor $D_f$
 			\item Step frequency $S_f$
-			\item Gait "ordering" $G$ (e.g., $G_{trot}=\{1,4\}\prec\{2,3\}$)
 			\item Time difference vector $\Delta$
 		\end{itemize}	
 		
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			\begin{figure}[ht]\centering
-				\includegraphics[width=0.75\textwidth]{images/Supervisoryb.pdf}
+				\includegraphics[width=0.6\textwidth]{images/Supervisoryb.pdf}
+			\end{figure}
+			\vspace{-0.25cm}\begin{figure}[ht]\centering
+							\includegraphics[width=0.22\textwidth]{images/Numbers.pdf}
 			\end{figure}
 			\begin{figure}[ht]\centering
-				\includegraphics[width=0.7\textwidth]{images/TrotTime.pdf}
+				\includegraphics[width=0.45\textwidth]{images/TrotTime.pdf}
 			\end{figure}
 		\end{column}
 		\end{columns}
@@ -173,7 +189,7 @@
 \begin{frame}{Max-plus gait scheduler (continue)}
 \begin{columns}
 \hspace{1cm}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.45\textwidth}
 	\begin{figure}[ht]\centering
 		\includegraphics[width=0.9\textwidth]{images/MaxPlus.pdf}
 	\end{figure}
@@ -181,15 +197,30 @@
 		\includegraphics[width=0.9\textwidth]{images/Phases.pdf}
 	\end{figure}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.55\textwidth}
 $G_{trot}=\{1,4\}\prec\{2,3\}$ \\
 $D_f = 0.5$ \\
 $S_f = 0.36$ \\
 $\Delta = [0.2,0.2]$ 
 
-	\begin{figure}[ht]\centering
-		\includegraphics[width=1\textwidth]{images/EventsList.png}
-	\end{figure}
+\begin{table}[]
+\centering
+\label{my-label}
+\resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+\hline
+$k$ & $g_1(k)$ & $g_2(k)$ & $g_3(k)$ & $g_4(k)$ & $l_1(k)$ & $l_2(k)$ & $l_3(k)$ & $l_4(k)$ \\ \hline
+0   & 0        & 0        & 0        & 0        & 0        & 0        & 0        & 0        \\ \hline
+1   & 2.4      & 3.6      & 3.6      & 2.4,     & 1.4      & 2.6      & 2.6      & 1.4      \\ \hline
+2   & 4.8      & 6        & 6        & 4.8      & 3.8      & 5        & 5        & 3.8      \\ \hline
+3   & 7.2      & 8.4      & 8.4      & 7.2      & 6.2      & 7.4      & 7.4      & 6.2      \\ \hline
+4   & 9.6      & 10.8     & 10.8     & 9.6      & 8.6      & 9.8      & 9.8      & 8.6      \\ \hline
+5   & 12       & 13.2     & 13.2     & 12       & 11       & 12.2     & 12.2     & 11       \\ \hline
+\end{tabular}}
+\end{table}
+
+%	\begin{figure}[ht]\centering
+%		\includegraphics[width=1\textwidth]{images/EventsList.png}
+%	\end{figure}
 \end{column}
 \end{columns}
 \end{frame}
@@ -283,7 +314,7 @@ z = \beta (1 - \frac{16x^4}{L_s^4} - \frac{z^4}{H_s^4})z - \frac{9.44\omega H_s}
 
 
 
-\section{Simulations}
+\section{Numeric simulations}
 
 
 \begin{frame}{Parameters used}
@@ -314,6 +345,14 @@ $W_2$ & $\{1\}\prec\{2\}\prec\{3\}\prec\{4\}$ & 0.4  & 1/3     & $[ -1.4 , -0.7 
 	\end{figure}\vspace{-20pt}
 \end{frame}
 
+\begin{frame}{Animation}
+
+\begin{center}
+        \movie[width=\textwidth,showcontrols=true]
+        {\includegraphics[width=\textwidth]{Legs.png}}{Legs.mp4} \\
+\end{center}
+
+\end{frame}
 
 \section{Further work}
 
@@ -329,7 +368,7 @@ $W_2$ & $\{1\}\prec\{2\}\prec\{3\}\prec\{4\}$ & 0.4  & 1/3     & $[ -1.4 , -0.7 
 \end{frame}
 
 \begin{frame}
- \hspace{2cm} Thank you for your attention. Any questions?
+ \hspace{2cm} Thank you. Questions or comments?
 \end{frame}
 
 
