@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.3.2)  13 MAR 2017 19:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.3.2)  13 MAR 2017 19:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1214,36 +1214,25 @@ llingsystem.pdf, id=199, 569.055pt x 569.055pt>
 File: images/drillingsystem.pdf Graphic file (type pdf)
 
 <use images/drillingsystem.pdf>
-Package pdftex.def Info: images/drillingsystem.pdf used on input line 104.
+Package pdftex.def Info: images/drillingsystem.pdf used on input line 101.
 (pdftex.def)             Requested size: 184.3758pt x 184.37628pt.
 
 <images/RSS.pdf, id=200, 284.52798pt x 569.055pt>
 File: images/RSS.pdf Graphic file (type pdf)
  <use images/RSS.pdf>
-Package pdftex.def Info: images/RSS.pdf used on input line 104.
+Package pdftex.def Info: images/RSS.pdf used on input line 101.
 (pdftex.def)             Requested size: 79.89339pt x 159.78583pt.
+ [8
 
-<images/PDC-bit.pdf, id=201, 446.8695pt x 569.24669pt>
-File: images/PDC-bit.pdf Graphic file (type pdf)
-
-<use images/PDC-bit.pdf>
-Package pdftex.def Info: images/PDC-bit.pdf used on input line 104.
-(pdftex.def)             Requested size: 49.16487pt x 62.626pt.
-
-Overfull \vbox (25.49211pt too high) detected at line 104
- []
-
-[8
-
- <./images/drillingsystem.pdf> <./images/RSS.pdf> <./images/PDC-bit.pdf>]
-<images/Spiraling.png, id=269, 108.405pt x 149.358pt>
+ <./images/drillingsystem.pdf> <./images/RSS.pdf>]
+<images/Spiraling.png, id=258, 108.405pt x 149.358pt>
 File: images/Spiraling.png Graphic file (type png)
 
 <use images/Spiraling.png>
-Package pdftex.def Info: images/Spiraling.png used on input line 124.
+Package pdftex.def Info: images/Spiraling.png used on input line 121.
 (pdftex.def)             Requested size: 76.82246pt x 105.8489pt.
 
-Overfull \hbox (4.50032pt too wide) detected at line 124
+Overfull \hbox (4.50032pt too wide) detected at line 121
 []  [][] [][][][][][][][][] [][][][][][][] 
  []
 
@@ -1256,36 +1245,36 @@ Overfull \hbox (4.50032pt too wide) detected at line 124
 ]
 File: images/drillingsystem.pdf Graphic file (type pdf)
  <use images/drillingsystem.pdf>
-Package pdftex.def Info: images/drillingsystem.pdf used on input line 164.
+Package pdftex.def Info: images/drillingsystem.pdf used on input line 161.
 (pdftex.def)             Requested size: 153.64258pt x 153.63821pt.
 
-Overfull \hbox (30.72852pt too wide) in paragraph at lines 164--164
+Overfull \hbox (30.72852pt too wide) in paragraph at lines 161--161
  [] 
  []
 
 [12
 
-] <images/Sensors.pdf, id=293, 357.00677pt x 271.0125pt>
+] <images/Sensors.pdf, id=282, 357.00677pt x 271.0125pt>
 File: images/Sensors.pdf Graphic file (type pdf)
 
 <use images/Sensors.pdf>
-Package pdftex.def Info: images/Sensors.pdf used on input line 170.
+Package pdftex.def Info: images/Sensors.pdf used on input line 167.
 (pdftex.def)             Requested size: 245.83282pt x 186.61836pt.
  [13
 
  <./images/Sensors.pdf>] [14
 
 ]
-<images/Plant.pdf, id=330, 128.98187pt x 126.4725pt>
+<images/Plant.pdf, id=319, 128.98187pt x 126.4725pt>
 File: images/Plant.pdf Graphic file (type pdf)
  <use images/Plant.pdf>
-Package pdftex.def Info: images/Plant.pdf used on input line 191.
+Package pdftex.def Info: images/Plant.pdf used on input line 188.
 (pdftex.def)             Requested size: 215.10196pt x 210.9362pt.
 
-<images/Plant2.pdf, id=331, 128.98187pt x 126.4725pt>
+<images/Plant2.pdf, id=320, 128.98187pt x 126.4725pt>
 File: images/Plant2.pdf Graphic file (type pdf)
  <use images/Plant2.pdf>
-Package pdftex.def Info: images/Plant2.pdf used on input line 191.
+Package pdftex.def Info: images/Plant2.pdf used on input line 188.
 (pdftex.def)             Requested size: 215.10196pt x 210.9362pt.
 
 [15
@@ -1293,70 +1282,70 @@ Package pdftex.def Info: images/Plant2.pdf used on input line 191.
  <./images/Plant.pdf>]
 File: images/Plant.pdf Graphic file (type pdf)
  <use images/Plant.pdf>
-Package pdftex.def Info: images/Plant.pdf used on input line 191.
+Package pdftex.def Info: images/Plant.pdf used on input line 188.
 (pdftex.def)             Requested size: 215.10196pt x 210.9362pt.
 File: images/Plant2.pdf Graphic file (type pdf)
  <use images/Plant2.pdf>
-Package pdftex.def Info: images/Plant2.pdf used on input line 191.
+Package pdftex.def Info: images/Plant2.pdf used on input line 188.
 (pdftex.def)             Requested size: 215.10196pt x 210.9362pt.
 
 [16
 
  <./images/Plant2.pdf>]
-<images/ControlStrategyRobust.pdf, id=401, 277.53688pt x 292.41647pt>
+<images/ControlStrategyRobust.pdf, id=389, 277.53688pt x 292.41647pt>
 File: images/ControlStrategyRobust.pdf Graphic file (type pdf)
 
 <use images/ControlStrategyRobust.pdf>
 Package pdftex.def Info: images/ControlStrategyRobust.pdf used on input line 21
-3.
+0.
 (pdftex.def)             Requested size: 169.01035pt x 178.07036pt.
 
-Overfull \hbox (15.36542pt too wide) in paragraph at lines 213--213
+Overfull \hbox (15.36542pt too wide) in paragraph at lines 210--210
 [][]  
  []
 
 [17
 
  <./images/ControlStrategyRobust.pdf>]
-<images/ISS.pdf, id=452, 638.385pt x 323.67123pt>
+<images/ISS.pdf, id=441, 638.385pt x 323.67123pt>
 File: images/ISS.pdf Graphic file (type pdf)
  <use images/ISS.pdf>
-Package pdftex.def Info: images/ISS.pdf used on input line 224.
+Package pdftex.def Info: images/ISS.pdf used on input line 221.
 (pdftex.def)             Requested size: 261.19826pt x 132.42949pt.
  [18
 
  <./images/ISS.pdf>]
-<images/ClosedLoopPolesNeutral.pdf, id=506, 555.0637pt x 527.57097pt>
+<images/ClosedLoopPolesNeutral.pdf, id=495, 555.0637pt x 527.57097pt>
 File: images/ClosedLoopPolesNeutral.pdf Graphic file (type pdf)
 
 <use images/ClosedLoopPolesNeutral.pdf>
 Package pdftex.def Info: images/ClosedLoopPolesNeutral.pdf used on input line 2
-34.
+31.
 (pdftex.def)             Requested size: 184.3758pt x 175.24207pt.
 
-Overfull \vbox (23.77768pt too high) detected at line 234
+Overfull \vbox (23.77768pt too high) detected at line 231
  []
 
 [19
 
  <./images/ClosedLoopPolesNeutral.pdf>]
-<./images/ErrorsNeutral.pdf, id=532, 508.92131pt x 530.96365pt>
+<./images/ErrorsNeutral.pdf, id=521, 508.92131pt x 530.96365pt>
 File: ./images/ErrorsNeutral.pdf Graphic file (type pdf)
 
 <use ./images/ErrorsNeutral.pdf>
-Package pdftex.def Info: ./images/ErrorsNeutral.pdf used on input line 250.
+Package pdftex.def Info: ./images/ErrorsNeutral.pdf used on input line 247.
 (pdftex.def)             Requested size: 161.99617pt x 169.01035pt.
 
-Overfull \hbox (8.35124pt too wide) in paragraph at lines 250--250
+Overfull \hbox (8.35124pt too wide) in paragraph at lines 247--247
  [][][][][] 
  []
 
-<./images/ReferenceTrajectory.pdf, id=533, 348.42169pt x 509.88493pt>
+<./images/ReferenceTrajectory.pdf, id=522, 348.42169pt x 509.88493pt>
 File: ./images/ReferenceTrajectory.pdf Graphic file (type pdf)
 
 <use ./images/ReferenceTrajectory.pdf>
-Package pdftex.def Info: ./images/ReferenceTrajectory.pdf used on input line 25
-0.
+Package pdftex.def Info: ./images/ReferenceTrajectory.pdf used on input line 24
+7.
 (pdftex.def)             Requested size: 113.58127pt x 166.2212pt.
  [20
 
@@ -1365,18 +1354,18 @@ Package pdftex.def Info: ./images/ReferenceTrajectory.pdf used on input line 25
 ] [22
 
 ]
-<images/ControlStrategy.pdf, id=576, 734.01945pt x 282.70714pt>
+<images/ControlStrategy.pdf, id=565, 734.01945pt x 282.70714pt>
 File: images/ControlStrategy.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy.pdf>
-Package pdftex.def Info: images/ControlStrategy.pdf used on input line 273.
+Package pdftex.def Info: images/ControlStrategy.pdf used on input line 270.
 (pdftex.def)             Requested size: 307.28987pt x 118.35225pt.
 
-<images/ControlStrategy1.pdf, id=577, 733.9699pt x 281.35402pt>
+<images/ControlStrategy1.pdf, id=566, 733.9699pt x 281.35402pt>
 File: images/ControlStrategy1.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy1.pdf>
-Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 273.
+Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 270.
 (pdftex.def)             Requested size: 307.28987pt x 117.79868pt.
  [23
 
@@ -1384,20 +1373,20 @@ Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 273.
 File: images/ControlStrategy.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy.pdf>
-Package pdftex.def Info: images/ControlStrategy.pdf used on input line 273.
+Package pdftex.def Info: images/ControlStrategy.pdf used on input line 270.
 (pdftex.def)             Requested size: 307.28987pt x 118.35225pt.
 File: images/ControlStrategy1.pdf Graphic file (type pdf)
  <use images/ControlStrategy1.pdf>
-Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 273.
+Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 270.
 (pdftex.def)             Requested size: 307.28987pt x 117.79868pt.
  [24
 
  <./images/ControlStrategy1.pdf>]
-<images/Supervisory0.pdf, id=665, 329.05672pt x 233.56886pt>
+<images/Supervisory0.pdf, id=654, 329.05672pt x 233.56886pt>
 File: images/Supervisory0.pdf Graphic file (type pdf)
 
 <use images/Supervisory0.pdf>
-Package pdftex.def Info: images/Supervisory0.pdf used on input line 282.
+Package pdftex.def Info: images/Supervisory0.pdf used on input line 279.
 (pdftex.def)             Requested size: 153.64493pt x 109.06102pt.
  [25
 
@@ -1405,18 +1394,18 @@ Package pdftex.def Info: images/Supervisory0.pdf used on input line 282.
 Missing character: There is no Ã in font cmss9!
 Missing character: There is no © in font cmss9!
 
-<images/Supervisory.pdf, id=697, 329.05672pt x 245.08588pt>
+<images/Supervisory.pdf, id=686, 329.05672pt x 245.08588pt>
 File: images/Supervisory.pdf Graphic file (type pdf)
 
 <use images/Supervisory.pdf>
-Package pdftex.def Info: images/Supervisory.pdf used on input line 313.
+Package pdftex.def Info: images/Supervisory.pdf used on input line 310.
 (pdftex.def)             Requested size: 115.23369pt x 85.8262pt.
 
-<images/PrimitiveShape.pdf, id=698, 308.57784pt x 205.31706pt>
+<images/PrimitiveShape.pdf, id=687, 308.57784pt x 205.31706pt>
 File: images/PrimitiveShape.pdf Graphic file (type pdf)
 
 <use images/PrimitiveShape.pdf>
-Package pdftex.def Info: images/PrimitiveShape.pdf used on input line 313.
+Package pdftex.def Info: images/PrimitiveShape.pdf used on input line 310.
 (pdftex.def)             Requested size: 115.23369pt x 76.67415pt.
  [26
 
@@ -1424,27 +1413,27 @@ Package pdftex.def Info: images/PrimitiveShape.pdf used on input line 313.
 
 pdfTeX warning: pdflatex (file ./images/PrimitiveShape.pdf): PDF inclusion: mul
 tiple pdfs with page group included in a single page
->] <images/Supervisoryb.pdf, id=751, 329.05672pt x 245.08588pt>
+>] <images/Supervisoryb.pdf, id=740, 329.05672pt x 245.08588pt>
 File: images/Supervisoryb.pdf Graphic file (type pdf)
 
 <use images/Supervisoryb.pdf>
-Package pdftex.def Info: images/Supervisoryb.pdf used on input line 341.
+Package pdftex.def Info: images/Supervisoryb.pdf used on input line 338.
 (pdftex.def)             Requested size: 92.18788pt x 68.66096pt.
 
-<images/Numbers.pdf, id=752, 424.37311pt x 613.37732pt>
+<images/Numbers.pdf, id=741, 424.37311pt x 613.37732pt>
 File: images/Numbers.pdf Graphic file (type pdf)
 
 <use images/Numbers.pdf>
-Package pdftex.def Info: images/Numbers.pdf used on input line 341.
+Package pdftex.def Info: images/Numbers.pdf used on input line 338.
 (pdftex.def)             Requested size: 33.80206pt x 48.85591pt.
- <images/TrotTime.pdf, id=753, 80.9043pt x 78.24231pt>
+ <images/TrotTime.pdf, id=742, 80.9043pt x 78.24231pt>
 File: images/TrotTime.pdf Graphic file (type pdf)
 
 <use images/TrotTime.pdf>
-Package pdftex.def Info: images/TrotTime.pdf used on input line 341.
+Package pdftex.def Info: images/TrotTime.pdf used on input line 338.
 (pdftex.def)             Requested size: 69.13974pt x 66.86919pt.
 
-Overfull \vbox (8.1088pt too high) detected at line 341
+Overfull \vbox (8.1088pt too high) detected at line 338
  []
 
 [27
@@ -1457,19 +1446,19 @@ dfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./images/TrotTime.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
->] <images/MaxPlus.pdf, id=805, 367.9647pt x 147.16379pt>
+>] <images/MaxPlus.pdf, id=794, 367.9647pt x 147.16379pt>
 File: images/MaxPlus.pdf Graphic file (type pdf)
 
 <use images/MaxPlus.pdf>
-Package pdftex.def Info: images/MaxPlus.pdf used on input line 350.
+Package pdftex.def Info: images/MaxPlus.pdf used on input line 347.
 (pdftex.def)             Requested size: 245.83282pt x 98.32076pt.
  [28
 
  <./images/MaxPlus.pdf>]
-<images/Phases.pdf, id=836, 262.78767pt x 127.75977pt>
+<images/Phases.pdf, id=825, 262.78767pt x 127.75977pt>
 File: images/Phases.pdf Graphic file (type pdf)
  <use images/Phases.pdf>
-Package pdftex.def Info: images/Phases.pdf used on input line 383.
+Package pdftex.def Info: images/Phases.pdf used on input line 380.
 (pdftex.def)             Requested size: 138.2795pt x 67.22887pt.
 
 [29
@@ -1477,47 +1466,47 @@ Package pdftex.def Info: images/Phases.pdf used on input line 383.
  <./images/Phases.pdf>] [30
 
 ]
-<./images/AngularFrequency.pdf, id=856, 184.4715pt x 150.29819pt>
+<./images/AngularFrequency.pdf, id=845, 184.4715pt x 150.29819pt>
 File: ./images/AngularFrequency.pdf Graphic file (type pdf)
 
 <use ./images/AngularFrequency.pdf>
-Package pdftex.def Info: ./images/AngularFrequency.pdf used on input line 402.
+Package pdftex.def Info: ./images/AngularFrequency.pdf used on input line 399.
 (pdftex.def)             Requested size: 153.64493pt x 125.18318pt.
  [31
 
  <./images/AngularFrequency.pdf>]
 [32
 
-] <./images/SyncPlot.png, id=877, 1675.2186pt x 1005.9984pt>
+] <./images/SyncPlot.png, id=865, 1675.2186pt x 1005.9984pt>
 File: ./images/SyncPlot.png Graphic file (type png)
 
 <use ./images/SyncPlot.png>
-Package pdftex.def Info: ./images/SyncPlot.png used on input line 417.
+Package pdftex.def Info: ./images/SyncPlot.png used on input line 414.
 (pdftex.def)             Requested size: 307.28987pt x 184.52571pt.
  [33
 
  <./images/SyncPlot.png>]
-<images/DutyFactor.png, id=884, 1675.2186pt x 1005.9984pt>
+<images/DutyFactor.png, id=873, 1675.2186pt x 1005.9984pt>
 File: images/DutyFactor.png Graphic file (type png)
 
 <use images/DutyFactor.png>
-Package pdftex.def Info: images/DutyFactor.png used on input line 424.
+Package pdftex.def Info: images/DutyFactor.png used on input line 421.
 (pdftex.def)             Requested size: 338.02072pt x 202.97675pt.
 
-Overfull \hbox (30.73085pt too wide) in paragraph at lines 424--424
+Overfull \hbox (30.73085pt too wide) in paragraph at lines 421--421
  [] 
  []
 
 [34
 
  <./images/DutyFactor.png>]
-<./images/Legs.png, id=891, 578.16pt x 433.62pt>
+<./images/Legs.png, id=880, 578.16pt x 433.62pt>
 File: ./images/Legs.png Graphic file (type png)
  <use ./images/Legs.png>
-Package pdftex.def Info: ./images/Legs.png used on input line 433.
+Package pdftex.def Info: ./images/Legs.png used on input line 430.
 (pdftex.def)             Requested size: 307.28987pt x 230.46591pt.
 
-Overfull \vbox (23.30182pt too high) detected at line 433
+Overfull \vbox (23.30182pt too high) detected at line 430
  []
 
 [35
@@ -1534,11 +1523,11 @@ Overfull \vbox (23.30182pt too high) detected at line 433
 \tf@snm=\write8
 \openout8 = `demo.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 441.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 441.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 438.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 438.
  (./demo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 441.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 441.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 438.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 438.
 Package rerunfilecheck Info: File `demo.out' has not changed.
 (rerunfilecheck)             Checksum: FE37E5951FC87D67204F51109B8D0067;291.
 
@@ -1549,13 +1538,13 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 441.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 438.
  ) 
 Here is how much of TeX's memory you used:
- 26746 strings out of 493304
- 602882 string characters out of 6139872
+ 26741 strings out of 493304
+ 602780 string characters out of 6139872
  787511 words of memory out of 5000000
- 29464 multiletter control sequences out of 15000+600000
+ 29460 multiletter control sequences out of 15000+600000
  14509 words of font info for 54 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  61i,13n,88p,1735b,738s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1571,10 +1560,10 @@ lic/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y9.pfb>
-Output written on demo.pdf (36 pages, 9152692 bytes).
+Output written on demo.pdf (36 pages, 2657783 bytes).
 PDF statistics:
- 962 PDF objects out of 1000 (max. 8388607)
- 590 compressed objects within 6 object streams
+ 951 PDF objects out of 1000 (max. 8388607)
+ 586 compressed objects within 6 object streams
  75 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 
