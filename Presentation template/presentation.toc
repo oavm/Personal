@@ -1,5 +1,0 @@
-\beamer@endinputifotherversion {3.24pt}
-\select@language {english}
-\beamer@sectionintoc {1}{Control structure}{3}{0}{1}
-\beamer@sectionintoc {2}{Numeric simulations}{18}{0}{2}
-\beamer@sectionintoc {3}{Further work}{23}{0}{3}
