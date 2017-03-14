@@ -18,6 +18,8 @@
 
 \graphicspath{ {./images/} } 
 
+\setbeamercolor{background canvas}{bg=white}
+
 \title{DLS Lab annual seminar}
 \subtitle{}
 \date{March 16, 2017}
@@ -173,16 +175,6 @@
 \end{frame}
 
 
-\begin{frame}{Control objectives}
-	\begin{itemize}\setlength\itemsep{1.5em}
-		\item Track a desired reference trajectory corresponding to a complex borehole geometry
-		\item The response of the system should have favorable transient behavior (avoid kinking, rippling and spiraling)
-		\item Rely only on local measurements
-	\end{itemize}
-\end{frame}
-
-
-
 \begin{frame}{Output-feedback strategy}
 	\begin{columns}
 		\hspace{1cm}\begin{column}{0.5\textwidth}
@@ -198,31 +190,11 @@
 					\begin{itemize}
 						\item[--]  Nonlinear coupling between states while $\Theta \ne \check{\Theta}$
 						\item[--]  Controller and observer gain design
+						\item[--]  Infinite number of poles (spectral approach [Michiels and Niculescu 2007])
 					\end{itemize}
 			\end{itemize}
 		\end{column}
 	\end{columns}
-\end{frame}
-
-\begin{frame}{Controller synthesis}
-\begin{itemize}\setlength\itemsep{0.9em}
-	\item Define isolated systems $e_\Theta$, $\delta_\Theta$, $e_\Phi$ and $\delta_\Phi$
-	\item Synthesize controller and observer gains for each isolated system separately
-	\item Favorable transient performance
-\end{itemize}
-	\begin{figure}[ht]\centering
-		\includegraphics[width=0.85\textwidth]{images/ISS.pdf}
-	\end{figure}
-\end{frame}
-
-\begin{frame}{Controller synthesis}
-\begin{itemize}
-	\item Infinite number of poles in delay systems (no pole-placement)
-	\item Spectral approach [Michiels and Niculescu 2007]
-	\item Optimize location of right-most pole over $K_i$ (state-feedback gains) and $L_i$ (observer-feedback gains)
-\end{itemize}
-
-\hspace{2.0cm} \includegraphics[width=0.6\textwidth]{images/ClosedLoopPolesNeutral.pdf}
 \end{frame}
 
 \begin{frame}{Simulation results}
@@ -230,12 +202,12 @@
 	\centering
 	\begin{minipage}[b]{0.5\textwidth}
 		\centering
-		\includegraphics[height=1.1\textwidth]{ErrorsNeutral.pdf}
+		\includegraphics[height=2.3in]{ReferenceTrajectory.pdf}
 		\label{fig:ReferenceTrajectoryThetaPhi} 
 	\end{minipage}
 	\begin{minipage}[b]{0.45\textwidth}
 		\centering
-		\includegraphics[height=2.3in]{ReferenceTrajectory.pdf}
+		\includegraphics[height=1.1\textwidth]{ErrorsNeutral.pdf}
 		\label{fig:ReferenceTrajectoryV} 
 	\end{minipage}
 \end{figure}

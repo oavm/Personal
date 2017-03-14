@@ -1,4 +1,4 @@
 \beamer@endinputifotherversion {3.24pt}
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
 \beamer@sectionintoc {2}{Master thesis: "Dynamic control of 3D directional drilling systems using state estimation"}{5}{0}{2}
-\beamer@sectionintoc {3}{Research proposal: "Locomotion control of HyQ using max-plus algebra linear systems"}{18}{0}{3}
+\beamer@sectionintoc {3}{Research proposal: "Locomotion control of HyQ using max-plus algebra linear systems"}{15}{0}{3}
