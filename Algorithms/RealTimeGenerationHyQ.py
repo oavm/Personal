@@ -20,7 +20,7 @@ numberOfLegs = 4  # Define the total number of legs of the robot
 x_0 =  [[0 ] for i in range(0,numberOfLegs*2)] # Define initial state for max-plus algebra 
 Ts = 0.01 # Sampling time for the simulation
 EventsList = [[0 for i in range(0,numberOfLegs*2)]] # List of lift-off and touchdown events for each of the legs
-total_time = 100# Total simulation time
+total_time = 75# Total simulation time
 time_axis = np.arange(0,total_time,Ts) # Time vector
 compare1 = [0 for i in range (0,numberOfLegs)] # Comparison to verify if an element from the events list needs to be created
 compare = 0
@@ -35,15 +35,20 @@ bp = 100
 
 alpha = 100
 beta = 100
-a = 0.6
-b = 0.4 
+#==============================================================================
+# a = 0.6 #Squared oscillator
+# b = 0.4 
+#==============================================================================
+a = 0.6 #Elliptical oscillator
+b = 0.3 
 
-St = 3
+St = 3 # Reasonable period
 
 #==============================================================================
-# St = 2.4
+# St = 2.4 # To get easy to look EventsList
 #==============================================================================
 
+# Times where the gait parameters are changed
 t1 = 20
 t2 = 40
 t3 = 60
@@ -60,7 +65,7 @@ for i in range(0,len(time_axis)):
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
 #==============================================================================
-#         Df = 0.5833333
+#         Df = 0.5833333 # To get easy to look EventsList
 #         Tf = St*(1 - Df)
 #         Tg = St*Df
 #         Gr = 2
@@ -108,23 +113,40 @@ for i in range(0,len(time_axis)):
 
         for k in range(0,numberOfLegs):
                                      
-            if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase
+#==============================================================================
+#             if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
+#         
+#                   w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
+#                                           EventsList[j-1][k])
+#                                           
+#             elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+#                 
+#                   w[i][k] = math.pi*1.18/(EventsList[j][k] -
+#                                           EventsList[j][k + numberOfLegs])
+#==============================================================================
+            if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, elliptical oscillator
         
-                  w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
+                  w[i][k] = math.pi/(EventsList[j][k + numberOfLegs] -
                                           EventsList[j-1][k])
                                           
             elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
                 
-                  w[i][k] = math.pi*1.18/(EventsList[j][k] -
+                  w[i][k] = math.pi/(EventsList[j][k] -
                                           EventsList[j][k + numberOfLegs])
      
 # Oscillator function       
 def f1(t, u, w):
     import math
-    return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) - 
-            math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
-            beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
-            )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot       
+#==============================================================================
+#     return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) -  # Squared oscillator
+#             math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
+#             beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
+#             )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot   
+#==============================================================================
+    return [alpha*(1 - math.pow(u[0],2)/math.pow(a,2) -  # Elliptical oscillator
+        math.pow(u[1],2)/math.pow(b,2))*u[0] + (w*a)*math.pow(u[1],1)/(math.pow(b,1)), #x_dot
+        beta*(1 - math.pow(u[0],2)/math.pow(a,2) - math.pow(u[1],2)/math.pow(b,2)
+        )*u[1] - (w*b)*math.pow(u[0],1)/math.pow(a,1)] #z_dot    
 u_matrix = np.zeros((len(time_axis), 2, numberOfLegs))
 
 
@@ -487,7 +509,5 @@ def animate(i):
 anim = animation.FuncAnimation(fig4, animate, np.arange(1, len(u)), init_func=init,
                                interval=Ts, blit=False)
                               
-#==============================================================================
-# anim.save('Legs.mp4', writer=writer)
-#==============================================================================
+anim.save('Legs.mp4', writer=writer)
 

@@ -11,6 +11,8 @@
 
 \usepackage{multimedia}
 
+\usepackage[table]{colortbl}
+
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
@@ -27,7 +29,7 @@
 
 \maketitle
 
-\begin{frame}{Table of contents}
+\begin{frame}{Outline}
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
 \end{frame}
@@ -36,18 +38,16 @@
 \begin{frame}{About me}
 	\begin{columns}
 		\begin{column}{0.6\textwidth}
-		Octavio A. Villarreal Maga\~na
+		Octavio Antonio Villarreal Maga\~na
 		\\
 			\begin{itemize}\setlength\itemsep{2.5em}
 				\item MSc. Mechanical Engineering, track Control Engineering (TUDelft, The Netherlands)
-				\begin{itemize}\setlength\itemsep{1em}
-					\item [--] Control Methods for Robotics
-					\item [--] Robust Control
-				\end{itemize}
 				\item BSc. Mechatronic Engineering (UNAM, Mexico)
-				\begin{itemize}\setlength\itemsep{1em}
-					\item [--] Systems and Control
-					\item [--] Robotics
+				\item Research interests:
+				\begin{itemize}
+				\item [--] Control Methods for Robotics
+				\item [--] Robust Control
+		
 				\end{itemize}
 			\end{itemize}
 		\end{column}
@@ -64,8 +64,8 @@
 \begin{frame}{Dynamic control of 3D directional drilling systems}
 	\begin{itemize}\setlength\itemsep{2.5em}
 		\item Challenging dynamic system
+		\item Interesting robustness problem (not addressed here)
 		\item Collaboration between researchers of TU Delft, TU Eindhoven and the University of Minnesota
-		\item Little research on this field
 	\end{itemize}
 \end{frame}
 
@@ -93,9 +93,9 @@
 			\item Extract oil, mineral and thermal energy resources
 			\item Reach targets that need complex geometries such as:
 				\begin{itemize}\setlength\itemsep{1em}
-					\item Under a city or an ecosystem
-					\item Far from the drill rig
-					\item Relief for hazardous situations
+					\item[--] Under a city or an ecosystem
+					\item[--] Far from the drill rig
+					\item[--] Relief for hazardous situations
 				\end{itemize}
 		\end{itemize}
 	\end{column}
@@ -124,8 +124,7 @@
 \end{frame}
 
 \begin{frame}{Context and challenges}
-		\begin{columns}[T]
-		\hspace{1cm}	\begin{column}{0.5\textwidth}\setlength{\leftmargini}{0pt}
+		\begin{columns}[T]	\begin{column}{0.5\textwidth}\setlength{\leftmargini}{0pt}
 				\vspace{1cm}
 				\begin{figure}[ht]\centering
 					\includegraphics[width=0.5\textwidth]{images/Spiraling.png}
@@ -135,7 +134,7 @@
 			\begin{column}{0.6\textwidth}\setlength{\leftmargini}{0pt}
 				\begin{itemize}
 					\setlength\itemsep{3em}
-					\item State-of-practice: Constant RSS force
+					\item State-of-practice: constant RSS force (open loop)
 					\item Negative effects: kinking, rippling and spiraling
 					\item Consequences of negative effects: reduced penetration rate and accuracy
 				\end{itemize}			
@@ -143,36 +142,20 @@
 		\end{columns}
 \end{frame}
 
-\begin{frame}{Research goals}
-	\begin{block}{Main goal}\Large Develop a control strategy for a 3D directional drilling system, that allows to drill boreholes with complex geometries.
+\begin{frame}{Research goal}
+	\begin{block}{}\Large Develop a control strategy for a 3D directional drilling system, that allows to drill boreholes with complex geometries, while avoiding undesired behaviors.
 	\end{block}
 \end{frame}
 
-\begin{frame}{Previous works}
-	\begin{itemize}\setlength\itemsep{1em}
-		\item Model of 3D directional drilling systems [Perneder 2013]
-		\item Model-based decoupled control of a 3D directional drilling system [Monsieurs 2015]
-		\begin{itemize}\setlength\itemsep{1em}
-			\item State-feedback controller
-			\item Relies on availability of measurements of the states (not possible in practice)
-		\end{itemize}
-	\item []\begin{block}{Subgoals}	
-	\begin{itemize}\setlength\itemsep{1em}
-		\item Control strategy that relies only on local measurements
-		\item Robustness against parametric uncertainty
-	\end{itemize}
-	\end{block}
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Model charateristics}
+\begin{frame}{Mathematical model charateristics}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 	\begin{itemize}\setlength\itemsep{1em}
-	\item Function of (dimensionless) borehole length $\xi$
-	\item Model form: nonlinear coupled delay differential equations (delays: BHA should fit in already drilled borehole)
+	\item Function of borehole length ($\xi$)
+	\item Model form: nonlinearly coupled delay differential equations (delays: drillstring should fit in already drilled borehole)
 	\item States: borehole inclination ($\Theta$) and azimuth ($\Phi$) at the bit
-	\item No access to measurements of the states (output equations of sensors)
+	\item Inputs: RSS actuator forces ($\Gamma_\Theta$ and $\Gamma_\Phi$)
+	\item No access to measurements of the states (output equations $y_\Theta$ and $y_\Phi$)
 	\end{itemize}
 \end{column}
 	\begin{column}{0.4\textwidth}
@@ -194,38 +177,27 @@
 	\begin{itemize}\setlength\itemsep{1.5em}
 		\item Track a desired reference trajectory corresponding to a complex borehole geometry
 		\item The response of the system should have favorable transient behavior (avoid kinking, rippling and spiraling)
+		\item Rely only on local measurements
 	\end{itemize}
 \end{frame}
 
 
 
-\begin{frame}{Plant definition}\setlength{\leftmargini}{0pt}
-\begin{itemize} 
-				\item <1|only@1> [] \begin{figure}[ht]\centering
-				\includegraphics[width=0.7\textwidth]{images/Plant.pdf}
-			\end{figure}
-			\item <2|only@2> [] \begin{figure}[ht]\centering
-				\includegraphics[width=0.7\textwidth]{images/Plant2.pdf}
-			\end{figure}
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Output-feedback strategy}
 	\begin{columns}
 		\hspace{1cm}\begin{column}{0.5\textwidth}
 			\includegraphics[width=1.1\textwidth]{images/ControlStrategyRobust.pdf}
-			
-			\footnotesize \begin{equation*}
-						e_i := i_{r} - i \qquad \delta_i := i - \check{i}_i \quad \text{ for } i=\Theta,\Phi
-			\end{equation*}
+		\footnotesize \begin{equation*}
+								e_i := i_{r} - i \qquad \delta_i := i - \check{i}_i \quad \text{ for } i=\Theta,\Phi
+					\end{equation*}
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			\begin{itemize}\setlength\itemsep{2.5em}
-				\item Focus of the research: Include observer in the control structure
+				\item Focus of the research: Implement observer-based control strategy
 				\item Challenges
 					\begin{itemize}
-						\item  Nonlinear coupling between states while $\Theta \ne \check{\Theta}$
-						\item  Controller and observer gain design
+						\item[--]  Nonlinear coupling between states while $\Theta \ne \check{\Theta}$
+						\item[--]  Controller and observer gain design
 					\end{itemize}
 			\end{itemize}
 		\end{column}
@@ -235,7 +207,7 @@
 \begin{frame}{Controller synthesis}
 \begin{itemize}\setlength\itemsep{0.9em}
 	\item Define isolated systems $e_\Theta$, $\delta_\Theta$, $e_\Phi$ and $\delta_\Phi$
-	\item Synthesize $K_\Theta$, $L_\Theta$, $K_\Phi$ and $L_\Phi$ for each isolated system separately
+	\item Synthesize controller and observer gains for each isolated system separately
 	\item Favorable transient performance
 \end{itemize}
 	\begin{figure}[ht]\centering
@@ -247,7 +219,7 @@
 \begin{itemize}
 	\item Infinite number of poles in delay systems (no pole-placement)
 	\item Spectral approach [Michiels and Niculescu 2007]
-	\item Optimize location of right-most pole over $K_i$ (state-feedback gain) and $L_i$ (observer-feedback gain)
+	\item Optimize location of right-most pole over $K_i$ (state-feedback gains) and $L_i$ (observer-feedback gains)
 \end{itemize}
 
 \hspace{2.0cm} \includegraphics[width=0.6\textwidth]{images/ClosedLoopPolesNeutral.pdf}
@@ -313,8 +285,8 @@
 			\item Not necessarily the same for all four legs
 			\item Examples of trajectory parameters:
 			\begin{itemize}
-			\item Oscillator shape parameters [Barasuol et.al. 2013]
-			\item Control points of a Bézier curve [Hyun et.al. 2014]
+			\item[--] Oscillator shape parameters [Barasuol et.al. 2013]
+			\item[--] Control points of a B\'ezier (spline) curve [Hyun et.al. 2014]
 			\end{itemize}
 			
 		
@@ -390,9 +362,9 @@ $\Delta = [0.2,0.2]$
 \resizebox{\textwidth}{!}{\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 \hline
 $k$ & $g_1(k)$ & $g_2(k)$ & $g_3(k)$ & $g_4(k)$ & $l_1(k)$ & $l_2(k)$ & $l_3(k)$ & $l_4(k)$ \\ \hline
-0   & 0        & 0        & 0        & 0        & 0        & 0        & 0        & 0        \\ \hline
-1   & 2.4      & 3.6      & 3.6      & 2.4,     & 1.4      & 2.6      & 2.6      & 1.4      \\ \hline
-2   & 4.8      & 6        & 6        & 4.8      & 3.8      & 5        & 5        & 3.8      \\ \hline
+0   & \cellcolor{red!25}0        & 0        & 0        & 0        & \cellcolor{blue!25}0        & 0        & 0        & 0        \\ \hline
+1   & \cellcolor{red!25}2.4      & 3.6      & 3.6      & 2.4,     & \cellcolor{blue!25}1.4      & 2.6      & 2.6      & 1.4      \\ \hline
+2   & \cellcolor{red!25}4.8      & 6        & 6        & 4.8      & \cellcolor{blue!25}3.8      & 5        & 5        & 3.8      \\ \hline
 3   & 7.2      & 8.4      & 8.4      & 7.2      & 6.2      & 7.4      & 7.4      & 6.2      \\ \hline
 4   & 9.6      & 10.8     & 10.8     & 9.6      & 8.6      & 9.8      & 9.8      & 8.6      \\ \hline
 5   & 12       & 13.2     & 13.2     & 12       & 11       & 12.2     & 12.2     & 11       \\ \hline
@@ -421,40 +393,43 @@ $k$ & $g_1(k)$ & $g_2(k)$ & $g_3(k)$ & $g_4(k)$ & $l_1(k)$ & $l_2(k)$ & $l_3(k)$
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Continuous reference generator}
-Possible alternatives:
-\begin{itemize}\setlength\itemsep{2em}
-	\item Oscillator with angular frequency modulation according to max-plus scheduler
-	\item Parameterized velocity profile using lift-off $l(k+1)$ and touchdown $g(k+1)$ as initial and final times respectively
-\end{itemize}
-\end{frame}
 
-\begin{frame}{Simulations}
-Change gait parameters every 20 seconds
-\begin{figure}[H]\centering
-	\includegraphics[width=1\textwidth]{SyncPlot.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Duty factor}
-\vspace{-1cm}
-	\begin{figure}[ht]\centering
-		\includegraphics[width=1.1\textwidth]{images/DutyFactor.png}
-	\end{figure}\vspace{-20pt}
-\end{frame}
-
-\begin{frame}{Animation}
-
+\begin{frame}{Simulation}
+Change of parameters every 20 seconds
 \begin{center}
-        \movie[width=\textwidth,showcontrols=true]
-       {\includegraphics[width=\textwidth]{Legs.png}}{Legs.mp4} \\
+        \movie[width=0.9\textwidth,showcontrols=true]
+       {\includegraphics[width=0.9\textwidth]{Legs.png}}{Legs.mp4} \\
 \end{center}
 
 \end{frame}
 
 
-\begin{frame}
- \hspace{2cm} Thank you. Questions or comments?
+\begin{frame}{Thank you. Questions or comments?}
+ \begin{columns}
+ \begin{column}{0.7\textwidth}
+ \includegraphics[width=1\textwidth]{GroupPicture.jpg}
+ \end{column}
+ \begin{column}{0.3\textwidth}
+ Group members:
+ \footnotesize\begin{itemize}\setlength\itemsep{0.07em}
+ \item Claudio Semini
+ \item Alex Oleg Posatskiy
+ \item Yannick Berdou
+ \item Yifu Gao
+ \item Michele Focchi
+ \item Victor Barasuol
+ \item Romeo Orsolino
+ \item Andreea Radulescu
+ \item Carlos Mastalli
+ \item Marco Camurri
+ \item Marco Frigerio
+ \item Roy Featherstone
+ \item Josephus Driessen
+ \item Antonios Gkikakis
+ \item Roodra P. Singh B.
+ \end{itemize}
+ \end{column}
+ \end{columns}
 \end{frame}
 
 
