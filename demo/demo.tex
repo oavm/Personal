@@ -1,6 +1,6 @@
 \documentclass[10pt]{beamer}
 
-\usetheme{metropolis}
+\usetheme[progressbar=frametitle, block=fill, numbering=fraction]{metropolis}
 \usepackage{appendixnumberbeamer}
 
 \usepackage{booktabs}
@@ -10,7 +10,8 @@
 \usepgfplotslibrary{dateplot}
 
 \usepackage{multimedia}
-
+%\usepackage{media9}
+%\usepackage{movie15}
 \usepackage[table]{colortbl}
 
 \usepackage{xspace}
@@ -55,7 +56,7 @@
 		\end{column}
 		\begin{column}{0.4\textwidth}
 			\begin{figure}[ht]
-				\vspace{-59.3pt}
+				\vspace{-57pt}
 				\includegraphics[width=1.5\textwidth]{images/yo.jpg}
 			\end{figure}			
 		\end{column}
@@ -125,7 +126,7 @@
 	\end{columns}
 \end{frame}
 
-\begin{frame}{Context and challenges}
+\begin{frame}{Context}
 		\begin{columns}[T]	\begin{column}{0.5\textwidth}\setlength{\leftmargini}{0pt}
 				\vspace{1cm}
 				\begin{figure}[ht]\centering
@@ -149,53 +150,42 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}{Mathematical model charateristics}
+\begin{frame}{Scenario and challenges}
 \begin{columns}
 \begin{column}{0.5\textwidth}
-	\begin{itemize}\setlength\itemsep{1em}
-	\item Function of borehole length ($\xi$)
-	\item Model form: nonlinearly coupled delay differential equations (delays: drillstring should fit in already drilled borehole)
-	\item States: borehole inclination ($\Theta$) and azimuth ($\Phi$) at the bit
-	\item Inputs: RSS actuator forces ($\Gamma_\Theta$ and $\Gamma_\Phi$)
-	\item No access to measurements of the states (output equations $y_\Theta$ and $y_\Phi$)
+	\begin{itemize}\setlength\itemsep{2.5em}
+	\item Function of length (not time)
+	\item Model: nonlinearly coupled delay differential equations
+	\item Control orientation of the bit
+	\item No access to measurements
+	\item Infinite number of poles (no pole-placement)
 	\end{itemize}
 \end{column}
 	\begin{column}{0.4\textwidth}
 	\begin{figure}[ht]\centering
-		\includegraphics[width=1.25\textwidth]{images/drillingsystem.pdf}
+		\includegraphics[width=1.2\textwidth]{images/Sensors.pdf}
 	\end{figure}
 	\end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Available measurements}
+\begin{frame}{Approach and solution}
+\begin{columns}
+\begin{column}{0.4\textwidth}
+	\begin{itemize}\setlength\itemsep{3em}
+	\item No measurements: state estimation using \textbf{observers}
+	\item Infinite poles: \textbf{spectral} approach [Michiels and Niculescu 2007]
+	\item Performance: \textbf{optimize} location of right-most dominant pole of the system
+	\end{itemize}
+\end{column}
+	\begin{column}{0.6\textwidth}
 	\begin{figure}[ht]\centering
-				\includegraphics[width=0.8\textwidth]{images/Sensors.pdf}
+		\includegraphics[width=1.05\textwidth]{images/ClosedLoopPolesNeutral.pdf}
 	\end{figure}
+	\end{column}
+\end{columns}
 \end{frame}
 
-
-\begin{frame}{Output-feedback strategy}
-	\begin{columns}
-		\hspace{1cm}\begin{column}{0.5\textwidth}
-			\includegraphics[width=1.1\textwidth]{images/ControlStrategyRobust.pdf}
-		\footnotesize \begin{equation*}
-								e_i := i_{r} - i \qquad \delta_i := i - \check{i}_i \quad \text{ for } i=\Theta,\Phi
-					\end{equation*}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\begin{itemize}\setlength\itemsep{2.5em}
-				\item Focus of the research: Implement observer-based control strategy
-				\item Challenges
-					\begin{itemize}
-						\item[--]  Nonlinear coupling between states while $\Theta \ne \check{\Theta}$
-						\item[--]  Controller and observer gain design
-						\item[--]  Infinite number of poles (spectral approach [Michiels and Niculescu 2007])
-					\end{itemize}
-			\end{itemize}
-		\end{column}
-	\end{columns}
-\end{frame}
 
 \begin{frame}{Simulation results}
 \begin{figure}[t]
@@ -348,7 +338,7 @@ $k$ & $g_1(k)$ & $g_2(k)$ & $g_3(k)$ & $g_4(k)$ & $l_1(k)$ & $l_2(k)$ & $l_3(k)$
 
 \begin{frame}{Max-plus gait scheduler (continue)}
 \begin{itemize}
-	\setlength\itemsep{2em}
+	\setlength\itemsep{3em}
 	\item Systematic coordinated gait generation 
 	\item Total cycle time analysis (max-plus linear systems theory)
 	\item Coupling time analysis ("settling time")
@@ -366,11 +356,20 @@ $k$ & $g_1(k)$ & $g_2(k)$ & $g_3(k)$ & $g_4(k)$ & $l_1(k)$ & $l_2(k)$ & $l_3(k)$
 \end{frame}
 
 
-\begin{frame}{Simulation}
-Change of parameters every 20 seconds
+\begin{frame}{Animation}
+Change of parameters at 10 seconds
 \begin{center}
-        \movie[width=0.9\textwidth,showcontrols=true]
-       {\includegraphics[width=0.9\textwidth]{Legs.png}}{Legs.mp4} \\
+        \movie[width=0.9\textwidth,showcontrols=false,autostart]
+       {\includegraphics[width=0.9\textwidth]{Legs.png}}{Legs.avi} \\
+%\includemedia[
+%  width=0.4\linewidth,
+%  height=0.3\linewidth,
+%  activate=pageopen,
+%  addresource=Legs.mp4,
+%  flashvars={source=Legs.mp4}
+%]{}{VPlayer.swf}
+%{\includemovie[poster,autoplay]{0.85\textwidth}{0.85\textheight}{/home/octavio/Git/Personal/demo/Legs.avi}}                                   
+
 \end{center}
 
 \end{frame}
@@ -398,7 +397,7 @@ Change of parameters every 20 seconds
  \item Roy Featherstone
  \item Josephus Driessen
  \item Antonios Gkikakis
- \item Roodra P. Singh B.
+ \item Roodra Singh
  \end{itemize}
  \end{column}
  \end{columns}

@@ -20,8 +20,8 @@ numberOfLegs = 4  # Define the total number of legs of the robot
 x_0 =  [[0 ] for i in range(0,numberOfLegs*2)] # Define initial state for max-plus algebra 
 Ts = 0.01 # Sampling time for the simulation
 EventsList = [[0 for i in range(0,numberOfLegs*2)]] # List of lift-off and touchdown events for each of the legs
-total_time = 75# Total simulation time
-time_axis = np.arange(0,total_time,Ts) # Time vector
+total_time = 45# Total simulation time
+time_axis = np.arange(0,total_time + Ts,Ts) # Time vector
 compare1 = [0 for i in range (0,numberOfLegs)] # Comparison to verify if an element from the events list needs to be created
 compare = 0
 
@@ -49,7 +49,7 @@ St = 3 # Reasonable period
 #==============================================================================
 
 # Times where the gait parameters are changed
-t1 = 20
+t1 = 10
 t2 = 40
 t3 = 60
 
@@ -75,16 +75,27 @@ for i in range(0,len(time_axis)):
 #         Df_desired_vector[i] = Df
 #==============================================================================
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
-        Df = 0.4
+#==============================================================================
+#         Df = 0.4
+#         Tf = St*(1 - Df)
+#         Tg = St*Df
+#         Gr = 2
+#         MaxTD2 = St*(1 - Gr*(1 - Df))
+#         Td = [-0.2,-0.4]  # MaxTd = -0.6
+#         gait = [[1,4],[2,3]]
+#         Df_desired_vector[i] = Df
+#==============================================================================
+        Df = 0.8 # To change drastically the gait in animation
+        St = 4
         Tf = St*(1 - Df)
         Tg = St*Df
-        Gr = 2
+        Gr = 4
         MaxTD2 = St*(1 - Gr*(1 - Df))
-        Td = [-0.2,-0.4]  # MaxTd = -0.6
-        gait = [[1,4],[2,3]]
+        Td = [0.2,0.2,0.2,0.2] # MaxTd = 0.2
+        gait = [[1],[2],[3],[4]] 
         Df_desired_vector[i] = Df
     elif (time_axis[i] >= t2) and (time_axis[i] < t3):
-        Df = 0.6
+        Df = 0.8
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 4
@@ -214,7 +225,7 @@ u4 = u
 
 z_matrix = [[row[1] for row in u1],[row[1] for row in u2],[row[1] for row in u3],[row[1] for row in u4]]
 
-l_matrix = [[0 for i in range(0,numberOfLegs)] for j in range(0,len(time_axis))]
+l_matrix = [[0 for i in range(0,numberOfLegs)] for j in range(0,len(t))]
 
 # Get variables for synchronization plot
 for i in range(0,len(t)):
@@ -420,8 +431,8 @@ axarr[0].set_ylabel('$z[-]$',fontsize = 30)
 for i in range(0, len(EventsList)):
     axarr[0].axvline(x = EventsList[i][4], linestyle = "dashed",linewidth = 2)
     axarr[0].axvline(x = EventsList[i][0], linestyle = "dotted")
-axarr[0].axvline(x = EventsList[20][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
-axarr[0].axvline(x = EventsList[20][0], linestyle = "dotted", label = "Touchdown times")
+axarr[0].axvline(x = EventsList[5][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
+axarr[0].axvline(x = EventsList[5][0], linestyle = "dotted", label = "Touchdown times")
 axarr[0].legend(loc='upper right', shadow=False,fontsize=20)
 
 axarr[1].set_title('Angular frequency with respect to time of LF',fontsize=30)
@@ -435,8 +446,8 @@ axarr[1].set_xlabel('Time [s]',fontsize = 30)
 for i in range(0, len(EventsList)):
     axarr[1].axvline(x = EventsList[i][4], linestyle = "dashed",linewidth = 2)
     axarr[1].axvline(x = EventsList[i][0], linestyle = "dotted")
-axarr[1].axvline(x = EventsList[20][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
-axarr[1].axvline(x = EventsList[20][0], linestyle = "dotted", label = "Touchdown times")
+axarr[1].axvline(x = EventsList[5][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
+axarr[1].axvline(x = EventsList[5][0], linestyle = "dotted", label = "Touchdown times")
 axarr[1].legend(loc='upper right', shadow=False,fontsize=20)
     
     
