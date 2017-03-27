@@ -120,20 +120,25 @@ def MPGenerateAllMatrices(gait,number_legs,Tf,Tg,Td):
     A = MPTimes(MPComputeAStar(G),H)
     return (A,G,H,P,Q)
 	
-def replaceEventList(EList, x, A):
+def increaseEventList(EList, x, A):
     xnew = MPTimes(A,x)
+    new_index = len(EList)+1
+    EList_new = [[0 for i in range(len(EList[0]))] for j in range(new_index)]
+    for j in range(0,len(EList)):
+        for k in range(0,len(EList[0])):
+            EList_new[j][k]=EList[j][k]
     #EList[new_index] = [0 for i in range(0,len(xnew))]
     for j in range(0,len(xnew)):
-        EList[len(EList) - 1][j] = xnew[j][0]
-    return EList, xnew
+        EList_new[new_index-1][j] = xnew[j][0]
+    return EList_new, xnew
 
-def ReplaceEventsHyQ(EventsList0,gait,numberOfLegs,Tf,Tg,Td,x_0):
+def ComputeEventsHyQ2(EventsList0,gait,numberOfLegs,Tf,Tg,Td,x_0):
     #	-- Generate Eventslist
     A,G,H,P,Q = MPGenerateAllMatrices(gait,numberOfLegs,Tf,Tg,Td)
     #EventsList = [[0 for i in range(0,numberOfLegs*2)]]
 
     for i in range(0,1):
-        EventsList0, x_next = replaceEventList(EventsList0, x_0, A)    
+        EventsList0, x_next = increaseEventList(EventsList0, x_0, A)    
         x_0 = x_next
     
     return EventsList0, x_0

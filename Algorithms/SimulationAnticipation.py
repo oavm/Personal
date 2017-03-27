@@ -6,6 +6,7 @@ Created on Tue Jan 17 16:54:42 2017
 """
 from scipy.integrate import ode
 from ComputeEventsHyQ import ComputeEventsHyQ
+from ComputeEventsHyQ2 import ComputeEventsHyQ2
 #from ReplaceEventsHyQ import ReplaceEventsHyQ
 import matplotlib.pyplot as plt
 import math
@@ -100,7 +101,15 @@ old_sign_u2 = np.sign(u0_2[1])
 old_sign_u3 = np.sign(u0_3[1])
 old_sign_u4 = np.sign(u0_4[1])
 
-EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
+w_index = [1,1,1,1]
+
+#==============================================================================
+# EventsList,x_0 = ComputeEventsHyQ2(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
+# x_next = x_0
+#==============================================================================
+#==============================================================================
+# NewEventsList = EventsList
+#==============================================================================
 
 #%%
 # Setting of the gait parameter variation and gait changes throughout time
@@ -109,37 +118,29 @@ for i in range(0,len(time_axis) - 1):
     Df_desired_vector[i] = Df    
     
 # Creating list of events according to time instant     
-#==============================================================================
-#     compare = min(EventsList[len(EventsList) - 1]) - time_axis[i]
-#     if compare <= 0: 
-#         h += 1
-#         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#         
-#==============================================================================
+    compare = min(EventsList[h]) - time_axis[i]
+    if compare <= 0: 
+        h += 1
+        EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
+          
             
 # Creating vector of mean angular frequencies according to EventsList times
-    for j in range(1,len(EventsList)):
+#==============================================================================
+#     for j in range(1,len(EventsList)):
+#==============================================================================
+    for k in range(0,numberOfLegs):                                     
+        if time_axis[i] >= EventsList[w_index[k]-1][k] and time_axis[i] < EventsList[w_index[k]][k + numberOfLegs]: #Stance phase, squared oscillator        
+              w[i][k] = math.pi*1.18/(EventsList[w_index[k]][k + numberOfLegs] -
+                                      EventsList[w_index[k]-1][k])                                          
+        elif time_axis[i] >= EventsList[w_index[k]][k + numberOfLegs] and time_axis[i] <= EventsList[w_index[k]][k]: #Swing phase                
+              w[i][k] = math.pi*1.18/(EventsList[w_index[k]][k] -
+                                      EventsList[w_index[k]][k + numberOfLegs])
 
-        for k in range(0,numberOfLegs):
-                                     
-            if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
-        
-                  w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
-                                          EventsList[j-1][k])
-                                          
-            elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-                
-                  w[i][k] = math.pi*1.18/(EventsList[j][k] -
-                                          EventsList[j][k + numberOfLegs])
 
     # First oscillator solution
-    r = ode(f1).set_integrator('vode', method='bdf',
+    r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
                               with_jacobian=False)             
-#==============================================================================
-#     r = ode(f1).set_integrator('dopri5',
-#                               atol=1e-8)  
-#==============================================================================
     r.set_initial_value(u0_1, time_axis[i]).set_f_params(w[i][0])
     u = [];  t = []; y =[];
     while r.successful() and r.t < time_axis[i+1]:
@@ -154,32 +155,20 @@ for i in range(0,len(time_axis) - 1):
         if SignCheck_u1 != 0:
             print('Leg 1 Touchdown',time_axis[i])
             x_0[0] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][0] = time_axis[i]
-            
+            w_index[0] += 1
     elif old_sign_u1 == -1:
         if SignCheck_u1 != 0:
             print('Leg 1 lift-off',time_axis[i])
             x_0[4] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][4] = time_axis[i]
-    old_sign_u1 = sign_u1
+    old_sign_u1 = sign_u1    
 
     
     # Second oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
                               with_jacobian=False)             
-#==============================================================================
-#     r = ode(f1).set_integrator('dopri5',
-#                           atol=1e-8)  
-#==============================================================================
     r.set_initial_value(u0_2, time_axis[i]).set_f_params(w[i][1])
     u = [];  t = []; y =[];
     while r.successful() and r.t < time_axis[i+1]:
@@ -194,30 +183,20 @@ for i in range(0,len(time_axis) - 1):
         if SignCheck_u2 != 0:
             print('Leg 2 touchdown',time_axis[i])
             x_0[1] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][1] = time_axis[i]
+            w_index[1] += 1
     elif old_sign_u2 == -1:
         if SignCheck_u2 != 0:
             print('Leg 2 lift-off',time_axis[i])
             x_0[5] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][5] = time_axis[i]
     old_sign_u2 = sign_u2
+    
     
     # Third oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
                               with_jacobian=False)             
-#==============================================================================
-#     r = ode(f1).set_integrator('dopri5',
-#                               atol=1e-8)  
-#==============================================================================
     r.set_initial_value(u0_3, time_axis[i]).set_f_params(w[i][2])
     u = [];  t = []; y =[];
     while r.successful() and r.t < time_axis[i+1]:
@@ -232,30 +211,20 @@ for i in range(0,len(time_axis) - 1):
         if SignCheck_u3 != 0:
             print('Leg 3 Touchdown',time_axis[i])
             x_0[2] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][2] = time_axis[i]
+            w_index[2] += 1
     elif old_sign_u3 == -1:
         if SignCheck_u3 != 0:
             print('Leg 3 lift-off',time_axis[i])
             x_0[6] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][6] = time_axis[i]
     old_sign_u3 = sign_u3
+    
     
     # Fourth oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
                               with_jacobian=False)             
-#==============================================================================
-#     r = ode(f1).set_integrator('dopri5',
-#                               atol=1e-8)  
-#==============================================================================
     r.set_initial_value(u0_4, time_axis[i]).set_f_params(w[i][3])
     u = [];  t = []; y =[];
     while r.successful() and r.t < time_axis[i+1]:
@@ -270,21 +239,26 @@ for i in range(0,len(time_axis) - 1):
         if SignCheck_u4 != 0:
             print('Leg 4 Touchdown',time_axis[i])
             x_0[3] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][3] = time_axis[i]
+            w_index[3] += 1
     elif old_sign_u4 == -1:
         if SignCheck_u4 != 0:
             print('Leg 4 lift-off',time_axis[i])
             x_0[7] = [time_axis[i]]
-#==============================================================================
-#             EventsList = np.delete(EventsList,len(EventsList) - 1,0)
-#             EventsList = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-#==============================================================================
             EventsList[len(EventsList) - 1][7] = time_axis[i]
     old_sign_u4 = sign_u4
+    
+#%%
+    
+#==============================================================================
+#     compare = max(EventsList[h]) - time_axis[i]
+#     if compare <= 0: 
+#         h += 1
+#         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
+#==============================================================================
+    
+    
+    
     
     
 #==============================================================================
@@ -423,28 +397,31 @@ for i in range(0,len(time_axis)):
 fig2, axarr = plt.subplots(2, sharex=True)
 axarr[0].set_title('Variation of z coordinate with respect to time of LF',fontsize=30)
 axarr[0].tick_params(labelsize=25)
+axarr[0].plot(time_axis,[row[1] for row in u2],linewidth=1)
 axarr[0].plot(time_axis,[row[1] for row in u1],linewidth=1)
+axarr[0].plot(time_axis,[row[1] for row in u3],linewidth=1)
+axarr[0].plot(time_axis,[row[1] for row in u4],linewidth=1)
 axarr[0].axhline(y=0,color='0')
 axarr[0].set_ylabel('$z[-]$',fontsize = 30)
 for i in range(0, len(EventsList)):
-    axarr[0].axvline(x = EventsList[i][4], linestyle = "dashed",linewidth = 2)
-    axarr[0].axvline(x = EventsList[i][0], linestyle = "dotted")
-axarr[0].axvline(x = EventsList[1][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
-axarr[0].axvline(x = EventsList[1][0], linestyle = "dotted", label = "Touchdown times")
+    axarr[0].axvline(x = EventsList[i][5], linestyle = "dashed",linewidth = 2)
+    axarr[0].axvline(x = EventsList[i][1], linestyle = "dotted")
+axarr[0].axvline(x = EventsList[1][5], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
+axarr[0].axvline(x = EventsList[1][1], linestyle = "dotted", label = "Touchdown times")
 axarr[0].legend(loc='upper right', shadow=False,fontsize=20)
 
 axarr[1].set_title('Angular frequency with respect to time of LF',fontsize=30)
 axarr[1].tick_params(labelsize=25)
-axarr[1].plot(time_axis,[row[0] for row in w])
+axarr[1].plot(time_axis,[row[1] for row in w])
 axarr[1].set_ylim([1.5, 3.5])
 axarr[1].axhline(y=0,color='0')
 axarr[1].set_ylabel('$\omega [ rad/s ]$',fontsize = 30)
 axarr[1].set_xlabel('Time [s]',fontsize = 30)
 for i in range(0, len(EventsList)):
-    axarr[1].axvline(x = EventsList[i][4], linestyle = "dashed",linewidth = 2)
-    axarr[1].axvline(x = EventsList[i][0], linestyle = "dotted")
-axarr[1].axvline(x = EventsList[1][4], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
-axarr[1].axvline(x = EventsList[1][0], linestyle = "dotted", label = "Touchdown times")
+    axarr[1].axvline(x = EventsList[i][5], linestyle = "dashed",linewidth = 2)
+    axarr[1].axvline(x = EventsList[i][1], linestyle = "dotted")
+axarr[1].axvline(x = EventsList[1][5], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
+axarr[1].axvline(x = EventsList[1][1], linestyle = "dotted", label = "Touchdown times")
 axarr[1].legend(loc='upper right', shadow=False,fontsize=20)
     
     
@@ -514,8 +491,10 @@ def animate(i):
     return line,
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
-anim = animation.FuncAnimation(fig4, animate, np.arange(1, len(u1)), init_func=init,
-                               interval=Ts, blit=False)
+#==============================================================================
+# anim = animation.FuncAnimation(fig4, animate, np.arange(1, len(u1)), init_func=init,
+#                                interval=Ts, blit=False)
+#==============================================================================
                               
 #==============================================================================
 # anim.save('Legs.mp4', writer=writer)
