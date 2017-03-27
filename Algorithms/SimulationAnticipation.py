@@ -114,8 +114,8 @@ for i in range(0,len(time_axis) - 1):
 #     if compare <= 0: 
 #         h += 1
 #         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
+#         
 #==============================================================================
-        
             
 # Creating vector of mean angular frequencies according to EventsList times
     for j in range(1,len(EventsList)):
