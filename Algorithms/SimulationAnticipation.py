@@ -7,7 +7,7 @@ Created on Tue Jan 17 16:54:42 2017
 from scipy.integrate import ode
 from ComputeEventsHyQ import ComputeEventsHyQ
 from ComputeEventsHyQ2 import ComputeEventsHyQ2
-#from ReplaceEventsHyQ import ReplaceEventsHyQ
+from ReplaceEventsHyQ import ReplaceEventsHyQ
 import matplotlib.pyplot as plt
 import math
 import numpy as np
@@ -19,7 +19,7 @@ plt.close('all')
 
 
 numberOfLegs = 4  # Define the total number of legs of the robot
-x_0 =  [[0 ] for i in range(0,numberOfLegs*2)] # Define initial state for max-plus algebra 
+x_0 =  [[0] for i in range(0,numberOfLegs*2)] # Define initial state for max-plus algebra 
 #==============================================================================
 # x_0[0] = [10]
 #==============================================================================
@@ -29,7 +29,7 @@ Ts = 0.01 # Sampling time for the simulation
 #==============================================================================
 ts = 0.0005  # Sampling time for integration
 EventsList = [[0 for i in range(0,numberOfLegs*2)]] # List of lift-off and touchdown events for each of the legs
-total_time = 50# Total simulation time
+total_time = 30# Total simulation time
 time_axis = np.arange(0,total_time,Ts) # Time vector
 compare1 = [0 for i in range (0,numberOfLegs)] # Comparison to verify if an element from the events list needs to be created
 compare = 0
@@ -63,8 +63,8 @@ gait = [[1],[3],[2],[4]]
 # Gr = 2
 # Td = [0.6,1.2] # MaxTd = 0.6
 # gait = [[2,3],[1,4]]
-# MaxTD1 = St*(1 - Gr*(1 - Df))
 #==============================================================================
+MaxTD1 = St*(1 - Gr*(1 - Df))
 
 
 # Oscillator function       
@@ -103,7 +103,8 @@ old_sign_u4 = np.sign(u0_4[1])
 
 w_index = [1,1,1,1]
 
-EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
+for i in range(0,1):
+    EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
 
 #%%
 # Setting of the gait parameter variation and gait changes throughout time
@@ -111,12 +112,19 @@ for i in range(0,len(time_axis) - 1):
     
     Df_desired_vector[i] = Df    
     
+    
 # Creating list of events according to time instant     
-    compare = min(EventsList[max(w_index)]) - time_axis[i]
+#==============================================================================
+#     compare = min(EventsList[max(w_index)]) - time_axis[i]
+#     if compare <= 0: 
+#         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
+#==============================================================================
+
+
+    compare = min(x_0)[0] - time_axis[i]
     if compare <= 0: 
-        EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
-        
-          
+        h += 1
+        EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)           
             
 # Creating vector of mean angular frequencies according to EventsList times
     for k in range(0,numberOfLegs):                                     
@@ -147,6 +155,7 @@ for i in range(0,len(time_axis) - 1):
             print('Leg 1 Touchdown',time_axis[i])
             x_0[0] = [time_axis[i]]
             EventsList[w_index[0]][0] = time_axis[i]
+            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
             w_index[0] += 1
     elif old_sign_u1 == -1:
         if SignCheck_u1 != 0:
@@ -173,8 +182,9 @@ for i in range(0,len(time_axis) - 1):
     if old_sign_u2 == 1:
         if SignCheck_u2 != 0:
             print('Leg 2 touchdown',time_axis[i])
-            x_0[1] = [time_axis[i]]
             EventsList[w_index[1]][1] = time_axis[i]
+            x_0[1] = [time_axis[i]]
+            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
             w_index[1] += 1
     elif old_sign_u2 == -1:
         if SignCheck_u2 != 0:
@@ -203,6 +213,7 @@ for i in range(0,len(time_axis) - 1):
             print('Leg 3 Touchdown',time_axis[i])
             x_0[2] = [time_axis[i]]
             EventsList[w_index[2]][2] = time_axis[i]
+            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
             w_index[2] += 1
     elif old_sign_u3 == -1:
         if SignCheck_u3 != 0:
@@ -231,6 +242,7 @@ for i in range(0,len(time_axis) - 1):
             print('Leg 4 Touchdown',time_axis[i])
             x_0[3] = [time_axis[i]]
             EventsList[w_index[3]][3] = time_axis[i]
+            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
             w_index[3] += 1
     elif old_sign_u4 == -1:
         if SignCheck_u4 != 0:
@@ -311,7 +323,7 @@ axarr[0].set_yticks(Duty_tick)
 axarr[0].set_ylabel(r"$D_f$ LF[-]",fontsize = 30)
 axarr[0].tick_params(labelsize=30)
 axarr[0].set_title("Duty factor plot",fontsize = 30)
-axarr[0].legend(loc='upper right', shadow=False,fontsize = 25)
+axarr[0].legend(loc='lower right', shadow=False,fontsize = 15)
 
 
 axarr[1].plot(time_axis,[row[1] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
@@ -323,7 +335,7 @@ axarr[1].set_xlim([0, total_time])
 axarr[1].set_yticks(Duty_tick)
 axarr[1].set_ylabel(r"$D_f$ RF[-]",fontsize = 30)
 axarr[1].tick_params(labelsize=30)
-axarr[1].legend(loc='upper right', shadow=True,fontsize = 25)
+axarr[1].legend(loc='lower right', shadow=True,fontsize = 15)
 
 
 axarr[2].plot(time_axis,[row[2] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
@@ -335,7 +347,7 @@ axarr[2].set_xlim([0, total_time])
 axarr[2].set_yticks(Duty_tick)
 axarr[2].set_ylabel(r"$D_f$ LH[-]",fontsize = 30)
 axarr[2].tick_params(labelsize=30)
-axarr[2].legend(loc='upper right', shadow=True,fontsize = 25)
+axarr[2].legend(loc='lower right', shadow=True,fontsize = 15)
 
 
 axarr[3].plot(time_axis,[row[3] for row in l_matrix],color = '0.85',linewidth=130,solid_capstyle="butt")
@@ -348,7 +360,7 @@ axarr[3].set_yticks(Duty_tick)
 axarr[3].set_ylabel(r"$D_f$ RH[-]",fontsize = 30)
 axarr[3].tick_params(labelsize=30)
 axarr[3].set_xlabel("Time [s]",fontsize = 30)
-axarr[3].legend(loc='upper right', shadow=True,fontsize = 25)
+axarr[3].legend(loc='lower right', shadow=True,fontsize = 15)
          
 
 # Synchronization plot           
@@ -366,14 +378,15 @@ for i in range(0,len(time_axis)):
 
     
 fig2, axarr = plt.subplots(2, sharex=True)
-axarr[0].set_title('Variation of z coordinate with respect to time of LF',fontsize=30)
+axarr[0].set_title('Variation of z coordinate with respect to time ',fontsize=30)
 axarr[0].tick_params(labelsize=25)
-axarr[0].plot(time_axis,[row[1] for row in u2],linewidth=1)
-axarr[0].plot(time_axis,[row[1] for row in u1],linewidth=1)
-axarr[0].plot(time_axis,[row[1] for row in u3],linewidth=1)
-axarr[0].plot(time_axis,[row[1] for row in u4],linewidth=1)
+axarr[0].plot(time_axis,[row[1] for row in u2],linewidth=1,label = "RF")
+axarr[0].plot(time_axis,[row[1] for row in u1],linewidth=1,label = "LF")
+axarr[0].plot(time_axis,[row[1] for row in u3],linewidth=1,label = "LH")
+axarr[0].plot(time_axis,[row[1] for row in u4],linewidth=1,label = "RH")
 axarr[0].axhline(y=0,color='0')
 axarr[0].set_ylabel('$z[-]$',fontsize = 30)
+axarr[0].legend(loc='lower right', shadow=True,fontsize = 15)
 #==============================================================================
 # for i in range(0, len(EventsList)):
 #     axarr[0].axvline(x = EventsList[i][5], linestyle = "dashed",linewidth = 2)
@@ -383,13 +396,16 @@ axarr[0].set_ylabel('$z[-]$',fontsize = 30)
 # axarr[0].legend(loc='upper right', shadow=False,fontsize=20)
 #==============================================================================
 
-axarr[1].set_title('Angular frequency with respect to time of LF',fontsize=30)
+axarr[1].set_title('Angular frequency with respect to time',fontsize=30)
 axarr[1].tick_params(labelsize=25)
-axarr[1].plot(time_axis,[row[1] for row in w])
-axarr[1].set_ylim([1.5, 3.5])
+axarr[1].plot(time_axis,[row[0] for row in w],label = "LF")
+axarr[1].plot(time_axis,[row[1] for row in w],label = "RF")
+axarr[1].plot(time_axis,[row[2] for row in w],label = "LH")
+axarr[1].plot(time_axis,[row[3] for row in w],label = "RH")
 axarr[1].axhline(y=0,color='0')
 axarr[1].set_ylabel('$\omega [ rad/s ]$',fontsize = 30)
 axarr[1].set_xlabel('Time [s]',fontsize = 30)
+axarr[1].legend(loc='lower right', shadow=True,fontsize = 15)
 #==============================================================================
 # for i in range(0, len(EventsList)):
 #     axarr[1].axvline(x = EventsList[i][5], linestyle = "dashed",linewidth = 2)
@@ -466,10 +482,8 @@ def animate(i):
     return line,
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
-#==============================================================================
-# anim = animation.FuncAnimation(fig4, animate, np.arange(1, len(u1)), init_func=init,
-#                                interval=Ts, blit=False)
-#==============================================================================
+anim = animation.FuncAnimation(fig4, animate, np.arange(1, len(u1)), init_func=init,
+                               interval=Ts, blit=False)
                               
 #==============================================================================
 # anim.save('Legs.mp4', writer=writer)

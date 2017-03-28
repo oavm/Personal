@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.3.2)  13 MAR 2017 14:12
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.3.2)  28 MAR 2017 12:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1641,10 +1641,6 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <2.79999> not available
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <2> not available
 (Font)              size <5> substituted on input line 91.
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./images/ADVRLogo.png>]
@@ -1653,20 +1649,12 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 94--94
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [2
 
 ] (./presentation.toc)
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 100--100
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [3
 
@@ -1685,33 +1673,25 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 108--108
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [4
 
-] <images/ControlStrategy.pdf, id=62, 723.24384pt x 218.52596pt>
+] <images/ControlStrategy.pdf, id=62, 734.01945pt x 282.70714pt>
 File: images/ControlStrategy.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy.pdf>
 Package pdftex.def Info: images/ControlStrategy.pdf used on input line 121.
-(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+(pdftex.def)             Requested size: 307.28987pt x 118.35225pt.
 
-<images/ControlStrategy1.pdf, id=63, 723.24384pt x 218.52596pt>
+<images/ControlStrategy1.pdf, id=63, 733.9699pt x 281.35402pt>
 File: images/ControlStrategy1.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy1.pdf>
 Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 121.
-(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+(pdftex.def)             Requested size: 307.28987pt x 117.79868pt.
 
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 121--121
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [5
 
@@ -1719,20 +1699,16 @@ Overfull \vbox (23.38094pt too high) has occurred while \output is active []
 File: images/ControlStrategy.pdf Graphic file (type pdf)
  <use images/ControlStrategy.pdf>
 Package pdftex.def Info: images/ControlStrategy.pdf used on input line 121.
-(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+(pdftex.def)             Requested size: 307.28987pt x 118.35225pt.
 File: images/ControlStrategy1.pdf Graphic file (type pdf)
 
 <use images/ControlStrategy1.pdf>
 Package pdftex.def Info: images/ControlStrategy1.pdf used on input line 121.
-(pdftex.def)             Requested size: 307.28987pt x 92.84729pt.
+(pdftex.def)             Requested size: 307.28987pt x 117.79868pt.
 
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 121--121
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [6
 
@@ -1741,18 +1717,14 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 127--127
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [7
 
-] <images/Supervisory.pdf, id=160, 280.87656pt x 212.58972pt>
+] <images/Supervisory.pdf, id=160, 329.05672pt x 245.08588pt>
 File: images/Supervisory.pdf Graphic file (type pdf)
 
 <use images/Supervisory.pdf>
 Package pdftex.def Info: images/Supervisory.pdf used on input line 153.
-(pdftex.def)             Requested size: 115.23369pt x 87.21748pt.
+(pdftex.def)             Requested size: 115.23369pt x 85.8262pt.
 
 <images/PrimitiveShape.pdf, id=161, 308.57784pt x 205.31706pt>
 File: images/PrimitiveShape.pdf Graphic file (type pdf)
@@ -1765,22 +1737,18 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 153--153
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [8
 
  <./images/Supervisory.pdf> <./images/PrimitiveShape.pdf
 
 pdfTeX warning: pdflatex (file ./images/PrimitiveShape.pdf): PDF inclusion: mul
 tiple pdfs with page group included in a single page
->] <images/Supervisoryb.pdf, id=216, 280.87656pt x 212.58972pt>
+>] <images/Supervisoryb.pdf, id=216, 329.05672pt x 245.08588pt>
 File: images/Supervisoryb.pdf Graphic file (type pdf)
 
 <use images/Supervisoryb.pdf>
 Package pdftex.def Info: images/Supervisoryb.pdf used on input line 181.
-(pdftex.def)             Requested size: 92.18788pt x 69.77528pt.
+(pdftex.def)             Requested size: 92.18788pt x 68.66096pt.
 
 <images/Numbers.pdf, id=217, 424.37311pt x 613.37732pt>
 File: images/Numbers.pdf Graphic file (type pdf)
@@ -1800,12 +1768,8 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 181--181
  []
 
 
-Overfull \vbox (8.11409pt too high) detected at line 181
+Overfull \vbox (6.99977pt too high) detected at line 181
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [9
 
@@ -1821,10 +1785,6 @@ pdfs with page group included in a single page
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 187--187
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [10
 
@@ -1845,10 +1805,6 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 222--222
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [11
 
  <./images/MaxPlus.pdf> <./images/Phases.pdf
@@ -1860,20 +1816,12 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 234--234
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [12
 
 ]
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 240--240
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [13
 
@@ -1889,12 +1837,12 @@ Overfull \hbox (24.19899pt too wide) detected at line 275
 it/10.95 ; \OT1/cmss/m/it/10.95 sw\OML/cmm/m/it/10.95 :[][][][]
  []
 
-<./images/AngularFrequency.pdf, id=329, 169.6471pt x 83.51474pt>
+<./images/AngularFrequency.pdf, id=329, 184.4715pt x 150.29819pt>
 File: ./images/AngularFrequency.pdf Graphic file (type pdf)
 
 <use ./images/AngularFrequency.pdf>
 Package pdftex.def Info: ./images/AngularFrequency.pdf used on input line 275.
-(pdftex.def)             Requested size: 107.55098pt x 52.94714pt.
+(pdftex.def)             Requested size: 107.55098pt x 87.62708pt.
 
 <./images/PhasesPeriod.pdf, id=330, 262.78767pt x 127.75977pt>
 File: ./images/PhasesPeriod.pdf Graphic file (type pdf)
@@ -1907,17 +1855,13 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 275--275
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [14
 
  <./images/AngularFrequency.pdf> <./images/PhasesPeriod.pdf
 
 pdfTeX warning: pdflatex (file ./images/PhasesPeriod.pdf): PDF inclusion: multi
 ple pdfs with page group included in a single page
->] <./images/HeightTime.png, id=372, 1675.2186pt x 1005.9984pt>
+>] <./images/HeightTime.png, id=355, 1675.2186pt x 1005.9984pt>
 File: ./images/HeightTime.png Graphic file (type png)
 
 <use ./images/HeightTime.png>
@@ -1928,10 +1872,6 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 282--282
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [15
 
  <./images/HeightTime.png>]
@@ -1939,20 +1879,16 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 288--288
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [16
 
-] <images/Oscillator.pdf, id=384, 162.87308pt x 134.8794pt>
+] <images/Oscillator.pdf, id=367, 162.87308pt x 134.8794pt>
 File: images/Oscillator.pdf Graphic file (type pdf)
 
 <use images/Oscillator.pdf>
 Package pdftex.def Info: images/Oscillator.pdf used on input line 308.
 (pdftex.def)             Requested size: 73.74918pt x 61.07385pt.
 
-<images/LimitCycle.png, id=385, 1175.1102pt x 615.7404pt>
+<images/LimitCycle.png, id=368, 1175.1102pt x 615.7404pt>
 File: images/LimitCycle.png Graphic file (type png)
 
 <use images/LimitCycle.png>
@@ -1963,20 +1899,12 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 308--308
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [17
 
  <./images/Oscillator.pdf> <./images/LimitCycle.png>] (./presentation.toc)
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 313--313
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [18
 
@@ -1985,13 +1913,9 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 330--330
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [19
 
-] <./images/SyncPlot.png, id=421, 1675.2186pt x 1005.9984pt>
+] <./images/SyncPlot.png, id=404, 1675.2186pt x 1005.9984pt>
 File: ./images/SyncPlot.png Graphic file (type png)
 
 <use ./images/SyncPlot.png>
@@ -2002,14 +1926,10 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 336--336
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [20
 
  <./images/SyncPlot.png>]
-<images/DutyFactor.png, id=428, 1675.2186pt x 1005.9984pt>
+<images/DutyFactor.png, id=411, 1675.2186pt x 1005.9984pt>
 File: images/DutyFactor.png Graphic file (type png)
 
 <use images/DutyFactor.png>
@@ -2025,13 +1945,9 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 343--343
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [21
 
- <./images/DutyFactor.png>] <Legs.png, id=435, 578.16pt x 433.62pt>
+ <./images/DutyFactor.png>] <Legs.png, id=418, 578.16pt x 433.62pt>
 File: Legs.png Graphic file (type png)
 
 <use Legs.png>
@@ -2046,20 +1962,12 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 352--352
 Overfull \vbox (9.1928pt too high) detected at line 352
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [22
 
  <./Legs.png>] (./presentation.toc)
 Overfull \hbox (29.30978pt too wide) in paragraph at lines 354--354
 []|  []  
  []
-
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
 
 [23
 
@@ -2068,17 +1976,9 @@ Overfull \hbox (29.30978pt too wide) in paragraph at lines 365--365
 []|  []  
  []
 
-
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
 [24
 
-]
-Overfull \vbox (23.38094pt too high) has occurred while \output is active []
-
-
-[25
+] [25
 
 ]
 \tf@nav=\write7
@@ -2108,13 +2008,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 375.
  ) 
 Here is how much of TeX's memory you used:
- 28429 strings out of 493304
- 548572 string characters out of 6139872
- 623296 words of memory out of 5000000
- 31181 multiletter control sequences out of 15000+600000
+ 28419 strings out of 493304
+ 548251 string characters out of 6139872
+ 623168 words of memory out of 5000000
+ 31171 multiletter control sequences out of 15000+600000
  16130 words of font info for 62 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 50i,17n,55p,10378b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 50i,16n,53p,10378b,694s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
@@ -2126,10 +2026,10 @@ e1/public/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
 blic/amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on presentation.pdf (25 pages, 608366 bytes).
+Output written on presentation.pdf (25 pages, 603315 bytes).
 PDF statistics:
- 513 PDF objects out of 1000 (max. 8388607)
- 357 compressed objects within 4 object streams
+ 496 PDF objects out of 1000 (max. 8388607)
+ 346 compressed objects within 4 object streams
  58 named destinations out of 1000 (max. 500000)
  167 words of extra memory for PDF output out of 10000 (max. 10000000)
 
