@@ -11,6 +11,9 @@ import math
 import numpy as np
 import matplotlib.animation as animation
 from matplotlib import rc
+from ComputeEventsHyQ import MPTimes
+
+x = MPTimes(3,5)
 
 plt.clf()
 plt.close('all')
