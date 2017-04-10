@@ -13,7 +13,7 @@ Zebro algorithm
 import math
 
 def MPTimes(a,b) :
-    x =	[[0 for i in range(len(b[0]))] for j in range(len(a))]
+    x = [[0 for i in range(len(b[0]))] for j in range(len(a))]
     y = [0 for i in range(len(b))]
    # for i in range(len(a)):
   #  for j in range(len(b[0])): 			
@@ -32,7 +32,7 @@ def MPTimes(a,b) :
 
 
 def MPPlus(a,b)	:
-    x =	[[0 for i in range(len(b[0]))] for j in range(len(a))]
+    x = [[0 for i in range(len(b[0]))] for j in range(len(a))]
     for i in range(len(a)):
         for j in range(len(b[0])):
             x[i][j]=max(a[i][j],b[i][j])

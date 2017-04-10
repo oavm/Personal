@@ -13,7 +13,13 @@ import matplotlib.animation as animation
 from matplotlib import rc
 from ComputeEventsHyQ import MPTimes
 
-x = MPTimes(3,5)
+A = [[1,2],[2,3]]
+B = [[5],[7]]
+C = MPTimes(A,B)
+
+
+
+#%%
 
 plt.clf()
 plt.close('all')
@@ -23,7 +29,7 @@ numberOfLegs = 4  # Define the total number of legs of the robot
 x_0 =  [[0 ] for i in range(0,numberOfLegs*2)] # Define initial state for max-plus algebra 
 Ts = 0.01 # Sampling time for the simulation
 EventsList = [[0 for i in range(0,numberOfLegs*2)]] # List of lift-off and touchdown events for each of the legs
-total_time = 40# Total simulation time
+total_time = 100# Total simulation time
 time_axis = np.arange(0,total_time,Ts) # Time vector
 compare1 = [0 for i in range (0,numberOfLegs)] # Comparison to verify if an element from the events list needs to be created
 compare = 0
@@ -52,9 +58,9 @@ St = 3 # Reasonable period
 #==============================================================================
 
 # Times where the gait parameters are changed
-t1 = 50
+t1 = 25
 t2 = 50
-t3 = 50
+t3 = 75
 
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
@@ -78,7 +84,7 @@ for i in range(0,len(time_axis)):
         gait = [[1],[2],[3],[4]]
         Df_desired_vector[i] = Df
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
-        Df = 0.4
+        Df = 0.6
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 2
@@ -122,8 +128,11 @@ for i in range(0,len(time_axis)):
         h += 1
         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
         
-    if time_axis[i] == 20:
-        x_0[0] = [30]
+    if time_axis[i] == 10:
+        x_0[0] = [15]
+        
+    if time_axis[i] == 35:
+        x_0[0] = [38]
             
 # Creating vector of mean angular frequencies according to EventsList times
     for j in range(1,len(EventsList)):
