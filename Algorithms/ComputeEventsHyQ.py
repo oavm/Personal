@@ -70,9 +70,11 @@ def MPGeneratePQMatrices(gait,number_legs,Td):
             for l in range(0,len(gait[i])):
                 P[gait[i+1][k]-1][gait[i][l]-1] = Td[i]	
     
-    for m in range(0,len(gait[1])):
+    for m in range(0,len(gait[0])):
         for n in range(0,len(gait[leng-1])):
-            Q[(gait[0][m])-1][(gait[leng-1][n])-1] = Td[leng - 1]
+            p = (gait[0][m])-1
+            q = (gait[leng-1][n])-1
+            Q[p][q] = Td[leng - 1]
     return (P,Q)
 
 
