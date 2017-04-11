@@ -13,8 +13,8 @@ import matplotlib.animation as animation
 from matplotlib import rc
 from ComputeEventsHyQ import MPTimes
 
-A = [[1,2],[2,3]]
-B = [[5],[7]]
+A = [[2,3],[4,5]]
+B = [[5],[6]]
 C = MPTimes(A,B)
 
 
@@ -89,7 +89,7 @@ for i in range(0,len(time_axis)):
         Tg = St*Df
         Gr = 2
         MaxTD2 = St*(1 - Gr*(1 - Df))
-        Td = [-0.2,-0.4]  # MaxTd = -0.6
+        Td = [0.2,0.4]  # MaxTd = -0.6
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
 #==============================================================================
@@ -128,11 +128,13 @@ for i in range(0,len(time_axis)):
         h += 1
         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
         
-    if time_axis[i] == 10:
-        x_0[0] = [15]
-        
-    if time_axis[i] == 35:
-        x_0[0] = [38]
+#==============================================================================
+#     if time_axis[i] == 10:
+#         x_0[0] = [15]
+#         
+#     if time_axis[i] == 35:
+#         x_0[0] = [38]
+#==============================================================================
             
 # Creating vector of mean angular frequencies according to EventsList times
     for j in range(1,len(EventsList)):
