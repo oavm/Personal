@@ -66,18 +66,46 @@ def MPGeneratePQMatrices(gait,number_legs,Td):
     Q = MPNullMatrix(number_legs)
     leng = len(gait)
     for i in range(0,leng-1):
-        for k in range(0,len(gait[i+1])):
-            for l in range(0,len(gait[i])):
-                P[gait[i+1][k]-1][gait[i][l]-1] = Td[i]	
+        for j in range(0,len(gait[i+1])):
+            for k in range(0,len(gait[i])):
+                P[gait[i+1][j]-1][gait[i][k]-1] = Td[i]	
     
-    for m in range(0,len(gait[0])):
-        for n in range(0,len(gait[leng-1])):
-            p = (gait[0][m])-1
-            q = (gait[leng-1][n])-1
+    for l in range(0,len(gait[0])):
+        for m in range(0,len(gait[leng-1])):
+            p = (gait[0][l])-1
+            q = (gait[leng-1][m])-1
             Q[p][q] = Td[leng - 1]
     return (P,Q)
 
 
+#==============================================================================
+# def MPGenerateGHMatrices(P,Q,Tf,Tg):
+#     PP = P				
+# #QQ = Q
+#     siz = len(P[0])
+# #null = MPNullMatrix(siz)
+#     I = MPIdentityMatrix(siz)
+#     K = MPIdentityMatrix(siz)
+#     for i in range(0,siz):
+#         for j in range(0,siz): 
+#             x = I[i][j] + Tf
+#             I[i][j] = x
+#     for i in range(0,siz):
+#         for j in range(0,siz):
+#             K[i][j] = K[i][j] + Tg	
+#     G = MPNullMatrix(2*siz)
+#     for i in range(0,siz):
+#         for j in range(0,siz):
+#             G[i][siz+j] = I[i][j]
+#     for i in range(0,siz):
+#         for j in range(0,siz):
+#             G[i+siz][j] = PP[i][j]
+#     H = MPNullMatrix(2*siz)
+#     T = MPPlus(K,Q)
+#     for i in range(0,siz):
+#         for j in range(0,siz):
+#             H[i+siz][j] = T[i][j]
+#==============================================================================
 def MPGenerateGHMatrices(P,Q,Tf,Tg):
     PP = P				
 #QQ = Q
@@ -85,26 +113,20 @@ def MPGenerateGHMatrices(P,Q,Tf,Tg):
 #null = MPNullMatrix(siz)
     I = MPIdentityMatrix(siz)
     K = MPIdentityMatrix(siz)
+    G = MPNullMatrix(2*siz)
+    H = MPNullMatrix(2*siz)
     for i in range(0,siz):
         for j in range(0,siz): 
-            x = I[i][j] + Tf
-            I[i][j] = x
-    for i in range(0,siz):
-        for j in range(0,siz):
-            K[i][j] = K[i][j] + Tg	
-    G = MPNullMatrix(2*siz)
-    for i in range(0,siz):
-        for j in range(0,siz):
+            I[i][j] = I[i][j] + Tf
+            K[i][j] = K[i][j] + Tg
             G[i][siz+j] = I[i][j]
-    for i in range(0,siz):
-        for j in range(0,siz):
             G[i+siz][j] = PP[i][j]
-    H = MPNullMatrix(2*siz)
     T = MPPlus(K,Q)
     for i in range(0,siz):
         for j in range(0,siz):
             H[i+siz][j] = T[i][j]
     return (G, H)
+
 
 def MPComputeAStar(A):	
     AA = A
@@ -143,4 +165,4 @@ def ComputeEventsHyQ(EventsList0,gait,numberOfLegs,Tf,Tg,Td,x_0):
         EventsList0, x_next = increaseEventList(EventsList0, x_0, A)    
         x_0 = x_next
     
-    return EventsList0, x_0
+    return EventsList0, x_0, A

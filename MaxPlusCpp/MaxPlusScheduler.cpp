@@ -1,120 +1,221 @@
 // classes example
 #include <iostream>
 #include </home/octaviovillarreal/Git/Personal/MaxPlusCpp/Eigen/Dense>
+#include </home/octaviovillarreal/Git/Personal/MaxPlusCpp/MPA.h>
 
 class MaxPlusSchedule
 {
-    double dutyFactor,stepFrequency,time;
-    Eigen::ArrayXXd timeDifference,gaitPattern;
+    double dutyFactor,stepFrequency,currentTime;
     int numberOfLegs;
     bool stanceLegs;
+    Eigen::ArrayXXd timeDifference,gaitPattern;
   public:
-    // Eigen::ArrayXXd generatepq(Eigen::ArrayXXd gaitPattern,
-    //   Eigen::MatrixXd timeDifference,int numberOfLegs)
-    // {
-    //   MaxPlusAlgebra x;
-    //   P = x.maxplusnull(numberOfLegs)
-    //   Q = x.maxplusnull(numberOfLegs)
-    //   length = gait.rows()
-    //   for (int i = 0; i < length - 1; i++)
-    //   {
-    //     for (int j = 0; i < gait.rows)
-    //   }
-    // }
-    void set_values (double,double,bool,Eigen::MatrixXd);
-    double area() {return dutyFactor*stepFrequency;}
-    bool state() {return stanceLegs;}
-    Eigen::MatrixXd vector_diplay() {return timeDifference;}
-};
 
-class MaxPlusAlgebra
-{
-    Eigen::ArrayXXd a,b;
-    int c;
-  public:
-    void set_values (Eigen::ArrayXXd a,Eigen::ArrayXXd b,int c);
+    void set_gaitParameters (int,double,double,double,Eigen::ArrayXXd,
+                             Eigen::ArrayXXd);
 
-/* Max-plus multiplication */
-    Eigen::ArrayXXd maxplustimes(Eigen::ArrayXXd a,Eigen::ArrayXXd b)
-    {
-      Eigen::ArrayXXd x(a.rows(), b.cols());
-      Eigen::ArrayXXd y(1,b.rows());
-      for (int i = 0; i < a.rows(); i++)
-      {
-        for (int j = 0; j < b.cols(); j++)
-        {
-          for (int k =0; k < b.rows(); k++)
-          {
-            y(0,k) = a(i,k) + b(k,j);
-          }
-          x(i,j) = y.maxCoeff();
-        }
-      }
-      return x;
-    };
-
-/* Max-plus addition*/
-  Eigen::ArrayXXd maxplusplus(Eigen::ArrayXXd a,Eigen::ArrayXXd b)
+/* Set Tg */
+  double settg()
   {
-    Eigen::ArrayXXd x(a.rows(), b.cols());
-    for (int i = 0; i < a.rows(); i++)
+    double Tg;
+    Tg = (1/(double)stepFrequency)*dutyFactor;
+    return Tg;
+  }
+
+/* Set Tf */
+  double settf()
+  {
+    double Tf;
+    Tf = (1/(double)stepFrequency)*(1 - dutyFactor);
+    return Tf;
+  }
+
+/* Generate P matrix */
+    Eigen::ArrayXXd generatep()
     {
-      for (int j = 0; j < b.cols(); j++)
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd P;
+      int length,p,q;
+      P = x.maxplusnull(numberOfLegs);
+      length = gaitPattern.rows();
+      for (int i = 0; i < length - 1; i++)
       {
-        x(i,j) = std::max(a(i,j),b(i,j));
+        for (int j = 0; j < gaitPattern.row(i+1).cols(); j++)
+        {
+          for (int k = 0; k < gaitPattern.row(i).cols(); k++)
+          {
+            p = gaitPattern(i+1,j) - 1;
+            q = gaitPattern(i,k) - 1;
+            P(p,q) = timeDifference(i);
+          }
+        }
       }
+      return P;
     }
-    return x;
-  };
 
-/* Max-plus null matrix*/
-    Eigen::ArrayXXd maxplusnull(int c)
+/* Generate Q matrix */
+    Eigen::ArrayXXd generateq()
     {
-      Eigen::ArrayXXd E(c,c);
-      for (int i = 0; i < c; i++)
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd Q;
+      int length,p,q;
+      Q = x.maxplusnull(numberOfLegs);
+      length = gaitPattern.rows();
+      for (int l = 0; l < gaitPattern.row(0).cols(); l++)
       {
-        for (int j = 0; j < c; j++)
+        for (int m = 0; m < gaitPattern.row(length - 1).cols(); m++)
         {
-          E(i,j) = INFINITY;
+          p = gaitPattern(0,l) - 1;
+          q = gaitPattern(length - 1,m) - 1;
+          Q(p,q) = timeDifference(length - 1);
         }
       }
-      return E;
-    };
+      return Q;
+    }
 
-/* Max-plus identity matrix*/
-      Eigen::ArrayXXd maxplusidentity(int c)
+/* Generate G matrix */
+    Eigen::ArrayXXd generateg()
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd I,G,P;
+      int length;
+      double Tf;
+      P = generatep();
+      Tf = settf();
+      length = P.cols();
+      I = x.maxplusidentity(length);
+      G = x.maxplusnull(2*length);
+      for (int i = 0; i < length; i++)
       {
-        Eigen::ArrayXXd I(c,c);
-        I = maxplusnull(c);
-        for (int i = 0; i < c; i++)
+        for (int j = 0; j < length; j++)
         {
-          I(i,i) = 0;
+          I(i,j) = I(i,j) + Tf;
+          G(i,length + j) = I(i,j);
+          G(i + length,j) = P(i,j);
         }
-        return I;
-      };
+      }
+      return G;
+    }
+
+/* Generate H matrix */
+    Eigen::ArrayXXd generateh()
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd K,H,T,Q;
+      int length;
+      double Tg;
+      Q = generateq();
+      Tg = settg();
+      length = Q.cols();
+      K = x.maxplusidentity(length);
+      H = x.maxplusnull(2*length);
+      for (int i = 0; i < length; i++)
+      {
+        for (int j = 0; j < length; j++)
+        {
+          K(i,j) = K(i,j) + Tg;
+        }
+      }
+      T = x.maxplusplus(K,Q);
+      for (int i = 0; i < length; i++)
+      {
+        for (int j = 0; j < length; j++)
+        {
+          H(i + length,j) = T(i,j);
+        }
+      }
+      return H;
+    }
+
+/* Generate A-star matrix */
+    Eigen::ArrayXXd generateastar(Eigen::ArrayXXd A)
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd As,As_;
+      int length;
+      length = A.cols();
+      As = x.maxplusidentity(length);
+      As_ = x.maxplusidentity(length);
+      for (int i = 0; i < length -1; i++)
+      {
+        As = x.maxplusplus( x.maxplustimes(As,A),A);
+      }
+      As = x.maxplusplus(As,As_);
+      return As;
+    }
+
+/* Generate A matrix */
+    Eigen::ArrayXXd generatea()
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd A,G,H;
+      G = generateg();
+      H = generateh();
+      A = x.maxplustimes(generateastar(G),H);
+      return A;
+    }
+
+/* Compute next list of events */
+    Eigen::ArrayXXd generatenextevent(Eigen::ArrayXXd xInitial)
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd xNext, A;
+      A = generatea();
+      xNext = x.maxplustimes(A,xInitial);
+      return xNext;
+    }
 };
+
+void MaxPlusSchedule::set_gaitParameters (int a,double b,double c,double d,
+  Eigen::ArrayXXd e,Eigen::ArrayXXd f)
+  {
+    numberOfLegs = a;
+    dutyFactor = b;
+    stepFrequency = c;
+    currentTime = d;
+    timeDifference = e;
+    gaitPattern = f;
+  }
+
 
 int main ()
 {
-  MaxPlusAlgebra maximo;
-  Eigen::ArrayXXd A(2,2);
-  Eigen::ArrayXXd B(2,1);
-  Eigen::ArrayXXd C(2,2);
+  MaxPlusSchedule schedule;
   Eigen::ArrayXXd matrixTest;
+  Eigen::ArrayXXd P,Q,G,H,xNext,eventsLog,A;
+  Eigen::ArrayXXd xInitial(8,1);
+  Eigen::ArrayXXd gaitPattern(2,2);
+  Eigen::ArrayXXd timeDifference(1,2);
+  int numberOfLegs;
+  double dutyFactor,stepFrequency,currentTime;
 
-  A << 3.0,4.0,
-       5.0,6.0;
-  B << 5.0,6.0;
-  C << 1.0,2.0,
-       3.0,4.0;
+  gaitPattern << 1,4,
+                 2,3;
+  timeDifference << 0.2,0.4;
+  dutyFactor = 0.6;
+  stepFrequency = 1/(double)3;
+  currentTime = 10;
+  numberOfLegs = 4;
+  xInitial << 0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0;
 
-  std::cout << "\nMax-plus multiplication: \n" << maximo.maxplustimes(A,B);
-  std::cout << "\nMax-plus addition: \n" << maximo.maxplusplus(A,C);
-  std::cout << "\nNull: \n" << maximo.maxplusnull(2);
-  std::cout << "\nIdentity: \n" << maximo.maxplusidentity(2);
+  schedule.set_gaitParameters(numberOfLegs,dutyFactor,stepFrequency,currentTime,
+                              timeDifference,gaitPattern);
 
-  matrixTest = maximo.MaxPlusAlgebra::maxplustimes(A,C);
-  std::cout << "\nTest: \n" << matrixTest;
-
+  eventsLog = xInitial.transpose();
+  for (int i = 1; i < 10; i++)
+  {
+    xNext = schedule.generatenextevent(xInitial);
+    eventsLog.conservativeResize(i+1,8);
+    eventsLog.row(i) = xNext.transpose();
+    xInitial = xNext;
+  }
+  std::cout << "\nLog of events: \n" << eventsLog;
   return 0;
 }
