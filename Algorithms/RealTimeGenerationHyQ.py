@@ -78,10 +78,10 @@ for i in range(0,len(time_axis)):
         Df = 0.8 # To get easy to look EventsList
         Tf = St*(1 - Df)
         Tg = St*Df
-        Gr = 4
+        Gr = 3
         MaxTD1 = St*(1 - Gr*(1 - Df))
-        Td = [0.15,0.15,0.15,0.15] # MaxTd = 0.6
-        gait = [[1],[2],[3],[4]]
+        Td = [0.15,0.15,0.15] # MaxTd = 0.6
+        gait = [[1,2],[3],[4]]
         Df_desired_vector[i] = Df
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
 #==============================================================================
@@ -108,7 +108,7 @@ for i in range(0,len(time_axis)):
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 2
-        MaxTD2 = St*(1 - Gr*(1 - Df))
+        MaxTD3 = St*(1 - Gr*(1 - Df))
         Td = [0.2,0.4]  # MaxTd = -0.6
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df

@@ -181,9 +181,7 @@ void MaxPlusSchedule::set_gaitParameters (int a,double b,double c,double d,
 int main ()
 {
   MaxPlusSchedule schedule;
-  Eigen::ArrayXXd matrixTest;
-  Eigen::ArrayXXd P,Q,G,H,xNext,eventsLog,A;
-  Eigen::ArrayXXd xInitial(8,1);
+  Eigen::ArrayXXd xInitial(8,1),eventsLog,xNext;
   Eigen::ArrayXXd gaitPattern(2,2);
   Eigen::ArrayXXd timeDifference(1,2);
   int numberOfLegs;
@@ -196,14 +194,7 @@ int main ()
   stepFrequency = 1/(double)3;
   currentTime = 10;
   numberOfLegs = 4;
-  xInitial << 0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0,
-              0;
+  xInitial << 0,0,0,0,0,0,0,0;
 
   schedule.set_gaitParameters(numberOfLegs,dutyFactor,stepFrequency,currentTime,
                               timeDifference,gaitPattern);
@@ -212,7 +203,7 @@ int main ()
   for (int i = 1; i < 10; i++)
   {
     xNext = schedule.generatenextevent(xInitial);
-    eventsLog.conservativeResize(i+1,8);
+    eventsLog.conservativeResize(i+1,numberOfLegs*2);
     eventsLog.row(i) = xNext.transpose();
     xInitial = xNext;
   }
