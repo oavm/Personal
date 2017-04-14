@@ -11,11 +11,6 @@ import math
 import numpy as np
 import matplotlib.animation as animation
 from matplotlib import rc
-from ComputeEventsHyQ import MPTimes
-
-A = [[2,3],[4,5]]
-B = [[5],[6]]
-C = MPTimes(A,B)
 
 
 
@@ -35,7 +30,7 @@ compare1 = [0 for i in range (0,numberOfLegs)] # Comparison to verify if an elem
 compare = 0
 
 
-h = 1# Counter for the EventsList
+h = 0# Counter for the EventsList
 w = [[0 for i in range(numberOfLegs)] for j in range(len(time_axis))] # Angular frequency initialization for each of the legs
 
 # Oscillator constant parameters
@@ -71,29 +66,31 @@ Td = [0.2,0.4]  # MaxTd = -0.6
 gait = [[1,4],[2,3]]
 Df_desired_vector[i] = Df
 
-EventsList,x_0, P = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
+#==============================================================================
+# EventsList,x_0, P = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
+#==============================================================================
 
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
     if time_axis[i] < t1:
-        Df = 0.6
-        Tf = St*(1 - Df)
-        Tg = St*Df
-        Gr = 2
-        MaxTD2 = St*(1 - Gr*(1 - Df))
-        Td = [0.2,0.4]  # MaxTd = -0.6
-        gait = [[1,4],[2,3]]
-        Df_desired_vector[i] = Df
 #==============================================================================
-#         Df = 0.8 # To get easy to look EventsList
+#         Df = 0.6
 #         Tf = St*(1 - Df)
 #         Tg = St*Df
-#         Gr = 3
-#         MaxTD1 = St*(1 - Gr*(1 - Df))
-#         Td = [0.15,0.15,0.15] # MaxTd = 0.6
-#         gait = [[1,2],[3],[4]]
+#         Gr = 2
+#         MaxTD2 = St*(1 - Gr*(1 - Df))
+#         Td = [0.2,0.4]  # MaxTd = -0.6
+#         gait = [[1,4],[2,3]]
 #         Df_desired_vector[i] = Df
 #==============================================================================
+        Df = 0.8 # To get easy to look EventsList
+        Tf = St*(1 - Df)
+        Tg = St*Df
+        Gr = 3
+        MaxTD1 = St*(1 - Gr*(1 - Df))
+        Td = [0.15,0.15,0.15] # MaxTd = 0.6
+        gait = [[1,2],[3],[4]]
+        Df_desired_vector[i] = Df
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
 #==============================================================================
 #         Df = 0.6
@@ -147,7 +144,7 @@ for i in range(0,len(time_axis)):
     compare = min(EventsList[h]) - time_axis[i]
     if compare <= 0: 
         h += 1
-        EventsList,x_0, P = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
+        EventsList,x_0= ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
         
         
 #==============================================================================
@@ -156,37 +153,37 @@ for i in range(0,len(time_axis)):
 #==============================================================================
             
 # Creating vector of mean angular frequencies according to EventsList times
-    for j in range(0,len(EventsList)):
+    for j in range(1,len(EventsList)):
 
-        for k in range(0,numberOfLegs):
-            
-            if time_axis[i] >= EventsList[j][k] and time_axis[i] < EventsList[j+1][k + numberOfLegs]: #Stance phase, squared oscillator
-        
-                  w[i][k] = math.pi*1.18/(EventsList[j+1][k + numberOfLegs] -
-                                          EventsList[j][k])
-            elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-                
-                  w[i][k] = math.pi*1.18/(EventsList[j][k] -
-                                          EventsList[j][k + numberOfLegs])
+#==============================================================================
+#         for k in range(0,numberOfLegs):
+#             
+#             if time_axis[i] >= EventsList[j][k] and time_axis[i] < EventsList[j+1][k + numberOfLegs]: #Stance phase, squared oscillator
+#         
+#                   w[i][k] = math.pi*1.18/(EventsList[j+1][k + numberOfLegs] -
+#                                           EventsList[j][k])
+#             elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+#                 
+#                   w[i][k] = math.pi*1.18/(EventsList[j][k] -
+#                                           EventsList[j][k + numberOfLegs])
+#==============================================================================
                                      
             
                                           
-#==============================================================================
-#     
-#         for j in range(1,len(EventsList)):
-#     
-#             for k in range(0,numberOfLegs):
-#                                          
-#                 if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
-#             
-#                       w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
-#                                               EventsList[j-1][k])
-#                                               
-#                 elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-#                     
-#                       w[i][k] = math.pi*1.18/(EventsList[j][k] -
-#                                               EventsList[j][k + numberOfLegs])
-#==============================================================================
+    
+        for j in range(1,len(EventsList)):
+    
+            for k in range(0,numberOfLegs):
+                                         
+                if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
+            
+                      w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
+                                              EventsList[j-1][k])
+                                              
+                elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+                    
+                      w[i][k] = math.pi*1.18/(EventsList[j][k] -
+                                              EventsList[j][k + numberOfLegs])
 #==============================================================================
 #             if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, elliptical oscillator
 #         

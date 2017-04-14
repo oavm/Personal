@@ -165,4 +165,4 @@ def ComputeEventsHyQ(EventsList0,gait,numberOfLegs,Tf,Tg,Td,x_0):
         EventsList0, x_next = increaseEventList(EventsList0, x_0, A)    
         x_0 = x_next
     
-    return EventsList0, x_0, A
+    return EventsList0, x_0

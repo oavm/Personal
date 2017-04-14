@@ -46,9 +46,9 @@ int main ()
   timeDifference << 0.2,0.4;
   dutyFactor = 0.6;
   stepFrequency = 1/(double)3;
-  currentTime = 3.5;
+  currentTime = 4;
   numberOfLegs = 4;
-  xInitial << 3,4.4,4.4,2.4,1.8,3.2,3.2,1.8;
+  xInitial << 0,0,0,0,0,0,0,0;
 
   schedule.set_gaitParameters(numberOfLegs,dutyFactor,stepFrequency,currentTime,
                               timeDifference,gaitPattern);

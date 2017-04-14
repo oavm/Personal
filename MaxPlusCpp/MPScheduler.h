@@ -157,11 +157,11 @@ class MaxPlusSchedule
     Eigen::ArrayXXd generatenextevent(Eigen::ArrayXXd xInitial)
     {
       MaxPlusAlgebra x;
-      Eigen::ArrayXXd xNext, A, eventsLog;
-      eventsLog = xInitial.transpose();
+      Eigen::ArrayXXd xNext, A;
+      Eigen::ArrayXXd eventsLog(2,numberOfLegs*2);
+      eventsLog.row(0) = xInitial.transpose();
       A = generatea();
       xNext = x.maxplustimes(A,xInitial);
-      eventsLog.conservativeResize(2,numberOfLegs*2);
       eventsLog.row(1) = xNext.transpose();
       return eventsLog;
     }
