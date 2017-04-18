@@ -73,24 +73,24 @@ Df_desired_vector[i] = Df
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
     if time_axis[i] < t1:
-#==============================================================================
-#         Df = 0.6
-#         Tf = St*(1 - Df)
-#         Tg = St*Df
-#         Gr = 2
-#         MaxTD2 = St*(1 - Gr*(1 - Df))
-#         Td = [0.2,0.4]  # MaxTd = -0.6
-#         gait = [[1,4],[2,3]]
-#         Df_desired_vector[i] = Df
-#==============================================================================
-        Df = 0.8 # To get easy to look EventsList
+        Df = 0.6
         Tf = St*(1 - Df)
         Tg = St*Df
-        Gr = 3
-        MaxTD1 = St*(1 - Gr*(1 - Df))
-        Td = [0.15,0.15,0.15] # MaxTd = 0.6
-        gait = [[1,2],[3],[4]]
+        Gr = 2
+        MaxTD2 = St*(1 - Gr*(1 - Df))
+        Td = [0.2,0.4]  # MaxTd = -0.6
+        gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
+#==============================================================================
+#         Df = 0.8 # To get easy to look EventsList
+#         Tf = St*(1 - Df)
+#         Tg = St*Df
+#         Gr = 3
+#         MaxTD1 = St*(1 - Gr*(1 - Df))
+#         Td = [0.15,0.15,0.15] # MaxTd = 0.6
+#         gait = [[1,2],[3],[4]]
+#         Df_desired_vector[i] = Df
+#==============================================================================
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
 #==============================================================================
 #         Df = 0.6
@@ -153,7 +153,9 @@ for i in range(0,len(time_axis)):
 #==============================================================================
             
 # Creating vector of mean angular frequencies according to EventsList times
-    for j in range(1,len(EventsList)):
+#==============================================================================
+#     for j in range(1,len(EventsList)):
+#==============================================================================
 
 #==============================================================================
 #         for k in range(0,numberOfLegs):
@@ -171,44 +173,44 @@ for i in range(0,len(time_axis)):
             
                                           
     
-        for j in range(1,len(EventsList)):
-    
-            for k in range(0,numberOfLegs):
-                                         
-                if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
-            
-                      w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
-                                              EventsList[j-1][k])
-                                              
-                elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-                    
-                      w[i][k] = math.pi*1.18/(EventsList[j][k] -
-                                              EventsList[j][k + numberOfLegs])
+    for j in range(1,len(EventsList)):
+
+        for k in range(0,numberOfLegs):
+                                     
 #==============================================================================
-#             if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, elliptical oscillator
-#         
-#                   w[i][k] = math.pi/(EventsList[j][k + numberOfLegs] -
-#                                           EventsList[j-1][k])
-#                                           
-#             elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-#                 
-#                   w[i][k] = math.pi/(EventsList[j][k] -
-#                                           EventsList[j][k + numberOfLegs])
+#                 if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
+#             
+#                       w[i][k] = math.pi*1.18/(EventsList[j][k + numberOfLegs] -
+#                                               EventsList[j-1][k])
+#                                               
+#                 elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+#                     
+#                       w[i][k] = math.pi*1.18/(EventsList[j][k] -
+#                                               EventsList[j][k + numberOfLegs])
 #==============================================================================
+            if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, elliptical oscillator
+        
+                  w[i][k] = math.pi/(EventsList[j][k + numberOfLegs] -
+                                          EventsList[j-1][k])
+                                          
+            elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+                
+                  w[i][k] = math.pi/(EventsList[j][k] -
+                                          EventsList[j][k + numberOfLegs])
      
 # Oscillator function       
 def f1(t, u, w):
     import math
-    return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) -  # Squared oscillator
-            math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
-            beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
-            )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot   
 #==============================================================================
-#     return [alpha*(1 - math.pow(u[0],2)/math.pow(a,2) -  # Elliptical oscillator
-#         math.pow(u[1],2)/math.pow(b,2))*u[0] + (w*a)*math.pow(u[1],1)/(math.pow(b,1)), #x_dot
-#         beta*(1 - math.pow(u[0],2)/math.pow(a,2) - math.pow(u[1],2)/math.pow(b,2)
-#         )*u[1] - (w*b)*math.pow(u[0],1)/math.pow(a,1)] #z_dot    
+#     return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) -  # Squared oscillator
+#             math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
+#             beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
+#             )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot   
 #==============================================================================
+    return [alpha*(1 - math.pow(u[0],2)/math.pow(a,2) -  # Elliptical oscillator
+        math.pow(u[1],2)/math.pow(b,2))*u[0] + (w*a)*math.pow(u[1],1)/(math.pow(b,1)), #x_dot
+        beta*(1 - math.pow(u[0],2)/math.pow(a,2) - math.pow(u[1],2)/math.pow(b,2)
+        )*u[1] - (w*b)*math.pow(u[0],1)/math.pow(a,1)] #z_dot    
 u_matrix = np.zeros((len(time_axis), 2, numberOfLegs))
 
 
