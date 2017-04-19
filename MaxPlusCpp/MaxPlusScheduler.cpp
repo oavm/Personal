@@ -24,6 +24,17 @@ public:
         omega(i) = M_PI/(double)(eventsLog(1,i) - eventsLog(1,i + 4)); // Swing phase
       }
     }
+    // for (int i = 0; i < 4; i++)
+    // {
+    //   if (currentTime >= eventsLog(0,i) && currentTime < eventsLog(1,i + 4))
+    //   {
+    //     omega(i) = M_PI/(double)(eventsLog(1,i + 4) - eventsLog(0,i)); // Stance phase
+    //   }
+    //   else if (currentTime >= eventsLog(0,i + 4) && currentTime <= eventsLog(0,i))
+    //   {
+    //     omega(i) = M_PI/(double)(eventsLog(0,i) - eventsLog(0,i + 4)); // Swing phase
+    //   }
+    // }
     return omega;
   }
 };
@@ -46,23 +57,35 @@ int main ()
   timeDifference << 0.2,0.4;
   dutyFactor = 0.6;
   stepFrequency = 1/(double)3;
-  currentTime = 0;
+  currentTime = 5;
   numberOfLegs = 4;
-  xInitial << 2.9,4.3,4.2,2.8,1.7,3.1,3.1,1.7;
+  xInitial << 0,0,0,0,0,0,0,0;
+  // xInitial << 2.9,4.2,4.4,2.8,1.7,3.1,3.1,1.7;
+  // xInitial << 3,4.4,4.4,4,1.8,3.2,3.2,1.8;
+  // xInitial << 6,8.4,8.4,7,4.8,7.2,7.2,5.8;
 
   schedule.set_gaitParameters(numberOfLegs,dutyFactor,stepFrequency,currentTime,
                               timeDifference,gaitPattern);
 
-  eventsLog = schedule.generatenextevent(xInitial);
-
+  eventsLog = schedule.initiallist(xInitial);
   std::cout << "\nEvents log: \n" << eventsLog;
+  // eventsLog = xInitial.transpose();
 
   // omegaVector = omega.generateomega(currentTime,eventsLog);
+  // std::cout << "\nAngular frequency: \n" << omegaVector;
+  //
+  // for(int i = 0; i < 10; i++)
+  // {
+  //   xInitial = eventsLog.row(eventsLog.rows() - 1).transpose();
+  //   eventsLog = schedule.incrementlist(xInitial,eventsLog);
+  // }
+  //
+  // std::cout << "\nEvents log: \n" << eventsLog;
 
   // for(int i = 0; i < 60; i++)
   // {
   //   currentTime = i*0.1;
-  //   compare = eventsLog.row(1).maxCoeff() - currentTime;
+  //   compare = eventsLog.row(1).minCoeff() - currentTime;
   //   // std::cout << "\nLog of events: \n" <<  eventsLog.block<1,4>(1,4);
   //   if (compare <= 0)
   //   {

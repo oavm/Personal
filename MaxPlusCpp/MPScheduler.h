@@ -165,6 +165,81 @@ class MaxPlusSchedule
       eventsLog.row(1) = xNext.transpose();
       return eventsLog;
     }
+
+/* From here, there are some experimental methods */
+    Eigen::ArrayXXd incrementlist(Eigen::ArrayXXd xInitial,Eigen::ArrayXXd eventsLog)
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd xNext, A;
+      A = generatea();
+      xNext = x.maxplustimes(A,xInitial);
+      eventsLog.conservativeResize(eventsLog.rows() + 1,8);
+      eventsLog.row(eventsLog.rows() - 1) << xNext.transpose();
+      return eventsLog;
+    }
+
+    Eigen::ArrayXXd initiallist(Eigen::ArrayXXd xInitial)
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd xNext, A;
+      Eigen::ArrayXXd eventsLog(3,numberOfLegs*2);
+      eventsLog.row(0) = xInitial.transpose();
+      A = generatea();
+      for (int i = 1; i < 3; i++)
+      {
+        xNext = x.maxplustimes(A,xInitial);
+        eventsLog.row(i) = xNext.transpose();
+        xInitial = xNext;
+      }
+      return eventsLog;
+    }
+
+    Eigen::ArrayXXd updatehappeningevents(double currentTime,
+                                          Eigen::Matrix<bool, 4,1> legStance,
+                                          Eigen::Matrix<bool, 4,1> oldStanceLegs,
+                                          Eigen::ArrayXXd eventsLog)
+    {
+      for (int leg = 0; leg < 4; leg++)
+      {
+        if (legStance[leg] == true)
+        {
+          if (legStance[leg] != oldStanceLegs [leg])
+          {
+            eventsLog(1,leg+4) = currentTime;
+          }
+        }
+        else
+        {
+          if (legStance[leg] != oldStanceLegs [leg])
+          {
+            eventsLog(1,leg) = currentTime;
+          }
+        }
+      }
+      return eventsLog;
+    }
+
+    Eigen::ArrayXXd computefutureevents(Eigen::ArrayXXd eventsLog)
+    {
+      MaxPlusAlgebra x;
+      Eigen::ArrayXXd xNext, A, xInitial;
+      A = generatea();
+      xInitial = eventsLog.row(1).transpose();
+      xNext = x.maxplustimes(A,xInitial);
+      eventsLog.row(2) << xNext.transpose();
+      return eventsLog;
+    }
+
+    Eigen::ArrayXXd updatefutureevents(Eigen::ArrayXXd eventsLog,
+                                        double currentTime)
+    {
+      if (currentTime >= eventsLog.row(1).maxCoeff())
+      {
+        eventsLog.row(0) << eventsLog.row(1);
+        eventsLog.row(1) << eventsLog.row(2);
+        computefutureevents(eventsLog);
+      }
+    }
 };
 
 void MaxPlusSchedule::set_gaitParameters (int a,double b,double c,double d,

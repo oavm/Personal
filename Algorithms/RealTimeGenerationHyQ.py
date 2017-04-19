@@ -153,29 +153,27 @@ for i in range(0,len(time_axis)):
 #==============================================================================
             
 # Creating vector of mean angular frequencies according to EventsList times
-#==============================================================================
-#     for j in range(1,len(EventsList)):
-#==============================================================================
+    for j in range(0,len(EventsList)):
 
-#==============================================================================
-#         for k in range(0,numberOfLegs):
-#             
-#             if time_axis[i] >= EventsList[j][k] and time_axis[i] < EventsList[j+1][k + numberOfLegs]: #Stance phase, squared oscillator
-#         
-#                   w[i][k] = math.pi*1.18/(EventsList[j+1][k + numberOfLegs] -
-#                                           EventsList[j][k])
-#             elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-#                 
-#                   w[i][k] = math.pi*1.18/(EventsList[j][k] -
-#                                           EventsList[j][k + numberOfLegs])
-#==============================================================================
+        for k in range(0,numberOfLegs):
+            
+            if time_axis[i] >= EventsList[j][k] and time_axis[i] < EventsList[j+1][k + numberOfLegs]: #Stance phase, elliptical oscillator, consider first swing
+        
+                  w[i][k] = math.pi/(EventsList[j+1][k + numberOfLegs] -
+                                          EventsList[j][k])
+            elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+                
+                  w[i][k] = math.pi/(EventsList[j][k] -
+                                          EventsList[j][k + numberOfLegs])
                                      
             
                                           
     
-    for j in range(1,len(EventsList)):
-
-        for k in range(0,numberOfLegs):
+#==============================================================================
+#     for j in range(1,len(EventsList)):
+# 
+#         for k in range(0,numberOfLegs):
+#==============================================================================
                                      
 #==============================================================================
 #                 if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, squared oscillator
@@ -188,15 +186,17 @@ for i in range(0,len(time_axis)):
 #                       w[i][k] = math.pi*1.18/(EventsList[j][k] -
 #                                               EventsList[j][k + numberOfLegs])
 #==============================================================================
-            if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, elliptical oscillator
-        
-                  w[i][k] = math.pi/(EventsList[j][k + numberOfLegs] -
-                                          EventsList[j-1][k])
-                                          
-            elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
-                
-                  w[i][k] = math.pi/(EventsList[j][k] -
-                                          EventsList[j][k + numberOfLegs])
+#==============================================================================
+#             if time_axis[i] >= EventsList[j-1][k] and time_axis[i] < EventsList[j][k + numberOfLegs]: #Stance phase, elliptical oscillator
+#         
+#                   w[i][k] = math.pi/(EventsList[j][k + numberOfLegs] -
+#                                           EventsList[j-1][k])
+#                                           
+#             elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+#                 
+#                   w[i][k] = math.pi/(EventsList[j][k] -
+#                                           EventsList[j][k + numberOfLegs])
+#==============================================================================
      
 # Oscillator function       
 def f1(t, u, w):
