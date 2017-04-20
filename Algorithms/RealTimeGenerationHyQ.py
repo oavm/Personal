@@ -73,24 +73,24 @@ Df_desired_vector[i] = Df
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
     if time_axis[i] < t1:
-        Df = 0.6
-        Tf = St*(1 - Df)
-        Tg = St*Df
-        Gr = 2
-        MaxTD2 = St*(1 - Gr*(1 - Df))
-        Td = [0.2,0.4]  # MaxTd = -0.6
-        gait = [[1,4],[2,3]]
-        Df_desired_vector[i] = Df
 #==============================================================================
-#         Df = 0.8 # To get easy to look EventsList
+#         Df = 0.6
 #         Tf = St*(1 - Df)
 #         Tg = St*Df
-#         Gr = 3
-#         MaxTD1 = St*(1 - Gr*(1 - Df))
-#         Td = [0.15,0.15,0.15] # MaxTd = 0.6
-#         gait = [[1,2],[3],[4]]
+#         Gr = 2
+#         MaxTD2 = St*(1 - Gr*(1 - Df))
+#         Td = [0.2,0.4]  # MaxTd = -0.6
+#         gait = [[1,4],[2,3]]
 #         Df_desired_vector[i] = Df
 #==============================================================================
+        Df = 0.8 # To get easy to look EventsList
+        Tf = St*(1 - Df)
+        Tg = St*Df
+        Gr = 4
+        MaxTD1 = St*(1 - Gr*(1 - Df))
+        Td = [0.15,0.15,0.15,0.15] # MaxTd = 0.6
+        gait = [[1],[2],[3],[4]]
+        Df_desired_vector[i] = Df
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
 #==============================================================================
 #         Df = 0.6

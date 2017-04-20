@@ -233,10 +233,13 @@ class MaxPlusSchedule
     Eigen::ArrayXXd updatefutureevents(Eigen::ArrayXXd eventsLog,
                                         double currentTime)
     {
+      Eigen::ArrayXXd oldEvent,nextEvent;
       if (currentTime >= eventsLog.row(1).maxCoeff())
       {
-        eventsLog.row(0) << eventsLog.row(1);
-        eventsLog.row(1) << eventsLog.row(2);
+        oldEvent = eventsLog.row(1);
+        nextEvent = eventsLog.row(2);
+        eventsLog.row(0) << nextEvent;
+        eventsLog.row(1) << nextEvent;
         computefutureevents(eventsLog);
       }
     }
