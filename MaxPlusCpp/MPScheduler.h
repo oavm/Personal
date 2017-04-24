@@ -4,13 +4,22 @@
 class MaxPlusSchedule
 {
     double dutyFactor,stepFrequency,currentTime;
-    int numberOfLegs;
     bool stanceLegs;
     Eigen::ArrayXXd timeDifference,gaitPattern;
   public:
 
-    void set_gaitParameters (int,double,double,double,Eigen::ArrayXXd,
-                             Eigen::ArrayXXd);
+    // void set_gaitParameters (double,double,double,Eigen::ArrayXXd,
+    //                          Eigen::ArrayXXd);
+
+    void set_gaitParameters (double b,double c,double d,
+     Eigen::ArrayXXd e,Eigen::ArrayXXd f)
+     {
+       dutyFactor = b;
+       stepFrequency = c;
+       currentTime = d;
+       timeDifference = e;
+       gaitPattern = f;
+     };
 
 /* Set Tg */
   double settg()
@@ -34,7 +43,7 @@ class MaxPlusSchedule
       MaxPlusAlgebra x;
       Eigen::ArrayXXd P;
       int length,p,q;
-      P = x.maxplusnull(numberOfLegs);
+      P = x.maxplusnull(4);
       length = gaitPattern.rows();
       for (int i = 0; i < length - 1; i++)
       {
@@ -57,7 +66,7 @@ class MaxPlusSchedule
       MaxPlusAlgebra x;
       Eigen::ArrayXXd Q;
       int length,p,q;
-      Q = x.maxplusnull(numberOfLegs);
+      Q = x.maxplusnull(4);
       length = gaitPattern.rows();
       for (int l = 0; l < gaitPattern.row(0).cols(); l++)
       {
@@ -158,7 +167,7 @@ class MaxPlusSchedule
     {
       MaxPlusAlgebra x;
       Eigen::ArrayXXd xNext, A;
-      Eigen::ArrayXXd eventsLog(2,numberOfLegs*2);
+      Eigen::ArrayXXd eventsLog(2,8);
       eventsLog.row(0) = xInitial.transpose();
       A = generatea();
       xNext = x.maxplustimes(A,xInitial);
@@ -182,7 +191,7 @@ class MaxPlusSchedule
     {
       MaxPlusAlgebra x;
       Eigen::ArrayXXd xNext, A;
-      Eigen::ArrayXXd eventsLog(3,numberOfLegs*2);
+      Eigen::ArrayXXd eventsLog(3,4*2);
       eventsLog.row(0) = xInitial.transpose();
       A = generatea();
       for (int i = 1; i < 3; i++)
@@ -238,22 +247,22 @@ class MaxPlusSchedule
       {
         oldEvent = eventsLog.row(1);
         nextEvent = eventsLog.row(2);
-        eventsLog.row(0) << nextEvent;
+        eventsLog.row(0) << oldEvent;
         eventsLog.row(1) << nextEvent;
-        computefutureevents(eventsLog);
+        eventsLog = computefutureevents(eventsLog);
       }
+      return eventsLog;
     }
 };
 
-void MaxPlusSchedule::set_gaitParameters (int a,double b,double c,double d,
-  Eigen::ArrayXXd e,Eigen::ArrayXXd f)
-  {
-    numberOfLegs = a;
-    dutyFactor = b;
-    stepFrequency = c;
-    currentTime = d;
-    timeDifference = e;
-    gaitPattern = f;
-  };
+// void MaxPlusSchedule::set_gaitParameters (double b,double c,double d,
+//   Eigen::ArrayXXd e,Eigen::ArrayXXd f)
+//   {
+//     dutyFactor = b;
+//     stepFrequency = c;
+//     currentTime = d;
+//     timeDifference = e;
+//     gaitPattern = f;
+//   };
 
   #endif /*_MPScheduler_H_*/

@@ -64,20 +64,20 @@ int main ()
   timeDifference << 0.15,0.15,0.15,0.15;
   dutyFactor = 0.8;
   stepFrequency = 1/(double)3;
-  currentTime = 3;
+  currentTime = 6;
   numberOfLegs = 4;
-  // xInitial << 0,0,0,0,0,0,0,0;
-  xInitial << 3,3.75,4.5,5.25,2.4,3.15,3.9,4.65;
+  xInitial << 0,0,0,0,0,0,0,0;
+  // xInitial << 3,3.75,4.5,5.25,2.4,3.15,3.9,4.65;
 
-  schedule.set_gaitParameters(numberOfLegs,dutyFactor,stepFrequency,currentTime,
+  schedule.set_gaitParameters(dutyFactor,stepFrequency,currentTime,
                               timeDifference,gaitPattern);
 
   eventsLog = schedule.initiallist(xInitial);
   std::cout << "\nEvents log: \n" << eventsLog;
 
-  eventsLog = schedule.updatefutureevents(eventsLog,currentTime);
-  std::cout << "\nEvents log: \n" << eventsLog;
-
+  // eventsLog = schedule.updatefutureevents(eventsLog,currentTime);
+  // std::cout << "\nEvents log: \n" << eventsLog;
+  
   omegaVector = omega.generateomega(currentTime,eventsLog);
   std::cout << "\nAngular velocity: \n" << omegaVector;
 
