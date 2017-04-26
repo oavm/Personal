@@ -1,0 +1,4 @@
+/home/octaviovillarreal/dls_ws/src/dls/rcf_controller/include/rcf_controller/RCFController.h:19:23: fatal error: Eigen/Dense: No such file or directory
+ #include <Eigen/Dense>
+                       ^
+compilation terminated.

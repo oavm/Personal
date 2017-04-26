@@ -1,0 +1,4 @@
+/home/octaviovillarreal/dls_ws/src/dls/common_utilities/central_pattern_generator/src/CCPG.cpp:8:23: fatal error: Eigen/Dense: No such file or directory
+ #include <Eigen/Dense>
+                       ^
+compilation terminated.

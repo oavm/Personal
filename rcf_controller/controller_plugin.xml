@@ -1,0 +1,9 @@
+<library path="librcf_controller">
+	<class name="dls_controller/RCFController"
+			type="dls_controller::RCFController" 
+			base_class_type="dls_controller::Controller">
+		<description>
+			RCF Controller plugin
+		</description>
+	</class>
+</library>

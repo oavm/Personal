@@ -75,11 +75,11 @@ int main ()
   eventsLog = schedule.initiallist(xInitial);
   std::cout << "\nEvents log: \n" << eventsLog;
 
-  // eventsLog = schedule.updatefutureevents(eventsLog,currentTime);
-  // std::cout << "\nEvents log: \n" << eventsLog;
-  
-  omegaVector = omega.generateomega(currentTime,eventsLog);
-  std::cout << "\nAngular velocity: \n" << omegaVector;
+  eventsLog = schedule.updatefutureevents(eventsLog,currentTime);
+  std::cout << "\nEvents log: \n" << eventsLog;
+
+  // omegaVector = omega.generateomega(currentTime,eventsLog);
+  // std::cout << "\nAngular velocity: \n" << omegaVector;
 
 
 
