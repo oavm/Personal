@@ -14,9 +14,9 @@ CCPG::CCPG() {
 
    resetCPG(); //Set to default values
 
-   subSteps = 10;
-   alpha = 40.0;
-   gamma = 40.0;
+   subSteps = 50; // Original 10
+   alpha = 100.0; // Original 40
+   gamma = 100.0; // Original 40
    k_vf = 1;
    b_p = 500;
    b_f = 200;
@@ -245,7 +245,7 @@ void CCPG::computeStandardModulation() {
 
             //Coeficients that determine the angular velocity of the oscillators
             if(defaultModulation) {
-                w_s = 3.14 * Vs / Ls * (Df/(1-Df) * sigUpP * kv + sigDownP) * slowerFactor;
+                // w_s = 3.14 * Vs / Ls * (Df/(1-Df) * sigUpP * kv + sigDownP) * slowerFactor;
             }
             else {
                 w_s = omega;
@@ -314,7 +314,7 @@ void CCPG::computeWithHeightModulation() {
 
                 //Coeficients that determine the angular velocity of the oscillators
                 if(defaultModulation) {
-                    w_s = 3.14 * Vs / Ls * (Df/(1-Df) * sigUpP * kv + sigDownP) * slowerFactor;
+                    // w_s = 3.14 * Vs / Ls * (Df/(1-Df) * sigUpP * kv + sigDownP) * slowerFactor;
                 }
                 else {
                     w_s = omega;

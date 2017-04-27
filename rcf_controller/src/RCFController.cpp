@@ -570,24 +570,24 @@ bool RCFController::construct(int nJoints,
 
 	//CPG pattern
 	//trot
-    couplingMatrix((int)Pattern::Trot) << 0.0, -1.0, -1.0,  1.0,
-                                         -1.0,  0.0,  1.0, -1.0,
-                                         -1.0,  1.0,  0.0, -1.0,
-                                          1.0, -1.0, -1.0,  0.0;
-	//bound
-    couplingMatrix((int)Pattern::Bound) << 0.0,  1.0, -1.0, -1.0,
-                                           1.0,  0.0, -1.0, -1.0,
-                                          -1.0, -1.0,  0.0,  1.0,
-                                          -1.0, -1.0, -1.0,  0.0;
-	//walk
-    couplingMatrix((int)Pattern::Walk) <<  0.0, -1.0,  1.0, -1.0,
-                                          -1.0,  0.0, -1.0,  1.0,
-                                          -1.0,  1.0,  0.0, -1.0,
-                                           1.0, -1.0, -1.0,  0.0;
+  //   couplingMatrix((int)Pattern::Trot) << 0.0, -1.0, -1.0,  1.0,
+  //                                        -1.0,  0.0,  1.0, -1.0,
+  //                                        -1.0,  1.0,  0.0, -1.0,
+  //                                         1.0, -1.0, -1.0,  0.0;
+	// //bound
+  //   couplingMatrix((int)Pattern::Bound) << 0.0,  1.0, -1.0, -1.0,
+  //                                          1.0,  0.0, -1.0, -1.0,
+  //                                         -1.0, -1.0,  0.0,  1.0,
+  //                                         -1.0, -1.0, -1.0,  0.0;
+	// //walk
+  //   couplingMatrix((int)Pattern::Walk) <<  0.0, -1.0,  1.0, -1.0,
+  //                                         -1.0,  0.0, -1.0,  1.0,
+  //                                         -1.0,  1.0,  0.0, -1.0,
+  //                                          1.0, -1.0, -1.0,  0.0;
 	//pace (to be included)
 
 	//Define initial locomotion pattern
-	pattern = Pattern::Trot;
+	// pattern = Pattern::Trot; /*OCTAVIO*/
 
     //Print out the initial feet position
     cout << "Initial Feet position:" << endl;
@@ -812,17 +812,28 @@ bool RCFController::init(double time)
 	int numberOfLegs; // Set number of legs of the platform
 	double dutyFactorMax,stepFrequencyMax; //
 	Eigen::ArrayXXd xInitial(8,1);
-	Eigen::ArrayXXd gaitPatternMax(2,2);
-	Eigen::ArrayXXd timeDifference(1,4);
 
-	xInitial << 0,0,0,0,0,0,0,0; /* Initial max-plus algebra state */
+	// Eigen::ArrayXXd gaitPatternMax(4,1);
+	// Eigen::ArrayXXd timeDifference(1,4);
+	// gaitPatternMax(0,0) = 1;
+	// gaitPatternMax(1,0) = 2;
+	// gaitPatternMax(2,0) = 3;
+	// gaitPatternMax(3,0) = 4;
+	// timeDifference << 0.15,0.15,0.15,0.15;
+	// dutyFactorMax = 0.8;
+	// stepFrequencyMax = 1/(double)3;
+
+	Eigen::ArrayXXd gaitPatternMax(2,2);
+	Eigen::ArrayXXd timeDifference(1,2);
 	gaitPatternMax << 1,4,
 	               		2,3;
-	timeDifference << 0.3,0.3;
-	dutyFactorMax = 0.75;
-	stepFrequencyMax = 1/(double)2;
+	timeDifference << 0.5,0.5;
+	dutyFactorMax = 0.8;
+	stepFrequencyMax = 1/(double)3;
+	xInitial << 0,0,0,0,0,0,0,0; /* Initial max-plus algebra state */
+
+
 	numberOfLegs = 4;
-	xInitial << 0,0,0,0,0,0,0,0;
 	schedule.set_gaitParametersMax(numberOfLegs,dutyFactorMax,stepFrequencyMax,myTime,
 	                            timeDifference,gaitPatternMax);
 	eventsLog = schedule.initiallist(xInitial);
@@ -2086,6 +2097,7 @@ void RCFController::run(double time,
 
 
 	myTime += 1/(double)taskServoRate;
+	// myTime += 1;
 
 
 	//Write interesting variables to logger:
@@ -3275,7 +3287,6 @@ void RCFController:: CPG_Modulation(dog::LegDataMap<rbd::Vector3d>& primitives,
       }
     }
 
-
     for (int leg = dog::LF; leg <= dog::RH; leg++) {
 
         //Assign oscillators parameters
@@ -3299,23 +3310,23 @@ void RCFController:: CPG_Modulation(dog::LegDataMap<rbd::Vector3d>& primitives,
         V_rotation[leg] << P_local_HF[leg](rbd::Y) * Psit, -P_local_HF[leg](rbd::X) * Psit, 0;
 
         //Compute the coupling term to create the synchronism
-        couplingTerm[leg] = 0.0;
-        for (int legCoup = dog::LF; legCoup <= dog::RH; legCoup++)
-            couplingTerm[leg] += (CPG[leg].Hs / CPG[legCoup].Hs)
-                    * couplingMatrix((int)pattern)(leg, legCoup)
-                    * CPG[legCoup].Xp(rbd::Z);
+        // couplingTerm[leg] = 0.0;
+        // for (int legCoup = dog::LF; legCoup <= dog::RH; legCoup++)
+        //     couplingTerm[leg] += (CPG[leg].Hs / CPG[legCoup].Hs)
+        //             * couplingMatrix((int)pattern)(leg, legCoup)
+        //             * CPG[legCoup].Xp(rbd::Z);
 
         //Assign locomotion parameters
         CPG[leg].setStepHeight(stepHeight);
         CPG[leg].setStepLength(stepLength);
-        CPG[leg].setDutyFactor(dutyF);
+        // CPG[leg].setDutyFactor(dutyF); /*OCTAVIO*/
         //CPG[leg].setAbsoluteVelocity( sqrt(Vf_x * Vf_x + Vf_y * Vf_y) );
         CPG[leg].setAbsoluteVelocity(forwVel);
         CPG[leg].setVelocity(V_translation[leg] - V_rotation[leg]);
         CPG[leg].setRotationMatrix(roll_p[leg], pitch_p[leg], yaw_p[leg]);
         //CPG[leg].deltaOrigin << DeltaX(leg), DeltaY(leg), 0; //relative displacements from the push recovery block
         CPG[leg].deltaOrigin << 0.0, 0.0, 0.0; //Done outside this function
-        CPG[leg].couplingTerm = Kcoup * couplingTerm[leg];
+        // CPG[leg].couplingTerm = Kcoup * couplingTerm[leg]; /* OCTAVIO */
 
 				// THIS IS DONE BY OCTAVIO, ADDING MAXPLUS
 				CPG[leg].set_omega(omegaVector[leg]);
@@ -3999,6 +4010,10 @@ void RCFController::walkStopping() {
 	stepLengthNew = forwVelNew * dutyF_New / stepFrequencyNew;
 	PsitNew = 0.0;
 
+	/*ADDED BY OCTAVIO*/
+	// myTime = 0.0;
+	// eventsLog = schedule.initiallist(xInitial);
+
 	oooFlag = true;
 	printf("Walk Stopped\n");
 }
@@ -4144,7 +4159,9 @@ void RCFController::walkStarting() {
 
 
 		/* ADDED BY OCTAVIO */
-		myTime = 0;
+		// myTime = 0.0;
+		// eventsLog = schedule.initiallist(xInitial);
+		// bool walkingFlag = true;
 
 		//Kp_trunk_roll_new = 2000;
 		//Kd_trunk_roll_new = 170;

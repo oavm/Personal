@@ -378,6 +378,7 @@ private:
 
 	MaxPlusSchedule schedule;
 	Eigen::ArrayXXd eventsLog;
+	Eigen::ArrayXXd xInitial;
 	Eigen::Matrix<double, 1, 4> omegaVector;
 // ===================   end of MaxPlus   ===================================
 

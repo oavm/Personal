@@ -54,14 +54,12 @@ int main ()
   double dutyFactor,stepFrequency,currentTime,compare; //
   Eigen::ArrayXXd omegaVector;
   Eigen::ArrayXXd xInitial(8,1),eventsLog,xNext;
-  Eigen::ArrayXXd gaitPattern(4,1);
-  Eigen::ArrayXXd timeDifference(1,4);
+  Eigen::ArrayXXd gaitPattern(2,2);
+  Eigen::ArrayXXd timeDifference(1,2);
 
-  gaitPattern << 1,
-                 2,
-                 3,
-                 4;
-  timeDifference << 0.15,0.15,0.15,0.15;
+  gaitPattern << 3,4,
+                 1,2;
+  timeDifference << 0.15,0.15;
   dutyFactor = 0.8;
   stepFrequency = 1/(double)3;
   currentTime = 6;
@@ -78,6 +76,8 @@ int main ()
   eventsLog = schedule.updatefutureevents(eventsLog,currentTime);
   std::cout << "\nEvents log: \n" << eventsLog;
 
+  eventsLog = schedule.initiallist(xInitial);
+  std::cout << "\nEvents log: \n" << eventsLog;
   // omegaVector = omega.generateomega(currentTime,eventsLog);
   // std::cout << "\nAngular velocity: \n" << omegaVector;
 
