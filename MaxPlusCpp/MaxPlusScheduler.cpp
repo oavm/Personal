@@ -25,7 +25,7 @@ public:
       }
       else
       {
-        omega(i) = M_PI/(double)(eventsLog(2,i + 4) - eventsLog(1,i));
+        // omega(i) = M_PI/(double)(eventsLog(2,i + 4) - eventsLog(1,i));
       }
     }
     // for (int i = 0; i < 4; i++)
@@ -57,12 +57,12 @@ int main ()
   Eigen::ArrayXXd gaitPattern(2,2);
   Eigen::ArrayXXd timeDifference(1,2);
 
-  gaitPattern << 3,4,
-                 1,2;
+  gaitPattern << 1,4,
+                 2,3;
   timeDifference << 0.15,0.15;
   dutyFactor = 0.8;
   stepFrequency = 1/(double)3;
-  currentTime = 6;
+  currentTime = 6.1;
   numberOfLegs = 4;
   xInitial << 0,0,0,0,0,0,0,0;
   // xInitial << 3,3.75,4.5,5.25,2.4,3.15,3.9,4.65;
@@ -78,8 +78,8 @@ int main ()
 
   eventsLog = schedule.initiallist(xInitial);
   std::cout << "\nEvents log: \n" << eventsLog;
-  // omegaVector = omega.generateomega(currentTime,eventsLog);
-  // std::cout << "\nAngular velocity: \n" << omegaVector;
+  omegaVector = omega.generateomega(currentTime,eventsLog);
+  std::cout << "\nAngular velocity: \n" << omegaVector;
 
 
 
