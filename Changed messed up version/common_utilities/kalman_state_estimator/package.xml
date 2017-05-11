@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>kalman_state_estimator</name>
+  <version>0.0.1</version>
+  <description>State estimation using a Kalman Filter approach </description>
+
+  <maintainer email="hyq@advr.iit.it">HyQ Group</maintainer>
+
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+  <!-- <url type="website">http://wiki.ros.org/hyq2max_controllers</url> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+
+
+  <run_depend>roscpp</run_depend>
+
+
+</package>

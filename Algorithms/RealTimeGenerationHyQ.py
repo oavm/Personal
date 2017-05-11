@@ -46,7 +46,7 @@ b = 0.4
 # b = 0.3 
 #==============================================================================
 
-St = 1 # Reasonable period
+St = 1.7 # Reasonable period
 
 #==============================================================================
 # St = 2.4 # To get easy to look EventsList
@@ -73,60 +73,64 @@ Df_desired_vector[i] = Df
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
     if time_axis[i] < t1:
-        Df = 0.3
+        St = 1/0.5
+        Df = 0.8
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 2
         MaxTD1 = St*(1 - Gr*(1 - Df))
-        Td = [0,0]  # MaxTd = -0.6
+        Td = [MaxTD1/2,MaxTD1/2]  # MaxTd = -0.6
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
 #==============================================================================
-#         Df = 0.4 # To get easy to look EventsList
+#         Df = 0.6 # To get easy to look EventsList
 #         Tf = St*(1 - Df)
 #         Tg = St*Df
 #         Gr = 4
 #         MaxTD1 = St*(1 - Gr*(1 - Df))
-#         Td = [0.15,0.15,0.15,0.15] # MaxTd = 0.6
+#         Td = [0.225,0.225,0.225,0.225] # MaxTd = 0.6
 #         gait = [[1],[2],[3],[4]]
 #         Df_desired_vector[i] = Df
 #==============================================================================
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
-        Df = 0.6
-        Tf = St*(1 - Df)
-        Tg = St*Df
-        Gr = 2
-        MaxTD2 = St*(1 - Gr*(1 - Df))
-        Td = [0.2,0.4]  # MaxTd = -0.6
-        gait = [[1,4],[2,3]]
-        Df_desired_vector[i] = Df
 #==============================================================================
-#         Df = 0.8 # To change drastically the gait in animation
-#         St = 4
+#         St = 0.5
+#         Df = 0.5
 #         Tf = St*(1 - Df)
 #         Tg = St*Df
-#         Gr = 4
+#         Gr = 2
 #         MaxTD2 = St*(1 - Gr*(1 - Df))
-#         Td = [0.2,0.2,0.2,0.2] # MaxTd = 0.2
-#         gait = [[1],[2],[3],[4]] 
+#         Td = [MaxTD2/2,MaxTD2/2]  # MaxTd = -0.6
+#         gait = [[1,4],[2,3]]
 #         Df_desired_vector[i] = Df
 #==============================================================================
-    elif (time_axis[i] >= t2) and (time_axis[i] < t3):
-        Df = 0.6
-        Tf = St*(1 - Df)
-        Tg = St*Df
-        Gr = 2
-        MaxTD3 = St*(1 - Gr*(1 - Df))
-        Td = [0.2,0.4]  # MaxTd = -0.6
-        gait = [[1,4],[2,3]]
-        Df_desired_vector[i] = Df
-    else:
-        Df = 0.4
+        St = 1/1
+        Df = 0.5
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 4
         MaxTD4 = St*(1 - Gr*(1 - Df))
-        Td = [-1.4,-0.7,-1.4,-0.7] # MaxTd = -2.2
+        Td = [MaxTD4/4,MaxTD4/4,MaxTD4/4,MaxTD4/4] # MaxTd = -2.2
+        gait = [[1],[2],[3],[4]]
+        Df_desired_vector[i] = Df
+    elif (time_axis[i] >= t2) and (time_axis[i] < t3):
+        St = 1/0.5
+        Df = 0.8
+        Tf = St*(1 - Df)
+        Tg = St*Df
+        Gr = 2
+        MaxTD3 = St*(1 - Gr*(1 - Df))
+        Td = [MaxTD3/2,MaxTD3/2]  # MaxTd = -0.6
+        gait = [[1,4],[2,3]]
+        Df_desired_vector[i] = Df
+    else:
+        St = 1
+        Df = 0.8
+        Tf = St*(1 - Df)
+        Tg = St*Df
+        Gr = 4
+        MaxTD4 = St*(1 - Gr*(1 - Df))
+        Td = [MaxTD4/4,MaxTD4/4,MaxTD4/4,MaxTD4/4] # MaxTd = -2.2
         gait = [[1],[2],[3],[4]]
         Df_desired_vector[i] = Df
 #==============================================================================

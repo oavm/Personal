@@ -1,0 +1,15 @@
+<package>
+   <export>
+    <metapackage/>
+   </export>
+  <name>common_utilities</name> 
+  <description>
+  This is the metapackage that contains all the packages specific to the common_utilities like State Estimation, CPG, etc...
+  </description>
+  <version>0.0.1</version>
+  <maintainer email="hyq@advr.iit.it">HyQ Group</maintainer>
+  <license>TODO</license>
+ 
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

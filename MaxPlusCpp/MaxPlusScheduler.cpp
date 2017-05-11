@@ -51,24 +51,43 @@ int main ()
 
   /* Gait parameters */
   int numberOfLegs,h; // Set number of legs of the platform
-  double dutyFactor,stepFrequency,currentTime,compare; //
+  double dutyFactor,stepFrequency,currentTime,compare,timeLeg; //
   Eigen::ArrayXXd omegaVector;
   Eigen::ArrayXXd xInitial(8,1),eventsLog,xNext;
-  Eigen::ArrayXXd gaitPattern(2,2);
-  Eigen::ArrayXXd timeDifference(1,2);
 
-  gaitPattern << 1,4,
-                 2,3;
-  timeDifference << 0.15,0.15;
-  dutyFactor = 0.8;
-  stepFrequency = 1/(double)3;
-  currentTime = 6.1;
+  // Eigen::ArrayXXd gaitPattern(2,2);
+  // Eigen::ArrayXXd timeDifference(1,2);
+  // gaitPattern << 1,4,
+  //                2,3;
+  // dutyFactor = 0.25;
+  // stepFrequency = 1.7;
+  // timeLeg = (1/stepFrequency)*(1 - (2*(1 - dutyFactor)))*0.5;
+	// timeDifference << timeLeg,timeLeg;
+  // currentTime = 3;
+  // numberOfLegs = 4;
+
+  Eigen::ArrayXXd gaitPattern(4,1);
+  Eigen::ArrayXXd timeDifference(1,4);
+  gaitPattern << 1,
+                 4,
+                 2,
+                 3;
+  dutyFactor = 0.25;
+  stepFrequency = 1.7;
+  timeLeg = (1/stepFrequency)*(1 - (2*(1 - dutyFactor)))*0.25;
+  timeDifference << timeLeg,timeLeg,timeLeg,timeLeg;
+  currentTime = 3;
   numberOfLegs = 4;
+
+
   xInitial << 0,0,0,0,0,0,0,0;
+  std::cout << "\nxInitial: \n" << xInitial;
   // xInitial << 3,3.75,4.5,5.25,2.4,3.15,3.9,4.65;
 
   schedule.set_gaitParameters(dutyFactor,stepFrequency,currentTime,
                               timeDifference,gaitPattern);
+
+  std::cout << "\nTime leg: \n" << timeLeg;
 
   eventsLog = schedule.initiallist(xInitial);
   std::cout << "\nEvents log: \n" << eventsLog;
@@ -78,8 +97,9 @@ int main ()
 
   eventsLog = schedule.initiallist(xInitial);
   std::cout << "\nEvents log: \n" << eventsLog;
-  omegaVector = omega.generateomega(currentTime,eventsLog);
-  std::cout << "\nAngular velocity: \n" << omegaVector;
+
+  // omegaVector = omega.generateomega(currentTime,eventsLog);
+  // std::cout << "\nAngular velocity: \n" << omegaVector;
 
 
 
