@@ -6,8 +6,6 @@ Created on Tue Jan 17 16:54:42 2017
 """
 from scipy.integrate import ode
 from ComputeEventsHyQ import ComputeEventsHyQ
-from ComputeEventsHyQ2 import ComputeEventsHyQ2
-from ReplaceEventsHyQ import ReplaceEventsHyQ
 import matplotlib.pyplot as plt
 import math
 import numpy as np
@@ -24,10 +22,10 @@ x_0 =  [[0] for i in range(0,numberOfLegs*2)] # Define initial state for max-plu
 # x_0[0] = [10]
 #==============================================================================
 Ts = 0.01 # Sampling time for the simulation
+ts = 0.00005 # Sampling time for integration
 #==============================================================================
-# ts = 0.000005 # Sampling time for integration
+# ts = 0.0001  # Sampling time for integration
 #==============================================================================
-ts = 0.0005  # Sampling time for integration
 EventsList = [[0 for i in range(0,numberOfLegs*2)]] # List of lift-off and touchdown events for each of the legs
 total_time = 30# Total simulation time
 time_axis = np.arange(0,total_time,Ts) # Time vector
@@ -42,38 +40,40 @@ w = [[0 for i in range(numberOfLegs)] for j in range(len(time_axis))] # Angular 
 Df_desired_vector = [0 for i in range (0,len(time_axis))]
 bp = 100
 
+alpha = 40
+beta = 40
 #==============================================================================
-# alpha = 0.0005
-# beta = 0.0005
+# alpha = 1000
+# beta = 1000
 #==============================================================================
-alpha = 1000
-beta = 1000
-a = 0.6 #Squared oscillator
-b = 0.4 
+#==============================================================================
+# a = 0.6 #Squared oscillator
+# b = 0.4 
+#==============================================================================
 
-St = 3 # Reasonable period
+St = 2 # Reasonable period
 
-Df = 0.8
+Df = 0.65
 Tf = St*(1 - Df)
 Tg = St*Df
-Gr = 4
-Td = [0.15,0.15,0.15,0.15]
-gait = [[1],[3],[2],[4]] 
-#==============================================================================
-# Gr = 2
-# Td = [0.6,1.2] # MaxTd = 0.6
-# gait = [[2,3],[1,4]]
-#==============================================================================
+Gr = 2
 MaxTD1 = St*(1 - Gr*(1 - Df))
-
+Td = [MaxTD1/2,MaxTD1/2]
+gait = [[1,4],[2,3]]
 
 # Oscillator function       
-def f1(t, u, w):
+def f1(t, u, w, a, b):
     import math
     return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) -  # Squared oscillator
             math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
             beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
             )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot   
+#==============================================================================
+#     return [alpha*(1 - math.pow(u[0],2)/math.pow(a,2) -  # Elliptical oscillator
+#         math.pow(u[1],2)/math.pow(b,2))*u[0] + (w*a)*math.pow(u[1],1)/(math.pow(b,1)), #x_dot
+#         beta*(1 - math.pow(u[0],2)/math.pow(a,2) - math.pow(u[1],2)/math.pow(b,2)
+#         )*u[1] - (w*b)*math.pow(u[0],1)/math.pow(a,1)] #z_dot    
+#==============================================================================
   
 u_matrix = np.zeros((len(time_axis), 2, numberOfLegs))
 
@@ -101,7 +101,6 @@ old_sign_u2 = np.sign(u0_2[1])
 old_sign_u3 = np.sign(u0_3[1])
 old_sign_u4 = np.sign(u0_4[1])
 
-w_index = [1,1,1,1]
 
 for i in range(0,1):
     EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
@@ -120,137 +119,81 @@ for i in range(0,len(time_axis) - 1):
 #         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
 #==============================================================================
 
-
     compare = min(x_0)[0] - time_axis[i]
     if compare <= 0: 
         h += 1
         EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)           
             
+
 # Creating vector of mean angular frequencies according to EventsList times
-    for k in range(0,numberOfLegs):                                     
-        if time_axis[i] >= EventsList[w_index[k]-1][k] and time_axis[i] < EventsList[w_index[k]][k + numberOfLegs]: #Stance phase, squared oscillator        
-              w[i][k] = math.pi*1.18/(EventsList[w_index[k]][k + numberOfLegs] -
-                                      EventsList[w_index[k]-1][k])                                          
-        elif time_axis[i] >= EventsList[w_index[k]][k + numberOfLegs] and time_axis[i] <= EventsList[w_index[k]][k]: #Swing phase                
-              w[i][k] = math.pi*1.18/(EventsList[w_index[k]][k] -
-                                      EventsList[w_index[k]][k + numberOfLegs])
+    for j in range(0,len(EventsList)):
+        for k in range(0,numberOfLegs):
+            if time_axis[i] >= EventsList[j][k] and time_axis[i] < EventsList[j+1][k + numberOfLegs]: #Stance phase, elliptical oscillator, consider first swing
+                  w[i][k] = math.pi*1.18/(EventsList[j+1][k + numberOfLegs] -
+                                          EventsList[j][k])
+            elif time_axis[i] >= EventsList[j][k + numberOfLegs] and time_axis[i] <= EventsList[j][k]: #Swing phase
+                  w[i][k] = math.pi*1.18/(EventsList[j][k] -
+                                          EventsList[j][k + numberOfLegs])
 
 
     # First oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
-                              with_jacobian=False)             
-    r.set_initial_value(u0_1, time_axis[i]).set_f_params(w[i][0])
+                              with_jacobian=False)          
+    a = 0.6
+    b = 0.4
+    r.set_initial_value(u0_1, time_axis[i]).set_f_params(w[i][0],a,b)
     u = [];  t = []; y =[];
-    while r.successful() and r.t < time_axis[i+1]:
+    while r.successful() and r.t <= time_axis[i+1]:
         r.integrate(r.t + ts)
         u.append(r.y);  t.append(r.t)
-        #r.set_f_params(w[len(t) - 1][0])
+        #r.set_f_params(w[len(t) - 1][0],a,b)
     u1 = np.vstack((u1,u[len(u) - 1]))
     u0_1 = u1[len(u1) - 1]
-    sign_u1 = np.sign(u0_1[1])
-    SignCheck_u1 = old_sign_u1 - sign_u1
-    if old_sign_u1 == 1:
-        if SignCheck_u1 != 0:
-            print('Leg 1 Touchdown',time_axis[i])
-            x_0[0] = [time_axis[i]]
-            EventsList[w_index[0]][0] = time_axis[i]
-            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
-            w_index[0] += 1
-    elif old_sign_u1 == -1:
-        if SignCheck_u1 != 0:
-            print('Leg 1 lift-off',time_axis[i])
-            x_0[4] = [time_axis[i]]
-            EventsList[w_index[0]][4] = time_axis[i]
-    old_sign_u1 = sign_u1    
-
     
     # Second oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
-                              with_jacobian=False)             
-    r.set_initial_value(u0_2, time_axis[i]).set_f_params(w[i][1])
+                              with_jacobian=False)
+    a2 = 0.6
+    b2 = 0.4
+    if time_axis[i] > 5 and time_axis[i] < 15:
+        a2 = 0.4
+        b2 = 0.25
+    r.set_initial_value(u0_2, time_axis[i]).set_f_params(w[i][1],a2,b2)
     u = [];  t = []; y =[];
-    while r.successful() and r.t < time_axis[i+1]:
+    while r.successful() and r.t <= time_axis[i+1]:
         r.integrate(r.t + ts)
         u.append(r.y);  t.append(r.t)
-        #r.set_f_params(w[len(t) - 1][1])
+        #r.set_f_params(w[len(t) - 1][1],a,b)
     u2 = np.vstack((u2,u[len(u) - 1]))
-    u0_2 = u2[len(u2) - 1]
-    sign_u2 = np.sign(u0_2[1])
-    SignCheck_u2 = old_sign_u2 - sign_u2
-    if old_sign_u2 == 1:
-        if SignCheck_u2 != 0:
-            print('Leg 2 touchdown',time_axis[i])
-            EventsList[w_index[1]][1] = time_axis[i]
-            x_0[1] = [time_axis[i]]
-            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
-            w_index[1] += 1
-    elif old_sign_u2 == -1:
-        if SignCheck_u2 != 0:
-            print('Leg 2 lift-off',time_axis[i])
-            x_0[5] = [time_axis[i]]
-            EventsList[w_index[1]][5] = time_axis[i]
-    old_sign_u2 = sign_u2
-    
+    u0_2 = u2[len(u2) - 1]  
     
     # Third oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
                               with_jacobian=False)             
-    r.set_initial_value(u0_3, time_axis[i]).set_f_params(w[i][2])
+    r.set_initial_value(u0_3, time_axis[i]).set_f_params(w[i][2],a,b)
     u = [];  t = []; y =[];
-    while r.successful() and r.t < time_axis[i+1]:
+    while r.successful() and r.t <= time_axis[i+1]:
         r.integrate(r.t + ts)
         u.append(r.y);  t.append(r.t)
-        #r.set_f_params(w[len(t) - 1][2])
+        #r.set_f_params(w[len(t) - 1][2],a,b)
     u3 = np.vstack((u3,u[len(u) - 1]))
     u0_3 = u3[len(u3) - 1]
-    sign_u3 = np.sign(u0_3[1])
-    SignCheck_u3 = old_sign_u3 - sign_u3
-    if old_sign_u3 == 1:
-        if SignCheck_u3 != 0:
-            print('Leg 3 Touchdown',time_axis[i])
-            x_0[2] = [time_axis[i]]
-            EventsList[w_index[2]][2] = time_axis[i]
-            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
-            w_index[2] += 1
-    elif old_sign_u3 == -1:
-        if SignCheck_u3 != 0:
-            print('Leg 3 lift-off',time_axis[i])
-            x_0[6] = [time_axis[i]]
-            EventsList[w_index[2]][6] = time_axis[i]
-    old_sign_u3 = sign_u3
-    
     
     # Fourth oscillator solution
     r = ode(f1).set_integrator('vode', method='adams',
                               order=10, atol=1e-6,
                               with_jacobian=False)             
-    r.set_initial_value(u0_4, time_axis[i]).set_f_params(w[i][3])
+    r.set_initial_value(u0_4, time_axis[i]).set_f_params(w[i][3],a,b)
     u = [];  t = []; y =[];
-    while r.successful() and r.t < time_axis[i+1]:
+    while r.successful() and r.t <= time_axis[i+1]:
         r.integrate(r.t + ts)
         u.append(r.y);  t.append(r.t)
-        #r.set_f_params(w[len(t) - 1][3])
+        #r.set_f_params(w[len(t) - 1][3],a,b)
     u4 = np.vstack((u4,u[len(u) - 1]))
     u0_4 = u4[len(u4) - 1]
-    sign_u4 = np.sign(u0_4[1])
-    SignCheck_u4 = old_sign_u4 - sign_u4
-    if old_sign_u4 == 1:
-        if SignCheck_u4 != 0:
-            print('Leg 4 Touchdown',time_axis[i])
-            x_0[3] = [time_axis[i]]
-            EventsList[w_index[3]][3] = time_axis[i]
-            EventsList, x_next = ReplaceEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0)
-            w_index[3] += 1
-    elif old_sign_u4 == -1:
-        if SignCheck_u4 != 0:
-            print('Leg 4 lift-off',time_axis[i])
-            x_0[7] = [time_axis[i]]
-            EventsList[w_index[3]][7] = time_axis[i]
-    old_sign_u4 = sign_u4
-    
     
 #%%           
 z_matrix = [[row[1] for row in u1],[row[1] for row in u2],[row[1] for row in u3],[row[1] for row in u4]]
@@ -387,14 +330,6 @@ axarr[0].plot(time_axis,[row[1] for row in u4],linewidth=1,label = "RH")
 axarr[0].axhline(y=0,color='0')
 axarr[0].set_ylabel('$z[-]$',fontsize = 30)
 axarr[0].legend(loc='lower right', shadow=True,fontsize = 15)
-#==============================================================================
-# for i in range(0, len(EventsList)):
-#     axarr[0].axvline(x = EventsList[i][5], linestyle = "dashed",linewidth = 2)
-#     axarr[0].axvline(x = EventsList[i][1], linestyle = "dotted")
-# axarr[0].axvline(x = EventsList[1][5], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
-# axarr[0].axvline(x = EventsList[1][1], linestyle = "dotted", label = "Touchdown times")
-# axarr[0].legend(loc='upper right', shadow=False,fontsize=20)
-#==============================================================================
 
 axarr[1].set_title('Angular frequency with respect to time',fontsize=30)
 axarr[1].tick_params(labelsize=25)
@@ -406,14 +341,6 @@ axarr[1].axhline(y=0,color='0')
 axarr[1].set_ylabel('$\omega [ rad/s ]$',fontsize = 30)
 axarr[1].set_xlabel('Time [s]',fontsize = 30)
 axarr[1].legend(loc='lower right', shadow=True,fontsize = 15)
-#==============================================================================
-# for i in range(0, len(EventsList)):
-#     axarr[1].axvline(x = EventsList[i][5], linestyle = "dashed",linewidth = 2)
-#     axarr[1].axvline(x = EventsList[i][1], linestyle = "dotted")
-# axarr[1].axvline(x = EventsList[1][5], linestyle = "dashed",linewidth = 2,label = "Lift-off times")
-# axarr[1].axvline(x = EventsList[1][1], linestyle = "dotted", label = "Touchdown times")
-# axarr[1].legend(loc='upper right', shadow=False,fontsize=20)
-#==============================================================================
     
     
 # First set up the figure, the axis, and the plot element we want to animate
@@ -455,22 +382,27 @@ x0,y0,x1,y1,x2,y2,x3,y3 = [],[],[],[],[],[],[],[]
 
 def animate(i):
     time_text.set_text(time_template % (i*Ts))
-    x0.append(u1[i][0])
+    
+    x0.append(1.5 + u1[i][0])
     y0.append(u1[i][1])
     dotx0 = [1.5 + u1[i-1][0],1.5 + u1[i][0]]
     doty0 = [u1[i-1][1], u1[i][1]]
-    x1.append(u2[i][0])
+    
+    x1.append(1.5 + u2[i][0])
     y1.append(u2[i][1])
     dotx1 = [1.5 + u2[i-1][0],1.5 + u2[i][0]]
     doty1 = [u2[i-1][1], u2[i][1]]
-    x2.append(1.5 + u3[i][0])
+    
+    x2.append(u3[i][0])
     y2.append(u3[i][1])
     dotx2 = [u3[i-1][0],u3[i][0]]
     doty2 = [u3[i-1][1], u3[i][1]]
-    x3.append(1.5 + u4[i][0])
+    
+    x3.append(u4[i][0])
     y3.append(u4[i][1])
     dotx3 = [u4[i-1][0],u4[i][0]]
     doty3 = [u4[i-1][1], u4[i][1]]
+    
     line.set_data(x0, y0)
     line1.set_data(dotx0,doty0)
     line2.set_data(x1, y1)

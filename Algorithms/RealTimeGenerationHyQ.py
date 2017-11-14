@@ -46,16 +46,16 @@ b = 0.4
 # b = 0.3 
 #==============================================================================
 
-St = 1.7 # Reasonable period
+St = 1/1.7 # Reasonable period
 
 #==============================================================================
 # St = 2.4 # To get easy to look EventsList
 #==============================================================================
 
 # Times where the gait parameters are changed
-t1 = 25
-t2 = 50
-t3 = 75
+t1 = 10 
+t2 = 20
+t3 = 30
 
 Df = 0.6
 Tf = St*(1 - Df)
@@ -73,13 +73,17 @@ Df_desired_vector[i] = Df
 # Setting of the gait parameter variation and gait changes throughout time
 for i in range(0,len(time_axis)):    
     if time_axis[i] < t1:
-        St = 1/0.5
-        Df = 0.8
+    
+        St = 1/1.7
+        Df = 0.5
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 2
         MaxTD1 = St*(1 - Gr*(1 - Df))
         Td = [MaxTD1/2,MaxTD1/2]  # MaxTd = -0.6
+#==============================================================================
+#         Td = [1,1]  # MaxTd = -0.6
+#==============================================================================
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
 #==============================================================================
@@ -93,62 +97,80 @@ for i in range(0,len(time_axis)):
 #         Df_desired_vector[i] = Df
 #==============================================================================
     elif (time_axis[i] >= t1) and (time_axis[i] < t2):
+        St = 1/1.05
 #==============================================================================
-#         St = 0.5
-#         Df = 0.5
-#         Tf = St*(1 - Df)
-#         Tg = St*Df
-#         Gr = 2
-#         MaxTD2 = St*(1 - Gr*(1 - Df))
-#         Td = [MaxTD2/2,MaxTD2/2]  # MaxTd = -0.6
-#         gait = [[1,4],[2,3]]
-#         Df_desired_vector[i] = Df
+#         Df += 0.0001
 #==============================================================================
-        St = 1/1
-        Df = 0.5
-        Tf = St*(1 - Df)
-        Tg = St*Df
-        Gr = 4
-        MaxTD4 = St*(1 - Gr*(1 - Df))
-        Td = [MaxTD4/4,MaxTD4/4,MaxTD4/4,MaxTD4/4] # MaxTd = -2.2
-        gait = [[1],[2],[3],[4]]
-        Df_desired_vector[i] = Df
-    elif (time_axis[i] >= t2) and (time_axis[i] < t3):
-        St = 1/0.5
-        Df = 0.8
         Tf = St*(1 - Df)
         Tg = St*Df
         Gr = 2
-        MaxTD3 = St*(1 - Gr*(1 - Df))
-        Td = [MaxTD3/2,MaxTD3/2]  # MaxTd = -0.6
+        MaxTD1 = St*(1 - Gr*(1 - Df))
+        Td = [MaxTD1/2,MaxTD1/2]  # MaxTd = -0.6
+#==============================================================================
+#         Td = [1,1]  # MaxTd = -0.6
+#==============================================================================
+        gait = [[1,4],[2,3]]
+        Df_desired_vector[i] = Df
+#==============================================================================
+#         St = 1/1
+#         Df = 0.5
+#         Tf = St*(1 - Df)
+#         Tg = St*Df
+#         Gr = 4
+#         MaxTD4 = St*(1 - Gr*(1 - Df))
+#         Td = [MaxTD4/4,MaxTD4/4,MaxTD4/4,MaxTD4/4] # MaxTd = -2.2
+#         gait = [[1],[2],[3],[4]]
+#         Df_desired_vector[i] = Df
+#==============================================================================
+    elif (time_axis[i] >= t2) and (time_axis[i] < t3):
+        St += 0.00005
+#==============================================================================
+#         Df = 0.65
+#==============================================================================
+        Tf = St*(1 - Df)
+        Tg = St*Df
+        Gr = 2
+        MaxTD1 = St*(1 - Gr*(1 - Df))
+        Td = [MaxTD1/2,MaxTD1/2]  # MaxTd = -0.6
+#==============================================================================
+#         Td = [0.5,0.5]  # MaxTd = -0.6
+#==============================================================================
+        gait = [[1,4],[2,3]]
+        Df_desired_vector[i] = Df
+    elif (time_axis[i] >= t3) and (time_axis[i] < 40):
+#==============================================================================
+#         St = 1
+#         Df = 0.8
+#         Tf = St*(1 - Df)
+#         Tg = St*Df
+#         Gr = 4
+#         MaxTD4 = St*(1 - Gr*(1 - Df))
+#         Td = [MaxTD4/4,MaxTD4/4,MaxTD4/4,MaxTD4/4] # MaxTd = -2.2
+#         gait = [[1],[2],[3],[4]]
+#         Df_desired_vector[i] = Df
+#==============================================================================
+        St -= 0.00005
+#==============================================================================
+#         Df = 0.65
+#==============================================================================
+        Tf = St*(1 - Df)
+        Tg = St*Df
+        Gr = 2
+        MaxTD1 = St*(1 - Gr*(1 - Df))
+        Td = [MaxTD1/2,MaxTD1/2]  # MaxTd = -0.6
+#==============================================================================
+#         Td = [0.088,0.088]  # MaxTd = -0.6       
+#==============================================================================
         gait = [[1,4],[2,3]]
         Df_desired_vector[i] = Df
     else:
-        St = 1
-        Df = 0.8
-        Tf = St*(1 - Df)
-        Tg = St*Df
-        Gr = 4
-        MaxTD4 = St*(1 - Gr*(1 - Df))
-        Td = [MaxTD4/4,MaxTD4/4,MaxTD4/4,MaxTD4/4] # MaxTd = -2.2
-        gait = [[1],[2],[3],[4]]
         Df_desired_vector[i] = Df
-#==============================================================================
-#         Df = 0.6
-#         Tf = St*(1 - Df)
-#         Tg = St*Df
-#         Gr = 2
-#         MaxTD2 = St*(1 - Gr*(1 - Df))
-#         Td = [0.2,0.4]  # MaxTd = -0.6
-#         gait = [[1,4],[2,3]]
-#         Df_desired_vector[i] = Df
-#==============================================================================
         
 # Creating list of events according to time instant     
     compare = min(EventsList[h]) - time_axis[i]
     if compare <= 0: 
         h += 1
-        EventsList,x_0= ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
+        EventsList,x_0 = ComputeEventsHyQ(EventsList,gait,numberOfLegs,Tf,Tg,Td,x_0) 
         
         
 #==============================================================================
@@ -160,7 +182,6 @@ for i in range(0,len(time_axis)):
     for j in range(0,len(EventsList)):
 
         for k in range(0,numberOfLegs):
-            
             if time_axis[i] >= EventsList[j][k] and time_axis[i] < EventsList[j+1][k + numberOfLegs]: #Stance phase, elliptical oscillator, consider first swing
         
                   w[i][k] = math.pi/(EventsList[j+1][k + numberOfLegs] -
@@ -205,16 +226,16 @@ for i in range(0,len(time_axis)):
 # Oscillator function       
 def f1(t, u, w):
     import math
+    return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) -  # Squared oscillator
+            math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
+            beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
+            )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot   
 #==============================================================================
-#     return [alpha*(1 - math.pow(u[0],4)/math.pow(a,4) -  # Squared oscillator
-#             math.pow(u[1],4)/math.pow(b,4))*u[0] + (w*a)*math.pow(u[1],3)/math.pow(b,3), #x_dot
-#             beta*(1 - math.pow(u[0],4)/math.pow(a,4) - math.pow(u[1],4)/math.pow(b,4)
-#             )*u[1] - (w*b)*math.pow(u[0],3)/math.pow(a,3)] #z_dot   
+#     return [alpha*(1 - math.pow(u[0],2)/math.pow(a,2) -  # Elliptical oscillator
+#         math.pow(u[1],2)/math.pow(b,2))*u[0] + (w*a)*math.pow(u[1],1)/(math.pow(b,1)), #x_dot
+#         beta*(1 - math.pow(u[0],2)/math.pow(a,2) - math.pow(u[1],2)/math.pow(b,2)
+#         )*u[1] - (w*b)*math.pow(u[0],1)/math.pow(a,1)] #z_dot    
 #==============================================================================
-    return [alpha*(1 - math.pow(u[0],2)/math.pow(a,2) -  # Elliptical oscillator
-        math.pow(u[1],2)/math.pow(b,2))*u[0] + (w*a)*math.pow(u[1],1)/(math.pow(b,1)), #x_dot
-        beta*(1 - math.pow(u[0],2)/math.pow(a,2) - math.pow(u[1],2)/math.pow(b,2)
-        )*u[1] - (w*b)*math.pow(u[0],1)/math.pow(a,1)] #z_dot    
 u_matrix = np.zeros((len(time_axis), 2, numberOfLegs))
 
 
@@ -503,7 +524,9 @@ axarr[1].plot(time_axis,[row[0] for row in w],label = "LF")
 axarr[1].plot(time_axis,[row[1] for row in w],label = "RF")
 axarr[1].plot(time_axis,[row[2] for row in w],label = "HL")
 axarr[1].plot(time_axis,[row[3] for row in w],label = "HR")
-axarr[1].set_ylim([1.5, 3.5])
+#==============================================================================
+# axarr[1].set_ylim([1.5, 3.5])
+#==============================================================================
 axarr[1].axhline(y=0,color='0')
 axarr[1].set_ylabel('$\omega [ rad/s ]$',fontsize = 30)
 axarr[1].set_xlabel('Time [s]',fontsize = 30)

@@ -90,84 +90,111 @@
 {
 \setbeamertemplate{footline}{\usebeamertemplate*{minimal footline}}
 \frame{\titlepage}
-%\begin{frame}\frametitle{\titleTOC}
-%	\tableofcontents
-%\end{frame}
+\begin{frame}\frametitle{\titleTOC}
+	\tableofcontents
+\end{frame}
 }
 
 {\setbeamertemplate{footline}{\usebeamertemplate*{minimal footline}}
 }
 
 
-
-\begin{frame}{Outline}
-	\begin{itemize}\setlength\itemsep{2em}
-		\item Implementation of gait generation using max-plus
-		\item Maintenance of HyQ and lab
-		\item Summer schools 
-		\item Meeting with M. Shahbazi 
-		\item Further work
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Implementation of gait generation using max-plus}
+\section{Summary of work}
+\begin{frame}{Summary of work}
 \begin{itemize}\setlength\itemsep{3em}
-\item Created max-plus algebra class on C++
-\item Created max-plus scheduler class on C++
-\item Implemented code on RCF controller
-\item Trotting gait ($D_f = 0.5$)
+\item Worked on implementation of max-plus in framework
+\item Studied feedback linearization of Thiago Boaventura
+\item Started convex optimization study group
+\item Had a meeting to define goals towards paper
 \end{itemize}
 \end{frame}
 
+\section{Work on max-plus gait generation}
 
-\begin{frame}{Simulation}
-\movie[width=\textwidth,showcontrols=true]
-        {\includegraphics[width=\textwidth]{OUTPUT.png}}{OUTPUT.mp4} \\
-\end{frame}
-
-\begin{frame}{Work for the next month}
-\begin{itemize}\setlength\itemsep{3em}
-\item Implement "event feedback" in simulation
-\item Test gait parameter switching
-\item Improve code
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Summer schools}
-\begin{itemize}
-\item Machine Learning Crash Course (Genova, Italy, June 26th - 30th)
-\begin{itemize}
-\item Admitted (almost certain)
-\item No admission fee
-\end{itemize}
-\item BMVA Computer Vision Summer School (Lincoln, UK, July 3rd - 7th)
-\begin{itemize}
-\item Registration opened (not submitted yet)
-\item Non UK + accommodation: £670, no accommodation: £494
-\end{itemize}
-\item Numerical Optimization and Optimal Control (Rome, Italy, June 19th - 23rd)
-\begin{itemize}
-\item Registered (no confirmation)
-\item Probably not going since it is a workshop and discussion may be not so relevant for my project
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Meeting with M. Shahbazi}
-\begin{itemize}\setlength\itemsep{2em}
-\item Former PhD student in Delft
-\item Work on max-plus algebra for locomotion systems
-\item Simplified double SLIP-model
-\item Discussed on his perspectives to extend his work
-\item On a different scope than the one of the group
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Further work}
+\begin{frame}{Work on max-plus gait generation}
 	\begin{itemize}\setlength\itemsep{3em}
-		\item Implement the already mentioned features to max-plus in simulation
-		\item Think about generalizing the gait generation for different controllers within the group (Michele's, Carlos')
+		\item Current state: The gazebo simulation works the same as in the simulation in python that I previously had
+		\item Further features: 
+		\begin{itemize}
+		\item Instantaneous (1 step) gait parameter change
+		\item Problems with touchdown and lift-off event detection
+		\item Angular frequency modulation
+		\item Try a different trajectory generator
+		\end{itemize}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{"Instantaneous" gait change}
+	\begin{itemize}\setlength\itemsep{1.5em}
+		\item Detect legs in swing face
+		\item Use them as the "follow-up" legs for the next gait pattern
+		Example:
+		If the current gait is:
+		\begin{equation*}
+		G_1 = \{1,4\}\prec \{2,3\}
+		\end{equation*} 
+		And we desire to change to:
+		\begin{equation*}
+		G_2 = \{1\} \prec \{2\} \prec \{3\} \prec \{4\} 
+		\end{equation*}
+		In the case that legs $2$ and $3$ are in the air, the gait transition patterns could be chosen as:
+		\begin{align*}
+		G_2^* &=  \{2\} \prec \{3\} \prec \{1\} \prec \{4\} \\
+		G_2^{**} &= \{3\} \prec \{4\} \prec \{1\} \prec \{2\}
+		\end{align*}
+		\item The transition would be safe, would be made during the step that the robot is taking and with a finite number of gait transition patterns
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Evaluation of viability of max-plus generation}
+\begin{itemize}\setlength\itemsep{3em}
+\item Run comparison against current method
+\begin{itemize}
+\item Gait switch
+\item Versatility of gait generation
+\item Difficulty to be implemented and controlled
+\item Flexibility to be included in the framework
+\end{itemize}
+\item Analyze pros and cons between the two approaches
+\item (Propose new approach)
+\end{itemize}
+\end{frame}
+
+
+\section{Goals of the paper}
+
+\begin{frame}{Goals of the paper}
+\begin{itemize}\setlength\itemsep{3em}
+\item Overcome terrain variations (such as a ramp) based on timed-event feedback 
+\item Come up with a methodology to decide an implement in a systematic way, a set of gait parameters to overcome certain types of terrain (e.g., stair climbing)
+\end{itemize}
+\end{frame}
+
+\section{A few announcements}
+
+\begin{frame}{Announcements}
+\begin{itemize}\setlength\itemsep{3em}
+
+\item Machine Learning Crash Course will starts 26/06
+\item BMVA Computer Vision Summer school starts 03/07 (have to pay for myself and reimbursed afterwards, since it can only be paid by credit or debit card)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ Summer School on Foundations of Robotics and Autonomous Learning 
+\begin{itemize}
+\item Dates: 04/09 - 08/09 (close to ICRA deadline)
+\item Location: Berlin
+\item Topics: 
+\begin{itemize}
+\item Robotics: with a focus on foundations and a unifying perspective of the involved fields
+    Basics of control, manipulation, planning
+
+\item Machine Learning: with a focus on Autonomous Learning: the interaction of decision theory and learning
+    Basics of Decision Theory, Active Learning, Bayesian Experimental Design, Reinforcement Learning, Adaptive Control, Inverse RL, Machine Learning applied to Robotics
+\end{itemize}
+\item Lecturers: Michael Beetz (Bremen University), Oliver Brock (TU Berlin), Sami Haddadin (Hannover University),Tamim Asfour (KIT), Ludovic Righetti (Max-Planck Institute for Intelligent Systems), Marc Toussaint (University of Stuttgart) 
+\end{itemize}
 \end{frame}
 
 \begin{frame}
