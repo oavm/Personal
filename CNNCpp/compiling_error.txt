@@ -1,0 +1,10 @@
+/home/octaviovillarreal/Git/Personal/CNNCpp/MaxPlusScheduler.cpp: In function ‘int main()’:
+/home/octaviovillarreal/Git/Personal/CNNCpp/MaxPlusScheduler.cpp:115:60: error: no matching function for call to ‘NeuralNetwork::convolution(Eigen::MatrixXd&, Eigen::MatrixXd&)’
+   testing = neuralNetwork.convolution(image_matrix,kernel00);
+                                                            ^
+/home/octaviovillarreal/Git/Personal/CNNCpp/MaxPlusScheduler.cpp:115:60: note: candidate is:
+In file included from /home/octaviovillarreal/Git/Personal/CNNCpp/MaxPlusScheduler.cpp:19:0:
+/home/octaviovillarreal/Git/Personal/CNNCpp/HyQNN.h:42:28: note: Eigen::Tensor<double, 4> NeuralNetwork::convolution(Eigen::MatrixXd, Eigen::Tensor<double, 4>)
+   Eigen::Tensor<double, 4> convolution(Eigen::MatrixXd image,Eigen::Tensor<double, 4> K0)
+                            ^
+/home/octaviovillarreal/Git/Personal/CNNCpp/HyQNN.h:42:28: note:   no known conversion for argument 2 from ‘Eigen::MatrixXd {aka Eigen::Matrix<double, -1, -1>}’ to ‘Eigen::Tensor<double, 4>’

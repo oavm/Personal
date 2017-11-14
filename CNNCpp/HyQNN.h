@@ -39,7 +39,7 @@ public:
 
   }
 
-  Eigen::Tensor<double, 4> convolution()
+  Eigen::Tensor<double, 4> convolution(Eigen::MatrixXd image,Eigen::Tensor<double, 4> K0)
   {
     int padHeight,padWidth,imageHeight,imageWidth,kernelHeight,kernelWidth,padTop,padLeft;
     Eigen::MatrixXd K0_0(K0.dimension(0),K0.dimension(1));
@@ -126,7 +126,7 @@ public:
     Eigen::Tensor<double, 4> posLinTensor(imageHeight,imageWidth,K0.dimension(2),K0.dimension(3));
     Eigen::Tensor<double, 4> filteredIm(imageHeight,imageWidth,K0.dimension(2),K0.dimension(3));
 
-    filteredIm = convolution();
+    filteredIm = convolution(image,K0);
 
     double poslin_num;
 
@@ -156,43 +156,65 @@ public:
 
   Eigen::Tensor<double, 4> maxPool()
   {
-    int kernelHeight,kernelWidth,imageHeight,imageWidth,row_indices,col_indices;
+    int imageHeight,imageWidth;
     imageHeight = image.rows();
     imageWidth = image.cols();
 
-    Eigen::Tensor<double, 4> maxPoolTensor(imageHeight,imageWidth,K0.dimension(2),K0.dimension(3));
+    Eigen::Tensor<double, 4> maxPoolTensor((imageHeight + imageHeight%2)/2,(imageHeight + imageHeight%2)/2,K0.dimension(2),K0.dimension(3));
     Eigen::Tensor<double, 4> posLinIm(imageHeight,imageWidth,K0.dimension(2),K0.dimension(3));
 
     posLinIm = reLu();
 
-    Eigen::MatrixXd maxpoolMatrix;
+    Eigen::MatrixXd maxPoolMatrix;
     Eigen::MatrixXd maxpool_extended(imageHeight + imageHeight%2,imageWidth + imageWidth%2);
     Eigen::MatrixXd maxpool_padding_hor = Eigen::MatrixXd::Zero(imageHeight%2,imageWidth + imageWidth%2);
     Eigen::MatrixXd maxpool_padding_ver = Eigen::MatrixXd::Zero(imageHeight,imageWidth%2);
-    Eigen::MatrixXd maxpool_array[K0.dimension(2)][K0.dimension(3)];
 
-
-    double maxpool_num;
+    double maxPoolElement;
 
     for (int l = 0; l <= K0.dimension(3) - 1; l++)
     {
       for (int k = 0; k <= K0.dimension(2) - 1; k++)
       {
-        maxPoolMatrix = extract2DMatrix(l,k,posLinIm);
+        maxPoolMatrix = extract2DMatrix(k,l,posLinIm);
+        maxpool_extended << maxPoolMatrix,maxpool_padding_ver,
+                            maxpool_padding_hor;
         for (int i = 0; i <= (imageHeight + imageHeight%2)/2 - 1; i++)
         {
-          for (int j = 0; j <= (imageWidth + imageWidth%)/2 - 1; j++)
+          for (int j = 0; j <= (imageWidth + imageWidth%2)/2 - 1; j++)
           {
-            row_indices = (2*i):(1+2*i);
-            col_indices = (1+2*j):(2+2*j);
-            maxPoolElement = max(max(z1_extended(row_indices,col_indices)));
-            maxPoolMatrix(i+1, j+1,q) = maxPoolElement;
-            maxPoolElement = maxPoolMatrix.block(2*i,2*j,2,2).maxCoeff()
+            maxPoolElement = maxpool_extended.block(2*i,2*j,2,2).maxCoeff();
+            maxPoolTensor(i,j,k,l) = maxPoolElement;
           }
         }
       }
     }
-    return posLinTensor;
+    return maxPoolTensor;
+  }
+
+  Eigen::Tensor<double, 4> convolutionInnerLayer()
+  {
+    Eigen::MatrixXd maxPoolMatrix;
+    Eigen::MatrixXd kernelMatrix;
+    int imageHeight,imageWidth;
+    imageHeight = image.rows();
+    imageWidth = image.cols();
+
+    Eigen::Tensor<double, 4> maxPoolTensor((imageHeight + imageHeight%2)/2,(imageHeight + imageHeight%2)/2,K0.dimension(2),K0.dimension(3));
+    Eigen::Tensor<double, 4> convolutionTensor((imageHeight + imageHeight%2)/2,(imageHeight + imageHeight%2)/2,K0.dimension(2),K1.dimension(3));
+
+    maxPoolTensor = maxPool();
+
+    for (i = 0; i <= maxPoolTensor.dimension(3); i++)
+    {
+      for (j = 0; j<= convolutionTensor.dimension(2); j++)
+      {
+        maxPoolMatrix = extract2DMatrix(i,j,maxPoolTensor);
+        kernelMatrix = extract2DMatrix(i,j,K1);
+        singleConvolution = convolution(maxPoolMatrix,kernelMatrix);
+      }
+    }
+
   }
 
 
