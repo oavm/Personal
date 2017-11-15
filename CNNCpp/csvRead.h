@@ -23,8 +23,8 @@ public:
       int rows = 0;
       int cols = 0;
 
-      file.open(filename);
-      file2.open(filename);
+      file.open(filename.c_str());
+      file2.open(filename.c_str());
 
       while (std::getline(file, line))
       {

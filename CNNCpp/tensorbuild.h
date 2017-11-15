@@ -32,7 +32,7 @@ public:
     int cols = 0;
     int a = 0;
 
-    indices.open(indexMatrix);
+    indices.open(indexMatrix.c_str());
 
     while (std::getline(indices, line))
     {

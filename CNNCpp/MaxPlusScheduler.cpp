@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fstream>
-#include </home/octaviovillarreal/Git/Personal/CNNCpp/Eigen/Dense>
-#include </home/octaviovillarreal/Git/Personal/CNNCpp/unsupported/Eigen/CXX11/Tensor>
-#include </home/octaviovillarreal/Git/Personal/CNNCpp/unsupported/Eigen/CXX11/Tensor>
+#include </home/octavio/Git/Personal/CNNCpp/Eigen/Dense>
+#include </home/octavio/Git/Personal/CNNCpp/unsupported/Eigen/CXX11/Tensor>
+#include </home/octavio/Git/Personal/CNNCpp/unsupported/Eigen/CXX11/Tensor>
 #include <vector>
 #include <set>
 #include <string>
@@ -14,9 +14,9 @@
 #include <cstdlib>
 #include <sstream>
 
-#include </home/octaviovillarreal/Git/Personal/CNNCpp/csvRead.h>
-#include </home/octaviovillarreal/Git/Personal/CNNCpp/tensorbuild.h>
-#include </home/octaviovillarreal/Git/Personal/CNNCpp/HyQNN.h>
+#include </home/octavio/Git/Personal/CNNCpp/csvRead.h>
+#include </home/octavio/Git/Personal/CNNCpp/tensorbuild.h>
+#include </home/octavio/Git/Personal/CNNCpp/HyQNN.h>
 
 using namespace std;
 
@@ -60,7 +60,7 @@ int main ()
   Eigen::MatrixXd bias1;
   b1.set_csv("LF-SimpCNN-conv_part-layer_1-bias.csv");
   bias1 = b1.createMatrix();
-  std::cout << "\nbias 1: \n" << bias1;
+  // std::cout << "\nbias 1: \n" << bias1;
 
   // Create kernel tensor
   TensorBuild kernel0Tensor;
@@ -108,9 +108,21 @@ int main ()
   Eigen::Tensor<double, 4> tensorMaxPool(size_tensor(0),size_tensor(1),size_tensor(2),size_tensor(3));
   tensorMaxPool = neuralNetwork.maxPool();
   maxPoolMatrix = neuralNetwork.extract2DMatrix(0,2,tensorMaxPool);
-  std::cout << "\n Matrix after maxpool \n" << maxPoolMatrix;
+  // std::cout << "\n Matrix after maxpool \n" << maxPoolMatrix;
 
+  // Test for single convolution
+  Eigen::MatrixXd singleConvolution;
+  Eigen::MatrixXd testKernel;
+  testKernel = neuralNetwork.extract2DMatrix(0,0,K0);
+  singleConvolution = neuralNetwork.singleConvolution(image_matrix,testKernel);
+  // std::cout << "\n Single convolution \n" << singleConvolution;
 
+  // Second layer
+  Eigen::Tensor<double, 4> secondLayer;
+  Eigen::MatrixXd secondLayerMatrix;
+  secondLayer = neuralNetwork.convolutionInnerLayer();
+  secondLayerMatrix = neuralNetwork.extract2DMatrix(0,0,secondLayer);
+  std::cout << "\n Second layer \n" << secondLayerMatrix;
 
 
   return 0;

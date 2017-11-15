@@ -39,6 +39,43 @@ public:
 
   }
 
+  Eigen::MatrixXd singleConvolution(Eigen::MatrixXd image,Eigen::MatrixXd kernel)
+  {
+    int padHeight,padWidth,imageHeight,imageWidth,kernelHeight,kernelWidth,padTop,padLeft;
+    double element;
+
+    imageHeight = image.rows();
+    imageWidth = image.cols();
+    kernelHeight = kernel.rows();
+    kernelWidth = kernel.cols();
+
+    Eigen::MatrixXd singleConvolution(imageHeight,imageWidth);
+
+    padHeight = ((imageHeight - 1) + kernelHeight - imageHeight);
+    padWidth = ((imageWidth - 1) + kernelWidth - imageWidth);
+
+    padTop = padHeight / 2;
+    padLeft = padWidth / 2;
+
+    Eigen::MatrixXd image_padding_hor = Eigen::MatrixXd::Zero(padTop,imageWidth + padWidth);
+    Eigen::MatrixXd image_padding_ver = Eigen::MatrixXd::Zero(imageHeight,padLeft);
+    Eigen::MatrixXd image_extended(imageHeight + padHeight,imageWidth + padWidth);
+
+    image_extended << image_padding_hor,
+                      image_padding_ver,image,image_padding_ver,
+                      image_padding_hor;
+
+    for (int i = 0; i <= imageHeight - 1; i++)
+    {
+      for (int j = 0; j <= imageWidth - 1; j++)
+      {
+        element = image_extended.block(i,j,kernelHeight,kernelWidth).cwiseProduct(kernel).sum();
+        singleConvolution(i,j) = element;
+      }
+    }
+    return singleConvolution;
+  }
+
   Eigen::Tensor<double, 4> convolution(Eigen::MatrixXd image,Eigen::Tensor<double, 4> K0)
   {
     int padHeight,padWidth,imageHeight,imageWidth,kernelHeight,kernelWidth,padTop,padLeft;
@@ -107,7 +144,7 @@ public:
         {
           for (int j = 0; j <= imageWidth - 1; j++)
           {
-            element = image_extended.block(i,j,K0.dimension(0),K0.dimension(1)).cwiseProduct(kernelMatrix[k][l]).sum()  + bias0[k][l](i,j);
+            element = image_extended.block(i,j,K0.dimension(0),K0.dimension(1)).cwiseProduct(kernelMatrix[k][l]).sum() + bias0[k][l](i,j);
             filteredImage(i,j,k,l) = element;
           }
         }
@@ -196,27 +233,67 @@ public:
   {
     Eigen::MatrixXd maxPoolMatrix;
     Eigen::MatrixXd kernelMatrix;
+    Eigen::MatrixXd singleConvolutions;
+    Eigen::MatrixXd sumMatrix;
+    Eigen::MatrixXd bias1[1][K1.dimension(3)];
+    Eigen::MatrixXd onesMatrix;
+
     int imageHeight,imageWidth;
+    double element;
     imageHeight = image.rows();
     imageWidth = image.cols();
 
+    onesMatrix = Eigen::MatrixXd::Ones(imageHeight,imageWidth);
+    for (int i = 0; i <= b1.rows() - 1; i++)
+    {
+      bias1[0][i] = b1(i)*onesMatrix;
+    }
+
     Eigen::Tensor<double, 4> maxPoolTensor((imageHeight + imageHeight%2)/2,(imageHeight + imageHeight%2)/2,K0.dimension(2),K0.dimension(3));
     Eigen::Tensor<double, 4> convolutionTensor((imageHeight + imageHeight%2)/2,(imageHeight + imageHeight%2)/2,K0.dimension(2),K1.dimension(3));
+    Eigen::MatrixXd convolutionArray[K0.dimension(2)][K1.dimension(2)];
+    Eigen::MatrixXd convolutionArray2[K0.dimension(2)][K1.dimension(3)];
+
+
 
     maxPoolTensor = maxPool();
 
-    for (i = 0; i <= maxPoolTensor.dimension(3); i++)
+    for (int j = 0; j <= K1.dimension(3) - 1; j++)
     {
-      for (j = 0; j<= convolutionTensor.dimension(2); j++)
+      for (int i = 0; i<= K1.dimension(2) - 1; i++)
       {
-        maxPoolMatrix = extract2DMatrix(i,j,maxPoolTensor);
+        maxPoolMatrix = extract2DMatrix(0,i,maxPoolTensor);
         kernelMatrix = extract2DMatrix(i,j,K1);
-        singleConvolution = convolution(maxPoolMatrix,kernelMatrix);
+        singleConvolutions = singleConvolution(maxPoolMatrix,kernelMatrix);
+        convolutionArray[0][i] = singleConvolutions;
+      }
+      sumMatrix = convolutionArray[0][0] + convolutionArray[0][1] + convolutionArray[0][2] + convolutionArray[0][3];
+      convolutionArray2[0][j] = sumMatrix;
+    }
+
+    // std::cout << "\nConvolution array\n" << maxPoolTensor.dimension(1);
+
+    for (int l = 0; l <= K1.dimension(3) - 1; l++)
+    {
+      for (int k = 0; k <= K0.dimension(2) - 1; k++)
+      {
+        for (int i = 0; i <= maxPoolTensor.dimension(0) - 1; i++)
+        {
+          for (int j = 0; j<= maxPoolTensor.dimension(1) - 1; j++)
+          {
+            // element = convolutionArray2[k][l](i,j);
+            convolutionTensor(i,j,k,l) = convolutionArray2[k][l](i,j) + bias1[k][l](i,j);
+          }
+        }
       }
     }
+
+    // std::cout << "\nConvolution array\n" << element;
+
+    return convolutionTensor;
 
   }
 
 
 };
-  #endif /*_csvRead_H_*/
+  #endif /*_HyQNN_H_*/
